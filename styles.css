@@ -286,6 +286,7 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
 ::selection {
   background: #7f9cff44;
 }
+/* Custom scrollbar for dark mode */
 ::-webkit-scrollbar {
   width: 10px;
   background: #232634;

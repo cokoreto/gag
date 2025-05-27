@@ -26,7 +26,6 @@ const categories = {
   "Exotic Plants": ['papaya','banana','passionfruit','soulfruit']
 };
 
-// Render modifier buttons
 const modifierContainer = document.getElementById('modifiers');
 modifierContainer.innerHTML = '';
 modifiers.forEach(id => {
@@ -38,7 +37,6 @@ modifiers.forEach(id => {
   btn.onclick = () => toggleModifier(id);
   modifierContainer.appendChild(btn);
 });
-// Render fruit type buttons
 const fruitRow = document.getElementById('fruitRow');
 fruitRow.innerHTML = '';
 fruitTypes.forEach(fruit => {
@@ -51,7 +49,6 @@ fruitTypes.forEach(fruit => {
   fruitRow.appendChild(btn);
 });
 
-// Plant image mapping
 const plantImages = {
   carrot: "img/carrot.png",
   strawberry: "img/strawberry.png",
@@ -98,7 +95,6 @@ const plantImages = {
   soulfruit: "img/soulfruit.png"
 };
 
-// Plant label mapping (pretty names)
 const plantLabels = {
   carrot: "Carrot",
   strawberry: "Strawberry",
@@ -145,7 +141,6 @@ const plantLabels = {
   soulfruit: "Soul Fruit"
 };
 
-// Dynamically build plant categories as button groups (not checkboxes)
 const categoryContainer = document.getElementById('categoryContainer');
 const plantIds = [];
 Object.entries(categories).forEach(([title, ids]) => {
@@ -162,7 +157,6 @@ Object.entries(categories).forEach(([title, ids]) => {
     btn.type = 'button';
     btn.className = 'plant-btn';
     btn.id = `plantbtn-${id}`;
-    // Plant image and label
     const imgSrc = plantImages[id];
     const label = plantLabels[id] || (id.charAt(0).toUpperCase() + id.slice(1));
     btn.innerHTML = imgSrc
@@ -175,11 +169,9 @@ Object.entries(categories).forEach(([title, ids]) => {
   categoryContainer.appendChild(categoryDiv);
 });
 
-// --- Modifier logic ---
 function toggleModifier(id) {
   const btn = document.getElementById(`modbtn-${id}`);
   const isActive = btn.classList.contains('active');
-  // Special logic for frozen/wet/chilled (if you want to add wet/chilled buttons, add them to modifiers array)
   if (id === 'frozen') {
     if (!isActive) {
       setModifierActive('frozen', true);
@@ -211,7 +203,6 @@ function setModifierActive(id, active, disable = false) {
   else btn.classList.remove('active');
   btn.disabled = !!disable;
 }
-// --- Fruit logic ---
 function toggleFruitBtn(id) {
   fruitTypes.forEach(fruit => {
     const btn = document.getElementById(`fruitbtn-${fruit.id}`);
@@ -220,17 +211,14 @@ function toggleFruitBtn(id) {
   });
   calculateValue();
 }
-// --- Plant logic ---
 function togglePlantBtn(changed) {
   plantIds.forEach(id => {
     const btn = document.getElementById(`plantbtn-${id}`);
     if (btn) btn.classList.toggle('active', id === changed);
   });
-  // Do NOT auto-set weight anymore
   calculateValue();
 }
 
-// --- Calculate value logic ---
 function getActivePlantId() {
   for (const id of plantIds) {
     const btn = document.getElementById(`plantbtn-${id}`);
