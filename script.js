@@ -566,7 +566,7 @@ function getBasePricePerKg(plantId, weight) {
   // Returns base price per kg for the selected plant and weight
   if (!plantId) return null;
   // Use the same logic as in calculateValue, but for 1kg and for the selected plant
-  let minW = plantMinWeights[plantId] || 0;
+  // let minW = plantMinWeights[plantId] || 0; // Tidak dipakai, bisa dihapus
   let w = weight || 1;
   let base = 0;
   switch (plantId) {
@@ -618,13 +618,118 @@ function getBasePricePerKg(plantId, weight) {
   return base;
 }
 
+function getBaseValueConstant(plantId) {
+  // Mengembalikan base value tetap (konstanta) untuk setiap buah
+  switch (plantId) {
+    case 'easteregg': return 277.5;
+    case 'moonflower': return 2381;
+    case 'starfruit': return 1666.6;
+    case 'pepper': return 320;
+    case 'grape': return 872;
+    case 'nightshade': return 13850;
+    case 'mint': return 5230;
+    case 'glowshroom': return 532.5;
+    case 'bloodbanana': return 2670;
+    case 'beanstalk': return 200;
+    case 'coconut': return 2.04;
+    case 'candyblossom': return 11111.111;
+    case 'carrot': return 275;
+    case 'strawberry': return 175;
+    case 'blueberry': return 500;
+    case 'orangetulip': return 300000;
+    case 'tomato': return 120;
+    case 'daffodil': return 25000;
+    case 'watermelon': return 61.25;
+    case 'pumpkin': return 64;
+    case 'mushroom': return 241.6;
+    case 'bamboo': return 250;
+    case 'apple': return 30.53;
+    case 'corn': return 10.00;
+    case 'cactus': return 69.4;
+    case 'cranberry': return 2000;
+    case 'moonmelon': return 280.85;
+    case 'pear': return 55.5;
+    case 'durian': return 78.19;
+    case 'peach': return 75;
+    case 'cacao': return 171.875;
+    case 'moonglow': return 408.45;
+    case 'dragonfruit': return 32.99;
+    case 'mango': return 28.89;
+    case 'moonblossom': return 5555.555;
+    case 'raspberry': return 177.5;
+    case 'eggplant': return 300;
+    case 'papaya': return 111.11;
+    case 'celestiberry': return 2000;
+    case 'moonmango': return 111.11;
+    case 'banana': return 777.77;
+    case 'passionfruit': return 395;
+    case 'soulfruit': return 12.4;
+    default: return null;
+  }
+}
+
+function getBaseValueCalculated(plantId, weight) {
+  // Menghitung base value sesuai rumus di calculateValue
+  if (!plantId) return null;
+  let w = weight || 1;
+  switch (plantId) {
+    case 'easteregg': return (w < 2.85) ? 2256 : 277.5 * Math.pow(w, 2);
+    case 'moonflower': return (w < 1.90) ? 8574 : 2381 * Math.pow(w, 2);
+    case 'starfruit': return (w < 2.85) ? 13538 : 1666.6 * Math.pow(w, 2);
+    case 'pepper': return (w < 4.75) ? 7200 : 320 * Math.pow(w, 2);
+    case 'grape': return (w < 2.85) ? 7085 : 872 * Math.pow(w, 2);
+    case 'nightshade': return (w < 0.48) ? 3159 : 13850 * Math.pow(w, 2);
+    case 'mint': return (w < 0.95) ? 4738 : 5230 * Math.pow(w, 2);
+    case 'glowshroom': return (w < 0.70) ? 271 : 532.5 * Math.pow(w, 2);
+    case 'bloodbanana': return (w < 1.42) ? 5415 : 2670 * Math.pow(w, 2);
+    case 'beanstalk': return (w < 9.5) ? 18050 : 200 * Math.pow(w, 2);
+    case 'coconut': return (w < 13.31) ? 361 : 2.04 * Math.pow(w, 2);
+    case 'candyblossom': return (w < 2.85) ? 90250 : 11111.111 * Math.pow(w, 2);
+    case 'carrot': return (w < 0.24) ? 18 : 275 * Math.pow(w, 2);
+    case 'strawberry': return (w < 0.29) ? 14 : 175 * Math.pow(w, 2);
+    case 'blueberry': return (w < 0.17) ? 18 : 500 * Math.pow(w, 2);
+    case 'orangetulip': return (w < 0.0499) ? 767 : 300000 * Math.pow(w, 2);
+    case 'tomato': return (w < 0.44) ? 27 : 120 * Math.pow(w, 2);
+    case 'daffodil': return (w < 0.16) ? 903 : 25000 * Math.pow(w, 2);
+    case 'watermelon': return (w < 7.3) ? 2708 : 61.25 * Math.pow(w, 2);
+    case 'pumpkin': return (w < 6.90) ? 3069 : 64 * Math.pow(w, 2);
+    case 'mushroom': return (w < 25.9) ? 136278 : 241.6 * Math.pow(w, 2);
+    case 'bamboo': return (w < 3.80) ? 3610 : 250 * Math.pow(w, 2);
+    case 'apple': return (w < 2.85) ? 248 : 30.53 * Math.pow(w, 2);
+    case 'corn': return (w < 1.90) ? 36 : 10.00 * Math.pow(w, 2);
+    case 'cactus': return (w < 6.65) ? 3069 : 69.4 * Math.pow(w, 2);
+    case 'cranberry': return (w < 0.95) ? 1805 : 2000 * Math.pow(w, 2);
+    case 'moonmelon': return (w < 6.84) ? 16245 : 280.85 * Math.pow(w, 2);
+    case 'pear': return (w < 2.85) ? 451 : 55.5 * Math.pow(w, 2);
+    case 'durian': return (w < 7.60) ? 4513 : 78.19 * Math.pow(w, 2);
+    case 'peach': return (w < 1.90) ? 271 : 75 * Math.pow(w, 2);
+    case 'cacao': return (w < 7.6) ? 9928 : 171.875 * Math.pow(w, 2);
+    case 'moonglow': return (w < 6.65) ? 18050 : 408.45 * Math.pow(w, 2);
+    case 'dragonfruit': return (w < 11.38) ? 4287 : 32.99 * Math.pow(w, 2);
+    case 'mango': return (w < 14.28) ? 5866 : 28.89 * Math.pow(w, 2);
+    case 'moonblossom': return (w < 2.86) ? 45125 : 5555.555 * Math.pow(w, 2);
+    case 'raspberry': return (w < 0.71) ? 90 : 177.5 * Math.pow(w, 2);
+    case 'eggplant': return (w < 4.75) ? 6769 : 300 * Math.pow(w, 2);
+    case 'papaya': return (w < 2.86) ? 903 : 111.11 * Math.pow(w, 2);
+    case 'celestiberry': return (w < 1.90) ? 7220 : 2000 * Math.pow(w, 2);
+    case 'moonmango': return (w < 14.25) ? 22563 : 111.11 * Math.pow(w, 2);
+    case 'banana': return (w < 1.425) ? 1579 : 777.77 * Math.pow(w, 2);
+    case 'passionfruit': return (w < 2.867) ? 3204 : 395 * Math.pow(w, 2);
+    case 'soulfruit': return (w < 23.75) ? 6994 : 12.4 * Math.pow(w, 2);
+    default: return w;
+  }
+}
+
 function updateBasePricePerKg() {
   const plantId = getActivePlantId();
   const weight = parseFloat(document.getElementById('weight').value) || 1;
-  const basePrice = getBasePricePerKg(plantId, weight);
+  const baseConst = getBaseValueConstant(plantId);
+  const baseCalc = getBaseValueCalculated(plantId, weight);
   const basePriceDiv = document.getElementById('basePricePerKg');
-  if (plantId && basePrice) {
-    basePriceDiv.textContent = `Base price per kg: $${Math.round(basePrice).toLocaleString()}`;
+  if (plantId && baseConst !== null) {
+    basePriceDiv.textContent = `Base per kg: $${baseConst} (${
+      baseCalc !== null ? '$' + Math.round(baseCalc).toLocaleString() : '-'
+    })`;
   } else {
     basePriceDiv.textContent = '';
   }

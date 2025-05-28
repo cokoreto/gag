@@ -319,3 +319,22 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   background: #35384a;
   border-radius: 8px;
 }
+
+/* Tambahkan animasi shake saat hover */
+.plant-btn:hover {
+  animation: plant-swing 1.2s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+@keyframes plant-swing {
+  0% { transform: rotate(0deg);}
+  10% { transform: rotate(8deg);}
+  20% { transform: rotate(-8deg);}
+  30% { transform: rotate(6deg);}
+  40% { transform: rotate(-6deg);}
+  50% { transform: rotate(4deg);}
+  60% { transform: rotate(-4deg);}
+  70% { transform: rotate(2deg);}
+  80% { transform: rotate(-2deg);}
+  90% { transform: rotate(1deg);}
+  100% { transform: rotate(0deg);}
+}
