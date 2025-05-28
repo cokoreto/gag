@@ -99,9 +99,9 @@ h1 {
   position: relative;
 }
 #categoryContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px 0;
   margin-bottom: 10px;
 }
 .category {
@@ -110,7 +110,7 @@ h1 {
   padding: 14px 16px 16px 16px;
   margin-bottom: 0;
   min-width: 0;
-  flex: 1 1 220px;
+  flex: none;
   box-sizing: border-box;
   box-shadow: 0 2px 12px #0003;
   border: 1px solid var(--border);
@@ -133,6 +133,22 @@ h1 {
   text-align: left;
   border-bottom: 1px solid var(--border);
   padding-bottom: 3px;
+}
+.category > div:not(.category-title) {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-top: 6px;
+  width: 100%;
+}
+.category > div:not(.category-title)::-webkit-scrollbar {
+  height: 8px;
+}
+.category > div:not(.category-title)::-webkit-scrollbar-thumb {
+  background: #35384a;
+  border-radius: 8px;
 }
 .checkbox {
   display: block;
@@ -259,11 +275,19 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   pointer-events: none;
   user-select: none;
 }
+.base-price-row {
+  color: var(--accent);
+  font-size: 1.08em;
+  margin: 4px 0 0 0;
+  padding-left: 2px;
+  min-height: 1.5em;
+}
 @media (max-width: 700px) {
   .container { padding: 10px 2vw; }
   .category { min-width: 120px; }
   .input-row { flex-direction: column; align-items: flex-start; }
-  #categoryContainer, #modifiers { gap: 10px; }
+  #categoryContainer { gap: 10px 0; }
+  .category > div:not(.category-title) { gap: 0; }
 }
 @media (max-width: 900px) {
   #categoryContainer {

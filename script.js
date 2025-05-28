@@ -148,8 +148,10 @@ Object.entries(categories).forEach(([title, ids]) => {
   categoryDiv.className = 'category';
   categoryDiv.innerHTML = `<div class="category-title">${title}</div>`;
   const btnWrap = document.createElement('div');
+  btnWrap.className = 'category-list';
   btnWrap.style.display = 'flex';
-  btnWrap.style.flexWrap = 'wrap';
+  btnWrap.style.flexWrap = 'nowrap';
+  btnWrap.style.overflowX = 'auto';
   btnWrap.style.gap = '0';
   ids.forEach(id => {
     plantIds.push(id);
@@ -217,6 +219,7 @@ function togglePlantBtn(changed) {
     if (btn) btn.classList.toggle('active', id === changed);
   });
   calculateValue();
+  updateBasePricePerKg();
 }
 
 function getActivePlantId() {
@@ -474,14 +477,24 @@ function clearAll() {
   warnElem.textContent = '';
   warnElem.style.display = 'none';
   calculateValue();
+  updateBasePricePerKg();
 }
 
 // Attach events
-document.getElementById('weight').addEventListener('input', calculateValue);
-document.getElementById('resetBtn').addEventListener('click', clearAll);
+document.getElementById('weight').addEventListener('input', () => {
+  calculateValue();
+  updateBasePricePerKg();
+});
+document.getElementById('resetBtn').addEventListener('click', () => {
+  clearAll();
+  updateBasePricePerKg();
+});
 
 // Initial calculation
-window.onload = calculateValue;
+window.onload = () => {
+  calculateValue();
+  updateBasePricePerKg();
+};
 
 // Add plant button styles
 const style = document.createElement('style');
@@ -548,3 +561,71 @@ warnElem.style.fontSize = '0.98em';
 warnElem.style.marginTop = '4px';
 warnElem.style.marginLeft = '2px';
 inputRow.appendChild(warnElem);
+
+function getBasePricePerKg(plantId, weight) {
+  // Returns base price per kg for the selected plant and weight
+  if (!plantId) return null;
+  // Use the same logic as in calculateValue, but for 1kg and for the selected plant
+  let minW = plantMinWeights[plantId] || 0;
+  let w = weight || 1;
+  let base = 0;
+  switch (plantId) {
+    case 'easteregg': base = (w < 2.85) ? 2256 / w : 277.5 * w; break;
+    case 'moonflower': base = (w < 1.90) ? 8574 / w : 2381 * w; break;
+    case 'starfruit': base = (w < 2.85) ? 13538 / w : 1666.6 * w; break;
+    case 'pepper': base = (w < 4.75) ? 7200 / w : 320 * w; break;
+    case 'grape': base = (w < 2.85) ? 7085 / w : 872 * w; break;
+    case 'nightshade': base = (w < 0.48) ? 3159 / w : 13850 * w; break;
+    case 'mint': base = (w < 0.95) ? 4738 / w : 5230 * w; break;
+    case 'glowshroom': base = (w < 0.70) ? 271 / w : 532.5 * w; break;
+    case 'bloodbanana': base = (w < 1.42) ? 5415 / w : 2670 * w; break;
+    case 'beanstalk': base = (w < 9.5) ? 18050 / w : 200 * w; break;
+    case 'coconut': base = (w < 13.31) ? 361 / w : 2.04 * w; break;
+    case 'candyblossom': base = (w < 2.85) ? 90250 / w : 11111.111 * w; break;
+    case 'carrot': base = (w < 0.24) ? 18 / w : 275 * w; break;
+    case 'strawberry': base = (w < 0.29) ? 14 / w : 175 * w; break;
+    case 'blueberry': base = (w < 0.17) ? 18 / w : 500 * w; break;
+    case 'orangetulip': base = (w < 0.0499) ? 767 / w : 300000 * w; break;
+    case 'tomato': base = (w < 0.44) ? 27 / w : 120 * w; break;
+    case 'daffodil': base = (w < 0.16) ? 903 / w : 25000 * w; break;
+    case 'watermelon': base = (w < 7.3) ? 2708 / w : 61.25 * w; break;
+    case 'pumpkin': base = (w < 6.90) ? 3069 / w : 64 * w; break;
+    case 'mushroom': base = (w < 25.9) ? 136278 / w : 241.6 * w; break;
+    case 'bamboo': base = (w < 3.80) ? 3610 / w : 250 * w; break;
+    case 'apple': base = (w < 2.85) ? 248 / w : 30.53 * w; break;
+    case 'corn': base = (w < 1.90) ? 36 / w : 10.00 * w; break;
+    case 'cactus': base = (w < 6.65) ? 3069 / w : 69.4 * w; break;
+    case 'cranberry': base = (w < 0.95) ? 1805 / w : 2000 * w; break;
+    case 'moonmelon': base = (w < 6.84) ? 16245 / w : 280.85 * w; break;
+    case 'pear': base = (w < 2.85) ? 451 / w : 55.5 * w; break;
+    case 'durian': base = (w < 7.60) ? 4513 / w : 78.19 * w; break;
+    case 'peach': base = (w < 1.90) ? 271 / w : 75 * w; break;
+    case 'cacao': base = (w < 7.6) ? 9928 / w : 171.875 * w; break;
+    case 'moonglow': base = (w < 6.65) ? 18050 / w : 408.45 * w; break;
+    case 'dragonfruit': base = (w < 11.38) ? 4287 / w : 32.99 * w; break;
+    case 'mango': base = (w < 14.28) ? 5866 / w : 28.89 * w; break;
+    case 'moonblossom': base = (w < 2.86) ? 45125 / w : 5555.555 * w; break;
+    case 'raspberry': base = (w < 0.71) ? 90 / w : 177.5 * w; break;
+    case 'eggplant': base = (w < 4.75) ? 6769 / w : 300 * w; break;
+    case 'papaya': base = (w < 2.86) ? 903 / w : 111.11 * w; break;
+    case 'celestiberry': base = (w < 1.90) ? 7220 / w : 2000 * w; break;
+    case 'moonmango': base = (w < 14.25) ? 22563 / w : 111.11 * w; break;
+    case 'banana': base = (w < 1.425) ? 1579 / w : 777.77 * w; break;
+    case 'passionfruit': base = (w < 2.867) ? 3204 / w : 395 * w; break;
+    case 'soulfruit': base = (w < 23.75) ? 6994 / w : 12.4 * w; break;
+    default: base = w; break;
+  }
+  return base;
+}
+
+function updateBasePricePerKg() {
+  const plantId = getActivePlantId();
+  const weight = parseFloat(document.getElementById('weight').value) || 1;
+  const basePrice = getBasePricePerKg(plantId, weight);
+  const basePriceDiv = document.getElementById('basePricePerKg');
+  if (plantId && basePrice) {
+    basePriceDiv.textContent = `Base price per kg: $${Math.round(basePrice).toLocaleString()}`;
+  } else {
+    basePriceDiv.textContent = '';
+  }
+}
