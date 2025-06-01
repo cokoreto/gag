@@ -495,7 +495,7 @@ function calculateValue() {
   }
   // Created by @chocoreto
   else if (pinklily) {
-    baseValue = (weight < 4.3) ? 252144 : 13636.74 * weight * weight;
+    baseValue = (weight < 4.3) ? 58663 : 3172 * weight * weight;
   }
   else { 
     baseValue = weight * weight;
@@ -655,7 +655,7 @@ function getBaseValueConstant(plantId) {
     case 'purpledahlia': return 522;
     case 'lilac': return 3899;
     case 'sunflower': return 666;
-    case 'pinklily': return 13636.74;
+    case 'pinklily': return 3172;
     default: return null;
   }
 }
@@ -719,7 +719,7 @@ function getBasePricePerKg(plantId, weight) {
       case 'purpledahlia': base = 522 * w; break;
       case 'lilac': base = 3899 * w; break;
       case 'sunflower': base = 666 * w; break;
-      case 'pinklily': base = 13636.74 * w; break;
+      case 'pinklily': base = 3172 * w; break;
       default: base = null; break;
     }
   }
@@ -779,7 +779,7 @@ function getBaseValueCalculated(plantId, weight) {
     case 'purpledahlia': return (w < 11.4) ? 0 : 522 * w * w;
     case 'lilac': return (w < 2.846) ? 0 : 3899 * w * w;
     case 'sunflower': return (w < 14.23) ? 0 : 666 * w * w;
-    case 'pinklily': return (w < 4.3) ? 0 : 13636.74 * w * w;
+    case 'pinklily': return (w < 4.3) ? 0 : 3172 * w * w;
     default: return w * w;
   }
 }
