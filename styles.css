@@ -310,7 +310,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
 ::selection {
   background: #7f9cff44;
 }
-/* Custom scrollbar for dark mode */
 ::-webkit-scrollbar {
   width: 10px;
   background: #232634;
@@ -319,12 +318,9 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   background: #35384a;
   border-radius: 8px;
 }
-
-/* Tambahkan animasi shake saat hover */
 .plant-btn:hover {
   animation: plant-swing 1.2s cubic-bezier(.36,.07,.19,.97) infinite;
 }
-
 @keyframes plant-swing {
   0% { transform: rotate(0deg);}
   10% { transform: rotate(8deg);}
