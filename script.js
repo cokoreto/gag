@@ -34,7 +34,7 @@ const categories = {
   "Normal Seed Pack": ['raspberry','pear','peach'],
   "Event Seed Pack": ['cranberry','durian','eggplant'],
   "Exotic Plants": ['papaya','banana','passionfruit','soulfruit'],
-  "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily']
+  "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine']
 };
 
 const modifierContainer = document.getElementById('modifiers');
@@ -110,7 +110,8 @@ const plantImages = {
   purpledahlia: "img/purpledahlia.png",
   lilac: "img/lilac.png",
   sunflower: "img/sunflower.png",
-  pinklily: "img/pinklily.png"
+  pinklily: "img/pinklily.png",
+  nectarine: "img/nectarine.png"
   // Created by @chocoreto
 };
 
@@ -164,7 +165,8 @@ const plantLabels = {
   purpledahlia: "Purpledahlia",
   lilac: "Lilac",
   sunflower: "Sunflower",
-  pinklily: "Pink Lily"
+  pinklily: "Pink Lily",
+  nectarine: "Nectarine"
 };
 
 const categoryContainer = document.getElementById('categoryContainer');
@@ -313,7 +315,8 @@ const plantMinWeights = {
   purpledahlia: 11.4,
   lilac: 2.846,
   sunflower: 14.23,
-  pinklily: 4.3
+  pinklily: 4.3,
+  nectarine: 2.807
 };
 function calculateValue() {
   const weight = parseFloat(document.getElementById('weight').value) || 0;
@@ -327,7 +330,7 @@ function calculateValue() {
     warnElem.style.display = 'none';
   }
 
-  let candyblossom = false, beanstalk = false, corn = false, coconut = false, easteregg = false, moonflower = false, starfruit = false, pepper = false, grape = false, nightshade = false, mint = false, glowshroom = false, bloodbanana = false, carrot = false, strawberry = false, blueberry = false, orangetulip = false, tomato = false, daffodil = false, watermelon = false, pumpkin = false, bamboo = false, cactus = false, apple = false, mushroom = false, moonmelon = false, cranberry = false, pear = false, durian = false, moonglow = false, peach = false, cacao = false, dragonfruit = false, mango = false, moonblossom = false, eggplant = false, raspberry = false, papaya = false, celestiberry = false, banana = false, passionfruit = false, soulfruit = false, moonmango = false, hive = false, rose = false, foxglove = false, purpledahlia = false, lilac = false, sunflower = false, pinklily = false;
+  let candyblossom = false, beanstalk = false, corn = false, coconut = false, easteregg = false, moonflower = false, starfruit = false, pepper = false, grape = false, nightshade = false, mint = false, glowshroom = false, bloodbanana = false, carrot = false, strawberry = false, blueberry = false, orangetulip = false, tomato = false, daffodil = false, watermelon = false, pumpkin = false, bamboo = false, cactus = false, apple = false, mushroom = false, moonmelon = false, cranberry = false, pear = false, durian = false, moonglow = false, peach = false, cacao = false, dragonfruit = false, mango = false, moonblossom = false, eggplant = false, raspberry = false, papaya = false, celestiberry = false, banana = false, passionfruit = false, soulfruit = false, moonmango = false, hive = false, rose = false, foxglove = false, purpledahlia = false, lilac = false, sunflower = false, pinklily = false, nectarine = false;
 
   if (activePlant) {
     eval(`${activePlant} = true`);
@@ -501,6 +504,9 @@ function calculateValue() {
   else if (pinklily) {
     baseValue = (weight < 4.3) ? 58663 : 3172 * weight * weight;
   }
+  else if (nectarine) {
+    baseValue = (weight < 2.807) ? 4445 : 4445 * weight * weight;
+  }
   else { 
     baseValue = weight * weight;
   }
@@ -660,6 +666,7 @@ function getBaseValueConstant(plantId) {
     case 'lilac': return 3899;
     case 'sunflower': return 666;
     case 'pinklily': return 3172;
+    case 'nectarine': return 4445;
     default: return null;
   }
 }
@@ -724,6 +731,7 @@ function getBasePricePerKg(plantId, weight) {
       case 'lilac': base = 3899 * w; break;
       case 'sunflower': base = 666 * w; break;
       case 'pinklily': base = 3172 * w; break;
+      case 'nectarine': base = 4445 * w; break;
       default: base = null; break;
     }
   }
@@ -784,6 +792,7 @@ function getBaseValueCalculated(plantId, weight) {
     case 'lilac': return (w < 2.846) ? 0 : 3899 * w * w;
     case 'sunflower': return (w < 14.23) ? 0 : 666 * w * w;
     case 'pinklily': return (w < 4.3) ? 0 : 3172 * w * w;
+    case 'nectarine': return (w < 2.807) ? 0 : 4445 * w * w;
     default: return w * w;
   }
 }
