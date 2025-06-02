@@ -1,10 +1,14 @@
 const modifiers = [
+  'wet', 'chilled',
   // Created by @chocoreto
   'disco', 'choc', 'bloodlit', 'celestial', 'moonlit',
   'frozen', 'zomb', 'shocked', 'plasma',
   'voidtouched', 'pollinated', 'honeyglazed'
 ];
 const modifierLabels = {
+  wet: 'Wet',
+  chilled: 'Chilled',
+  // Created by @chocoreto
   disco: 'Disco',
   choc: 'Choc',
   bloodlit: 'Bloodlit',
