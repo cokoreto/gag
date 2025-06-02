@@ -36,6 +36,7 @@ html, body {
   padding: 38px 28px 28px 28px;
   position: relative;
   overflow: hidden;
+  margin-top: 54px; /* tambahkan margin-top agar tidak tertutup top-bar */
 }
 .container::before {
   content: "";
@@ -282,6 +283,180 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   padding-left: 2px;
   min-height: 1.5em;
 }
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  gap: 12px;
+  z-index: 2;
+  position: relative;
+}
+.info-left, .info-right {
+  font-size: 1.08em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px 0;
+  background: linear-gradient(270deg, #7f9cff, #232634 40%, #7f9cff 80%, #232634 100%);
+  background-size: 400% 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: smooth-gradient-move 8s linear infinite;
+  -webkit-text-fill-color: transparent;
+  /* For smoothness, use a longer duration and more gradient stops */
+}
+@keyframes smooth-gradient-move {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Animasi gradasi berjalan halus tanpa replay terlihat */
+@keyframes gradient-move-loop {
+  0% { background-position: 0% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* MODIFIER BUTTONS COLOR ANIMATION - dark theme + smooth loop */
+.mod-btn.active#modbtn-wet,
+.mod-btn:hover#modbtn-wet {
+  background: #4a6fa3;
+  color: #fff;
+  border-color: #4a6fa3;
+}
+.mod-btn.active#modbtn-chilled,
+.mod-btn:hover#modbtn-chilled {
+  background: #6c6f7a;
+  color: #fff;
+  border-color: #6c6f7a;
+}
+.mod-btn.active#modbtn-disco,
+.mod-btn:hover#modbtn-disco {
+  background: #6c3bbf;
+  color: #fff;
+  border-color: #6c3bbf;
+  animation: disco-color-cycle 15s steps(5) infinite;
+}
+.mod-btn.active#modbtn-choc,
+.mod-btn:hover#modbtn-choc {
+  background: #4b2e13;
+  color: #fff;
+  border-color: #4b2e13;
+}
+.mod-btn.active#modbtn-bloodlit,
+.mod-btn:hover#modbtn-bloodlit {
+  background: #6b1a1a;
+  color: #fff;
+  border-color: #6b1a1a;
+}
+.mod-btn.active#modbtn-celestial,
+.mod-btn:hover#modbtn-celestial {
+  background: #a85c8c;
+  color: #fff;
+  border-color: #a85c8c;
+}
+.mod-btn.active#modbtn-moonlit,
+.mod-btn:hover#modbtn-moonlit {
+  background: #5e3a7c;
+  color: #fff;
+  border-color: #5e3a7c;
+}
+.mod-btn.active#modbtn-frozen,
+.mod-btn:hover#modbtn-frozen {
+  background: #3b5c7e;
+  color: #fff;
+  border-color: #3b5c7e;
+}
+.mod-btn.active#modbtn-zomb,
+.mod-btn:hover#modbtn-zomb {
+  background: #4e7c4e;
+  color: #fff;
+  border-color: #4e7c4e;
+}
+.mod-btn.active#modbtn-shocked,
+.mod-btn:hover#modbtn-shocked {
+  background: #b1a84a;
+  color: #232634;
+  border-color: #b1a84a;
+}
+.mod-btn.active#modbtn-plasma,
+.mod-btn:hover#modbtn-plasma {
+  background: #a84a8c;
+  color: #fff;
+  border-color: #a84a8c;
+}
+.mod-btn.active#modbtn-voidtouched,
+.mod-btn:hover#modbtn-voidtouched {
+  background: #2a003a;
+  color: #fff;
+  border-color: #2a003a;
+}
+.mod-btn.active#modbtn-pollinated,
+.mod-btn:hover#modbtn-pollinated,
+.mod-btn.active#modbtn-honeyglazed,
+.mod-btn:hover#modbtn-honeyglazed {
+  background: #bfa84a;
+  color: #232634;
+  border-color: #bfa84a;
+}
+
+/* FRUIT BUTTONS COLOR ANIMATION - dark theme */
+.fruit-btn.active#fruitbtn-rainbow,
+.fruit-btn:hover#fruitbtn-rainbow {
+  background: linear-gradient(270deg, #6b1a1a, #bfa84a, #4e7c4e, #3b5c7e, #6c3bbf, #6b1a1a);
+  background-size: 400% 100%;
+  animation: gradient-move-loop 12s linear infinite;
+  color: #fff;
+  border-color: #bfa84a;
+}
+.fruit-btn.active#fruitbtn-gold,
+.fruit-btn:hover#fruitbtn-gold {
+  background: #bfa84a;
+  color: #232634;
+  border-color: #bfa84a;
+}
+
+/* Efek shining/mengkilap pada tombol modifier & fruit */
+.mod-btn.active,
+.mod-btn:hover,
+.fruit-btn.active,
+.fruit-btn:hover {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Shining pseudo-element: always running, interval 2s */
+.mod-btn.active::after,
+.mod-btn:hover::after,
+.fruit-btn.active::after,
+.fruit-btn:hover::after {
+  content: "";
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: shine-move 2s linear infinite;
+}
+
+@keyframes shine-move {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
 @media (max-width: 700px) {
   .container { padding: 10px 2vw; }
   .category { min-width: 120px; }
@@ -333,4 +508,116 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   80% { transform: rotate(-2deg);}
   90% { transform: rotate(1deg);}
   100% { transform: rotate(0deg);}
+}
+
+/* Shining effect for modifier buttons */
+.mod-btn.active#modbtn-wet,
+.mod-btn:hover#modbtn-wet {
+  background: #aee7ff;
+}
+.mod-btn.active#modbtn-chilled,
+.mod-btn:hover#modbtn-chilled {
+  background: #bfc4cc;
+}
+.mod-btn.active#modbtn-disco,
+.mod-btn:hover#modbtn-disco {
+  background: #a259ff;
+}
+.mod-btn.active#modbtn-choc,
+.mod-btn:hover#modbtn-choc {
+  background: #7b4f27;
+}
+.mod-btn.active#modbtn-bloodlit,
+.mod-btn:hover#modbtn-bloodlit {
+  background: #a80000;
+  color: #fff;
+}
+.mod-btn.active#modbtn-celestial,
+.mod-btn:hover#modbtn-celestial {
+  background: #ffb6e6;
+  color: #a8007a;
+}
+.mod-btn.active#modbtn-moonlit,
+.mod-btn:hover#modbtn-moonlit {
+  background: #a259ff;
+}
+.mod-btn.active#modbtn-frozen,
+.mod-btn:hover#modbtn-frozen {
+  background: #aee7ff;
+}
+.mod-btn.active#modbtn-zomb,
+.mod-btn:hover#modbtn-zomb {
+  background: #baffb1;
+}
+.mod-btn.active#modbtn-shocked,
+.mod-btn:hover#modbtn-shocked {
+  background: #fff9b1;
+}
+.mod-btn.active#modbtn-plasma,
+.mod-btn:hover#modbtn-plasma {
+  background: #ff7ce6;
+  color: #a8007a;
+}
+.mod-btn.active#modbtn-voidtouched,
+.mod-btn:hover#modbtn-voidtouched {
+  background: #3a0066;
+  color: #fff;
+}
+.mod-btn.active#modbtn-pollinated,
+.mod-btn:hover#modbtn-pollinated,
+.mod-btn.active#modbtn-honeyglazed,
+.mod-btn:hover#modbtn-honeyglazed {
+  background: #ffe066;
+}
+
+/* Shining effect for fruit buttons */
+.fruit-btn.active#fruitbtn-rainbow,
+.fruit-btn:hover#fruitbtn-rainbow {
+  background: linear-gradient(90deg, #ff3b3b, #ffb300, #ffe066, #00ffb0, #5fd6ff, #a259ff, #ff3b3b);
+  background-size: 400% 100%;
+  animation: gradient-move-loop 12s linear infinite;
+  color: #232634;
+  border-color: #ffb300;
+}
+.fruit-btn.active#fruitbtn-gold,
+.fruit-btn:hover#fruitbtn-gold {
+  background: #ffe066;
+  color: #232634;
+  border-color: #ffe066;
+}
+
+/* Shining pseudo-element */
+.mod-btn.active::after,
+.mod-btn:hover::after,
+.fruit-btn.active::after,
+.fruit-btn:hover::after {
+  content: "";
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.35) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: shine-move 2s linear infinite;
+}
+
+@keyframes shine-move {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+@keyframes disco-color-cycle {
+  0%   { background-color: #c0392b; }   /* merah */
+  20%  { background-color: #8e44ad; }   /* ungu */
+  40%  { background-color: #ffe066; }   /* kuning */
+  60%  { background-color: #7cff7c; }   /* hijau muda */
+  80%  { background-color: #5fd6ff; }   /* biru muda */
+  100% { background-color: #c0392b; }
 }
