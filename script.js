@@ -1,1 +1,809 @@
-const _0x14e42e=_0x7fc8;(function(_0x455afc,_0x1a213c){const _0x1ccbfb=_0x7fc8,_0x6dbc23=_0x455afc();while(!![]){try{const _0x3b4508=parseInt(_0x1ccbfb(0x201))/0x1+parseInt(_0x1ccbfb(0x185))/0x2+-parseInt(_0x1ccbfb(0x1d5))/0x3+-parseInt(_0x1ccbfb(0x13c))/0x4*(-parseInt(_0x1ccbfb(0x161))/0x5)+parseInt(_0x1ccbfb(0x1f3))/0x6*(-parseInt(_0x1ccbfb(0x191))/0x7)+parseInt(_0x1ccbfb(0x1fa))/0x8+parseInt(_0x1ccbfb(0x13a))/0x9*(-parseInt(_0x1ccbfb(0x14e))/0xa);if(_0x3b4508===_0x1a213c)break;else _0x6dbc23['push'](_0x6dbc23['shift']());}catch(_0x17f270){_0x6dbc23['push'](_0x6dbc23['shift']());}}}(_0x4f19,0x7c840));const modifiers=[_0x14e42e(0x15c),_0x14e42e(0x19e),_0x14e42e(0x218),_0x14e42e(0x195),'bloodlit','celestial','moonlit',_0x14e42e(0x164),_0x14e42e(0x16e),'shocked',_0x14e42e(0x18a),_0x14e42e(0x1b6),'pollinated','honeyglazed'],modifierLabels={'wet':_0x14e42e(0x1a9),'chilled':_0x14e42e(0x140),'disco':_0x14e42e(0x1ce),'choc':_0x14e42e(0x215),'bloodlit':'Bloodlit','celestial':'Celestial','moonlit':'Moonlit','frozen':_0x14e42e(0x1ed),'zomb':_0x14e42e(0x1f0),'shocked':_0x14e42e(0x217),'plasma':_0x14e42e(0x1ef),'voidtouched':'Voidtouched','pollinated':'Pollinated','honeyglazed':_0x14e42e(0x1ac)},fruitTypes=[{'id':'rainbow','label':'Rainbow'},{'id':_0x14e42e(0x1e1),'label':'Gold'}],categories={'Seed\x20Shop':['carrot',_0x14e42e(0x1cd),_0x14e42e(0x1b5),_0x14e42e(0x1f4),'tomato',_0x14e42e(0x169),'daffodil',_0x14e42e(0x18b),_0x14e42e(0x1db),'apple',_0x14e42e(0x152),_0x14e42e(0x1a4),_0x14e42e(0x1c3),'dragonfruit',_0x14e42e(0x1fc),_0x14e42e(0x154),_0x14e42e(0x13e),_0x14e42e(0x1b4),_0x14e42e(0x17d),_0x14e42e(0x1ab)],'Night\x20Event':[_0x14e42e(0x1e8),_0x14e42e(0x1be),_0x14e42e(0x20b),_0x14e42e(0x1e0),_0x14e42e(0x175),_0x14e42e(0x14f),_0x14e42e(0x1cc),_0x14e42e(0x1bc),_0x14e42e(0x15a),_0x14e42e(0x142),_0x14e42e(0x15d)],'Easter\x20Event':[_0x14e42e(0x210),'easteregg'],'Normal\x20Seed\x20Pack':[_0x14e42e(0x1f8),_0x14e42e(0x20e),_0x14e42e(0x1d8)],'Event\x20Seed\x20Pack':[_0x14e42e(0x190),_0x14e42e(0x165),_0x14e42e(0x1d9)],'Exotic\x20Plants':['papaya',_0x14e42e(0x1f7),_0x14e42e(0x18e),_0x14e42e(0x206)],'Bee\x20Event':[_0x14e42e(0x20f),_0x14e42e(0x182),_0x14e42e(0x147),_0x14e42e(0x19a),_0x14e42e(0x158),'sunflower',_0x14e42e(0x19c),_0x14e42e(0x1e3)]},modifierContainer=document[_0x14e42e(0x1cb)]('modifiers');modifierContainer[_0x14e42e(0x1d2)]='',modifiers['forEach'](_0x5816dd=>{const _0x590da9=_0x14e42e,_0x12a10b=document[_0x590da9(0x1fb)](_0x590da9(0x141));_0x12a10b[_0x590da9(0x1e9)]=_0x590da9(0x141),_0x12a10b['className']=_0x590da9(0x1a1),_0x12a10b['id']=_0x590da9(0x148)+_0x5816dd,_0x12a10b[_0x590da9(0x188)]=modifierLabels[_0x5816dd]||_0x5816dd['charAt'](0x0)[_0x590da9(0x1e5)]()+_0x5816dd[_0x590da9(0x139)](0x1),_0x12a10b[_0x590da9(0x21a)]=()=>toggleModifier(_0x5816dd),modifierContainer[_0x590da9(0x1f9)](_0x12a10b);});const fruitRow=document[_0x14e42e(0x1cb)](_0x14e42e(0x21b));fruitRow['innerHTML']='',fruitTypes[_0x14e42e(0x1c1)](_0x1ae5ad=>{const _0xec5bd1=_0x14e42e,_0x5e3312=document[_0xec5bd1(0x1fb)](_0xec5bd1(0x141));_0x5e3312['type']=_0xec5bd1(0x141),_0x5e3312[_0xec5bd1(0x1d0)]=_0xec5bd1(0x17e),_0x5e3312['id']=_0xec5bd1(0x219)+_0x1ae5ad['id'],_0x5e3312[_0xec5bd1(0x188)]=_0x1ae5ad[_0xec5bd1(0x20c)],_0x5e3312['onclick']=()=>toggleFruitBtn(_0x1ae5ad['id']),fruitRow['appendChild'](_0x5e3312);});const plantImages={'carrot':_0x14e42e(0x199),'strawberry':_0x14e42e(0x1e2),'blueberry':'img/blueberry.png','orangetulip':'img/orangetulip.png','tomato':_0x14e42e(0x214),'corn':_0x14e42e(0x211),'daffodil':_0x14e42e(0x1de),'watermelon':_0x14e42e(0x1a6),'pumpkin':_0x14e42e(0x15e),'apple':_0x14e42e(0x1d4),'bamboo':_0x14e42e(0x145),'coconut':_0x14e42e(0x143),'cactus':'img/cactus.png','dragonfruit':_0x14e42e(0x16c),'mango':_0x14e42e(0x209),'grape':'img/grape.png','mushroom':_0x14e42e(0x181),'pepper':_0x14e42e(0x202),'cacao':'img/cacao.png','beanstalk':_0x14e42e(0x205),'nightshade':_0x14e42e(0x1c0),'mint':_0x14e42e(0x1e7),'glowshroom':'img/glowshroom.png','moonmelon':_0x14e42e(0x196),'starfruit':_0x14e42e(0x151),'moonflower':_0x14e42e(0x20a),'bloodbanana':_0x14e42e(0x172),'moonglow':_0x14e42e(0x1c6),'moonblossom':_0x14e42e(0x179),'celestiberry':_0x14e42e(0x174),'moonmango':_0x14e42e(0x17f),'candyblossom':_0x14e42e(0x186),'easteregg':_0x14e42e(0x1c2),'raspberry':_0x14e42e(0x159),'pear':'img/pear.png','peach':_0x14e42e(0x193),'cranberry':_0x14e42e(0x184),'durian':_0x14e42e(0x17b),'eggplant':'img/eggplant.png','papaya':'img/papaya.png','banana':_0x14e42e(0x1cf),'passionfruit':_0x14e42e(0x19d),'soulfruit':_0x14e42e(0x1b7),'hive':_0x14e42e(0x1a8),'rose':_0x14e42e(0x20d),'foxglove':_0x14e42e(0x216),'purpledahlia':_0x14e42e(0x1bd),'lilac':'img/lilac.png','sunflower':_0x14e42e(0x1c7),'pinklily':'img/pinklily.png','nectarine':_0x14e42e(0x13b)},plantLabels={'carrot':'Carrot','strawberry':_0x14e42e(0x194),'blueberry':_0x14e42e(0x200),'orangetulip':'Orange\x20Tulip','tomato':'Tomato','corn':_0x14e42e(0x166),'daffodil':'Daffodil','watermelon':'Watermelon','pumpkin':'Pumpkin','apple':_0x14e42e(0x1ee),'bamboo':'Bamboo','coconut':_0x14e42e(0x155),'cactus':_0x14e42e(0x198),'dragonfruit':_0x14e42e(0x16b),'mango':_0x14e42e(0x14d),'grape':_0x14e42e(0x213),'mushroom':_0x14e42e(0x18f),'pepper':'Pepper','cacao':'Cacao','beanstalk':_0x14e42e(0x1ec),'nightshade':_0x14e42e(0x1d7),'mint':'Mint','glowshroom':'Glowshroom','moonmelon':_0x14e42e(0x1ff),'starfruit':_0x14e42e(0x1f5),'moonflower':'Moon\x20Flower','bloodbanana':_0x14e42e(0x1b3),'moonglow':_0x14e42e(0x1bf),'moonblossom':_0x14e42e(0x170),'celestiberry':_0x14e42e(0x160),'moonmango':_0x14e42e(0x21c),'candyblossom':_0x14e42e(0x1eb),'easteregg':_0x14e42e(0x204),'raspberry':_0x14e42e(0x1dd),'pear':_0x14e42e(0x1ea),'peach':_0x14e42e(0x1f1),'cranberry':'Cranberry','durian':_0x14e42e(0x168),'eggplant':_0x14e42e(0x1af),'papaya':_0x14e42e(0x183),'banana':'Banana','passionfruit':_0x14e42e(0x212),'soulfruit':'Soul\x20Fruit','hive':_0x14e42e(0x19f),'rose':_0x14e42e(0x171),'foxglove':_0x14e42e(0x1b2),'purpledahlia':'Purpledahlia','lilac':'Lilac','sunflower':_0x14e42e(0x1c9),'pinklily':_0x14e42e(0x1e6),'nectarine':_0x14e42e(0x146)},categoryContainer=document[_0x14e42e(0x1cb)](_0x14e42e(0x203)),plantIds=[];Object['entries'](categories)[_0x14e42e(0x1c1)](([_0x5c7690,_0x29fd99])=>{const _0x221b1=_0x14e42e,_0x4ef8b0=document[_0x221b1(0x1fb)](_0x221b1(0x1b8));_0x4ef8b0[_0x221b1(0x1d0)]='category',_0x4ef8b0[_0x221b1(0x1d2)]=_0x221b1(0x18d)+_0x5c7690+_0x221b1(0x1b1);const _0x1e2a07=document['createElement'](_0x221b1(0x1b8));_0x1e2a07[_0x221b1(0x1d0)]='category-list',_0x1e2a07[_0x221b1(0x14b)]['display']='flex',_0x1e2a07[_0x221b1(0x14b)][_0x221b1(0x1da)]=_0x221b1(0x189),_0x1e2a07[_0x221b1(0x14b)][_0x221b1(0x197)]=_0x221b1(0x16d),_0x1e2a07[_0x221b1(0x14b)]['gap']='0',_0x29fd99[_0x221b1(0x1c1)](_0x5dc177=>{const _0x42b3c8=_0x221b1;plantIds[_0x42b3c8(0x1d1)](_0x5dc177);const _0x1d75e2=document[_0x42b3c8(0x1fb)](_0x42b3c8(0x141));_0x1d75e2[_0x42b3c8(0x1e9)]=_0x42b3c8(0x141),_0x1d75e2[_0x42b3c8(0x1d0)]=_0x42b3c8(0x16f),_0x1d75e2['id']=_0x42b3c8(0x1e4)+_0x5dc177;const _0x2c08a2=plantImages[_0x5dc177],_0x5e12da=plantLabels[_0x5dc177]||_0x5dc177[_0x42b3c8(0x177)](0x0)['toUpperCase']()+_0x5dc177['slice'](0x1);_0x1d75e2['innerHTML']=_0x2c08a2?_0x42b3c8(0x15f)+_0x2c08a2+_0x42b3c8(0x167)+_0x5e12da+'\x22\x20class=\x22plant-img\x22/><div\x20class=\x22plant-label\x22>'+_0x5e12da+_0x42b3c8(0x1b1):_0x42b3c8(0x18c)+_0x5e12da+_0x42b3c8(0x1b1),_0x1d75e2['onclick']=()=>togglePlantBtn(_0x5dc177),_0x1e2a07[_0x42b3c8(0x1f9)](_0x1d75e2);}),_0x4ef8b0['appendChild'](_0x1e2a07),categoryContainer[_0x221b1(0x1f9)](_0x4ef8b0);});function toggleModifier(_0x4c11da){const _0x118cca=_0x14e42e,_0x14e0f6=document[_0x118cca(0x1cb)](_0x118cca(0x148)+_0x4c11da),_0x4de017=_0x14e0f6[_0x118cca(0x1b0)]['contains'](_0x118cca(0x173));if(_0x4c11da==='frozen')!_0x4de017?(setModifierActive(_0x118cca(0x164),!![]),setModifierActive(_0x118cca(0x15c),![],!![]),setModifierActive(_0x118cca(0x19e),![],!![])):(setModifierActive(_0x118cca(0x164),![]),setModifierActive(_0x118cca(0x15c),![],![]),setModifierActive(_0x118cca(0x19e),![],![]));else _0x4c11da==='wet'||_0x4c11da==='chilled'?!_0x4de017?(setModifierActive(_0x4c11da,!![]),setModifierActive(_0x4c11da===_0x118cca(0x15c)?_0x118cca(0x19e):_0x118cca(0x15c),![]),setModifierActive('frozen',![],!![])):(setModifierActive(_0x4c11da,![]),setModifierActive('frozen',![],![])):setModifierActive(_0x4c11da,!_0x4de017);calculateValue();}function setModifierActive(_0xffd926,_0xd59c4a,_0x2906ce=![]){const _0x5796bc=_0x14e42e,_0x38f114=document[_0x5796bc(0x1cb)](_0x5796bc(0x148)+_0xffd926);if(!_0x38f114)return;if(_0xd59c4a)_0x38f114['classList'][_0x5796bc(0x176)]('active');else _0x38f114[_0x5796bc(0x1b0)][_0x5796bc(0x1a7)]('active');_0x38f114[_0x5796bc(0x1ad)]=!!_0x2906ce;}function toggleFruitBtn(_0x334000){const _0x6dd34f=_0x14e42e;fruitTypes[_0x6dd34f(0x1c1)](_0x12fb1b=>{const _0x349503=_0x6dd34f,_0x3e13b9=document[_0x349503(0x1cb)](_0x349503(0x219)+_0x12fb1b['id']);if(_0x12fb1b['id']===_0x334000)_0x3e13b9['classList'][_0x349503(0x17c)](_0x349503(0x173));else _0x3e13b9[_0x349503(0x1b0)][_0x349503(0x1a7)](_0x349503(0x173));}),calculateValue();}function togglePlantBtn(_0x515087){const _0x39816a=_0x14e42e;plantIds[_0x39816a(0x1c1)](_0x1c7095=>{const _0x4e6bf5=_0x39816a,_0xee76a1=document[_0x4e6bf5(0x1cb)](_0x4e6bf5(0x1e4)+_0x1c7095);if(_0xee76a1)_0xee76a1[_0x4e6bf5(0x1b0)][_0x4e6bf5(0x17c)](_0x4e6bf5(0x173),_0x1c7095===_0x515087);}),calculateValue(),updateBasePricePerKg();}function getActivePlantId(){const _0xc2e4cf=_0x14e42e;for(const _0x3bd3fb of plantIds){const _0x455bf9=document[_0xc2e4cf(0x1cb)]('plantbtn-'+_0x3bd3fb);if(_0x455bf9&&_0x455bf9['classList']['contains']('active'))return _0x3bd3fb;}return null;}function isModifierActive(_0x2fa367){const _0x12701e=_0x14e42e,_0x1d141a=document[_0x12701e(0x1cb)](_0x12701e(0x148)+_0x2fa367);return _0x1d141a&&_0x1d141a[_0x12701e(0x1b0)][_0x12701e(0x13d)](_0x12701e(0x173));}function isFruitActive(_0x25ce96){const _0x59c383=_0x14e42e,_0x362612=document['getElementById'](_0x59c383(0x219)+_0x25ce96);return _0x362612&&_0x362612[_0x59c383(0x1b0)][_0x59c383(0x13d)](_0x59c383(0x173));}const plantMinWeights={'easteregg':2.85,'moonflower':1.9,'starfruit':2.85,'pepper':4.75,'grape':2.85,'nightshade':0.48,'mint':0.95,'glowshroom':0.7,'bloodbanana':1.42,'beanstalk':9.5,'coconut':13.31,'candyblossom':2.85,'carrot':0.24,'strawberry':0.29,'blueberry':0.17,'orangetulip':0.0499,'tomato':0.44,'daffodil':0.16,'watermelon':7.3,'pumpkin':6.9,'mushroom':25.9,'bamboo':3.8,'apple':2.85,'corn':1.9,'cactus':6.65,'cranberry':0.95,'moonmelon':6.84,'pear':2.85,'durian':7.6,'peach':1.9,'cacao':7.6,'moonglow':6.65,'dragonfruit':11.38,'mango':14.28,'moonblossom':2.86,'raspberry':0.71,'eggplant':4.75,'papaya':2.86,'celestiberry':1.9,'moonmango':14.25,'banana':1.425,'passionfruit':2.867,'soulfruit':23.75,'hive':5.9,'rose':0.95,'foxglove':1.9,'purpledahlia':11.4,'lilac':2.846,'sunflower':14.23,'pinklily':4.3,'nectarine':2.807};function calculateValue(){const _0x1c8831=_0x14e42e,_0x564f51=parseFloat(document[_0x1c8831(0x1cb)](_0x1c8831(0x163))[_0x1c8831(0x1fe)])||0x0,_0x2659bc=getActivePlantId();_0x2659bc&&plantMinWeights[_0x2659bc]!==undefined&&_0x564f51<plantMinWeights[_0x2659bc]?(warnElem[_0x1c8831(0x188)]='Minimum\x20weight\x20for\x20'+(_0x2659bc['charAt'](0x0)['toUpperCase']()+_0x2659bc[_0x1c8831(0x139)](0x1))+_0x1c8831(0x17a)+plantMinWeights[_0x2659bc]+'\x20kg',warnElem['style'][_0x1c8831(0x1c5)]=_0x1c8831(0x153)):(warnElem[_0x1c8831(0x188)]='',warnElem['style']['display']='none');let _0x8aeb44=![],_0x3a41dd=![],_0x3ddd3e=![],_0x184bed=![],_0x3c0575=![],_0x36b3a8=![],_0xe86c3a=![],_0x681aa3=![],_0x7d017c=![],_0x1075a9=![],_0x26d677=![],_0x892c7d=![],_0x3142fd=![],_0x25ec8b=![],_0x46c828=![],_0x212fa1=![],_0x56587d=![],_0x2889ea=![],_0x4b0aa4=![],_0x36cbc8=![],_0x22eaa8=![],_0x545964=![],_0x3cd5eb=![],_0x403089=![],_0x4bae08=![],_0x183925=![],_0x63b0d5=![],_0x912449=![],_0x3886b0=![],_0x12b355=![],_0xedfccb=![],_0x2b68c5=![],_0x5c43b3=![],_0x4c7532=![],_0x27c577=![],_0x42f9c8=![],_0x3585a1=![],_0x4a5d44=![],_0x2d20a5=![],_0x2ae5bc=![],_0x57f6fc=![],_0x385f92=![],_0x5a617c=![],_0x2a3bc1=![],_0x4ed0e8=![],_0x4dc892=![],_0x18b6d7=![],_0x558c01=![],_0x7c1f9a=![],_0x1b6b79=![],_0x32b181=![];_0x2659bc&&eval(_0x2659bc+_0x1c8831(0x149));let _0x165ee8=0x0;_0x165ee8+=isModifierActive(_0x1c8831(0x1f6))?0x63:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x164))?0x9:0x0,_0x165ee8+=isModifierActive('wet')?0x1:0x0,_0x165ee8+=isModifierActive('chilled')?0x1:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x195))?0x1:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x1df))?0x1:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x187))?0x3:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x1d3))?0x77:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x218))?0x7c:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x16e))?0x18:0x0,_0x165ee8+=isModifierActive('plasma')?0x4:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x1b6))?0x86:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x1a5))?0x2:0x0,_0x165ee8+=isModifierActive(_0x1c8831(0x1c4))?0x4:0x0;let _0x3064b3=0x0;if(_0x3c0575)_0x3064b3=_0x564f51<2.85?0x8d0:277.5*_0x564f51*_0x564f51;else{if(_0x36b3a8)_0x3064b3=_0x564f51<1.9?0x217e:0x94d*_0x564f51*_0x564f51;else{if(_0xe86c3a)_0x3064b3=_0x564f51<2.85?0x34e2:1666.6*_0x564f51*_0x564f51;else{if(_0x681aa3)_0x3064b3=_0x564f51<4.75?0x1c20:0x140*_0x564f51*_0x564f51;else{if(_0x7d017c)_0x3064b3=_0x564f51<2.85?0x1bad:0x368*_0x564f51*_0x564f51;else{if(_0x1075a9)_0x3064b3=_0x564f51<0.48?0xc57:0x361a*_0x564f51*_0x564f51;else{if(_0x26d677)_0x3064b3=_0x564f51<0.95?0x1282:0x146e*_0x564f51*_0x564f51;else{if(_0x892c7d)_0x3064b3=_0x564f51<0.7?0x10f:532.5*_0x564f51*_0x564f51;else{if(_0x3142fd)_0x3064b3=_0x564f51<1.42?0x1527:0xa6e*_0x564f51*_0x564f51;else{if(_0x3a41dd)_0x3064b3=_0x564f51<9.5?0x4682:0xc8*_0x564f51*_0x564f51;else{if(_0x184bed)_0x3064b3=_0x564f51<13.31?0x169:2.04*_0x564f51*_0x564f51;else{if(_0x8aeb44)_0x3064b3=_0x564f51<2.85?0x1608a:11111.111*_0x564f51*_0x564f51;else{if(_0x25ec8b)_0x3064b3=_0x564f51<0.24?0x12:0x113*_0x564f51*_0x564f51;else{if(_0x46c828)_0x3064b3=_0x564f51<0.29?0xe:0xaf*_0x564f51*_0x564f51;else{if(_0x212fa1)_0x3064b3=_0x564f51<0.17?0x12:0x1f4*_0x564f51*_0x564f51;else{if(_0x56587d)_0x3064b3=_0x564f51<0.0499?0x2ff:0x493e0*_0x564f51*_0x564f51;else{if(_0x2889ea)_0x3064b3=_0x564f51<0.44?0x1b:0x78*_0x564f51*_0x564f51;else{if(_0x4b0aa4)_0x3064b3=_0x564f51<0.16?0x387:0x61a8*_0x564f51*_0x564f51;else{if(_0x36cbc8)_0x3064b3=_0x564f51<7.3?0xa94:61.25*_0x564f51*_0x564f51;else{if(_0x22eaa8)_0x3064b3=_0x564f51<6.9?0xbfd:0x40*_0x564f51*_0x564f51;else{if(_0x4bae08)_0x3064b3=_0x564f51<25.9?0x21456:241.6*_0x564f51*_0x564f51;else{if(_0x545964)_0x3064b3=_0x564f51<3.8?0xe1a:0xfa*_0x564f51*_0x564f51;else{if(_0x403089)_0x3064b3=_0x564f51<2.85?0xf8:30.53*_0x564f51*_0x564f51;else{if(_0x3ddd3e)_0x3064b3=_0x564f51<1.9?0x24:0xa*_0x564f51*_0x564f51;else{if(_0x3cd5eb)_0x3064b3=_0x564f51<6.65?0xbfd:69.4*_0x564f51*_0x564f51;else{if(_0x63b0d5)_0x3064b3=_0x564f51<0.95?0x70d:0x7d0*_0x564f51*_0x564f51;else{if(_0x183925)_0x3064b3=_0x564f51<6.84?0x3f75:280.85*_0x564f51*_0x564f51;else{if(_0x912449)_0x3064b3=_0x564f51<2.85?0x1c3:55.5*_0x564f51*_0x564f51;else{if(_0x3886b0)_0x3064b3=_0x564f51<7.6?0x11a1:78.19*_0x564f51*_0x564f51;else{if(_0xedfccb)_0x3064b3=_0x564f51<1.9?0x10f:0x4b*_0x564f51*_0x564f51;else{if(_0x2b68c5)_0x3064b3=_0x564f51<7.6?0x26c8:171.875*_0x564f51*_0x564f51;else{if(_0x12b355)_0x3064b3=_0x564f51<6.65?0x4682:408.45*_0x564f51*_0x564f51;else{if(_0x5c43b3)_0x3064b3=_0x564f51<11.38?0x10bf:32.99*_0x564f51*_0x564f51;else{if(_0x4c7532)_0x3064b3=_0x564f51<14.28?0x16ea:28.89*_0x564f51*_0x564f51;else{if(_0x27c577)_0x3064b3=_0x564f51<2.86?0xb045:5555.555*_0x564f51*_0x564f51;else{if(_0x3585a1)_0x3064b3=_0x564f51<0.71?0x5a:177.5*_0x564f51*_0x564f51;else{if(_0x42f9c8)_0x3064b3=_0x564f51<4.75?0x1a71:0x12c*_0x564f51*_0x564f51;else{if(_0x4a5d44)_0x3064b3=_0x564f51<2.86?0x387:111.11*_0x564f51*_0x564f51;else{if(_0x2d20a5)_0x3064b3=_0x564f51<1.9?0x1c34:0x7d0*_0x564f51*_0x564f51;else{if(_0x5a617c)_0x3064b3=_0x564f51<14.25?0x5823:222.22*_0x564f51*_0x564f51;else{if(_0x2ae5bc)_0x3064b3=_0x564f51<1.425?0x62b:777.77*_0x564f51*_0x564f51;else{if(_0x57f6fc)_0x3064b3=_0x564f51<2.867?0xc84:0x18b*_0x564f51*_0x564f51;else{if(_0x385f92)_0x3064b3=_0x564f51<23.75?0x1b52:12.4*_0x564f51*_0x564f51;else{if(_0x2a3bc1)_0x3064b3=_0x564f51<5.9?0xd464:1561.96*_0x564f51*_0x564f51;else{if(_0x4ed0e8)_0x3064b3=_0x564f51<0.95?0x1388:0x1388*_0x564f51*_0x564f51;else{if(_0x4dc892)_0x3064b3=_0x564f51<1.9?0x4682:0x1388*_0x564f51*_0x564f51;else{if(_0x18b6d7)_0x3064b3=_0x564f51<11.4?0x10900:0x20a*_0x564f51*_0x564f51;else{if(_0x558c01)_0x3064b3=_0x564f51<2.846?0x7b5d:0xf3b*_0x564f51*_0x564f51;else{if(_0x7c1f9a)_0x3064b3=_0x564f51<14.23?0x20ecd:0x29a*_0x564f51*_0x564f51;else{if(_0x1b6b79)_0x3064b3=_0x564f51<4.3?0xe527:0xc64*_0x564f51*_0x564f51;else _0x32b181?_0x3064b3=_0x564f51<2.807?0x115d:0x115d*_0x564f51*_0x564f51:_0x3064b3=_0x564f51*_0x564f51;}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}let _0x26dd88=isFruitActive(_0x1c8831(0x192))?0x32:isFruitActive(_0x1c8831(0x1e1))?0x14:0x1,_0x29130d=Math[_0x1c8831(0x150)](_0x3064b3*_0x26dd88*(0x1+_0x165ee8));document[_0x1c8831(0x1cb)](_0x1c8831(0x1fe))[_0x1c8831(0x207)]='≈$'+_0x29130d[_0x1c8831(0x1f2)]();}function clearAll(){const _0x2de702=_0x14e42e;plantIds[_0x2de702(0x1c1)](_0x36ceaf=>{const _0x87a5b8=_0x2de702,_0x5c48f2=document['getElementById'](_0x87a5b8(0x1e4)+_0x36ceaf);if(_0x5c48f2)_0x5c48f2[_0x87a5b8(0x1b0)][_0x87a5b8(0x1a7)](_0x87a5b8(0x173));}),modifiers['forEach'](_0x3eef50=>setModifierActive(_0x3eef50,![],![])),fruitTypes[_0x2de702(0x1c1)](_0x45bb97=>{const _0x57bfa7=_0x2de702,_0xe44c55=document[_0x57bfa7(0x1cb)](_0x57bfa7(0x219)+_0x45bb97['id']);if(_0xe44c55)_0xe44c55[_0x57bfa7(0x1b0)]['remove'](_0x57bfa7(0x173));}),document['getElementById'](_0x2de702(0x163))[_0x2de702(0x1fe)]=0x1,document['getElementById'](_0x2de702(0x1fe))['innerText']='$0',warnElem[_0x2de702(0x188)]='',warnElem[_0x2de702(0x14b)][_0x2de702(0x1c5)]=_0x2de702(0x1a0),calculateValue(),updateBasePricePerKg();}document[_0x14e42e(0x1cb)](_0x14e42e(0x163))[_0x14e42e(0x13f)](_0x14e42e(0x156),()=>{calculateValue(),updateBasePricePerKg();}),document['getElementById'](_0x14e42e(0x162))[_0x14e42e(0x13f)](_0x14e42e(0x1a3),()=>{clearAll(),updateBasePricePerKg();}),window[_0x14e42e(0x1ca)]=()=>{calculateValue(),updateBasePricePerKg();};const style=document[_0x14e42e(0x1fb)]('style');style[_0x14e42e(0x1d2)]='\x0a.plant-btn\x20{\x0a\x20\x20display:\x20flex;\x0a\x20\x20flex-direction:\x20column;\x0a\x20\x20align-items:\x20center;\x0a\x20\x20justify-content:\x20flex-start;\x0a\x20\x20padding:\x208px\x2010px\x206px\x2010px;\x0a\x20\x20margin:\x204px\x208px\x204px\x200;\x0a\x20\x20border-radius:\x2018px;\x0a\x20\x20background:\x20#232634;\x0a\x20\x20color:\x20var(--text-muted,\x20#b7b9c7);\x0a\x20\x20border:\x202px\x20solid\x20var(--input-border,\x20#35384a);\x0a\x20\x20font-size:\x201em;\x0a\x20\x20font-weight:\x20500;\x0a\x20\x20cursor:\x20pointer;\x0a\x20\x20transition:\x20background\x200.18s,\x20color\x200.18s,\x20border\x200.18s,\x20box-shadow\x200.18s;\x0a\x20\x20user-select:\x20none;\x0a\x20\x20outline:\x20none;\x0a\x20\x20min-width:\x2090px;\x0a\x20\x20min-height:\x2090px;\x0a\x20\x20text-align:\x20center;\x0a\x20\x20box-shadow:\x200\x201px\x206px\x20#0002;\x0a}\x0a.plant-btn\x20.plant-img\x20{\x0a\x20\x20width:\x2048px;\x0a\x20\x20height:\x2048px;\x0a\x20\x20object-fit:\x20contain;\x0a\x20\x20margin-bottom:\x204px;\x0a\x20\x20display:\x20block;\x0a\x20\x20pointer-events:\x20none;\x0a\x20\x20user-select:\x20none;\x0a}\x0a.plant-btn\x20.plant-label\x20{\x0a\x20\x20font-size:\x200.98em;\x0a\x20\x20margin-top:\x202px;\x0a\x20\x20color:\x20inherit;\x0a\x20\x20font-weight:\x20500;\x0a\x20\x20text-shadow:\x200\x201px\x204px\x20#0003;\x0a\x20\x20pointer-events:\x20none;\x0a\x20\x20user-select:\x20none;\x0a}\x0a.plant-btn.active\x20{\x0a\x20\x20background:\x20var(--primary,\x20#7f9cff);\x0a\x20\x20color:\x20#fff;\x0a\x20\x20border-color:\x20var(--primary,\x20#7f9cff);\x0a\x20\x20box-shadow:\x200\x202px\x2012px\x20#7f9cff33;\x0a}\x0a.plant-btn:active\x20{\x0a\x20\x20background:\x20var(--primary-dark,\x20#4b5fd6);\x0a}\x0a',document[_0x14e42e(0x16a)][_0x14e42e(0x1f9)](style);const inputRow=document['querySelector'](_0x14e42e(0x19b));let warnElem=document['createElement'](_0x14e42e(0x1b8));warnElem['id']=_0x14e42e(0x157),warnElem[_0x14e42e(0x14b)][_0x14e42e(0x1c5)]='none',warnElem[_0x14e42e(0x14b)][_0x14e42e(0x208)]=_0x14e42e(0x1aa),warnElem['style'][_0x14e42e(0x15b)]=_0x14e42e(0x1b9),warnElem[_0x14e42e(0x14b)][_0x14e42e(0x1dc)]=_0x14e42e(0x178),warnElem['style'][_0x14e42e(0x1d6)]=_0x14e42e(0x14c),inputRow[_0x14e42e(0x1f9)](warnElem);function _0x4f19(){const _0x30df54=['marginTop','Raspberry','img/daffodil.png','moonlit','moonmelon','gold','img/strawberry.png','nectarine','plantbtn-','toUpperCase','Pink\x20Lily','img/mint.png','nightshade','type','Pear','Candy\x20Blossom','Beanstalk','Frozen','Apple','Plasma','Zombified','Peach','toLocaleString','433746VukQxc','orangetulip','Star\x20Fruit','shocked','banana','raspberry','appendChild','7960632MDUULy','createElement','mango','sunflower','value','Moon\x20Melon','Blueberry','194924oPCOLi','img/pepper.png','categoryContainer','Easter\x20Egg','img/beanstalk.png','soulfruit','innerText','color','img/mango.png','img/moonflower.png','glowshroom','label','img/rose.png','pear','hive','candyblossom','img/corn.png','Passionfruit','Grape','img/tomato.png','Choc','img/foxglove.png','Shocked','disco','fruitbtn-','onclick','fruitRow','Moon\x20Mango','slice','1788651ZVeuDG','img/nectarine.png','28ojfxYK','contains','mushroom','addEventListener','Chilled','button','celestiberry','img/coconut.png','tomato','img/bamboo.png','Nectarine','foxglove','modbtn-','\x20=\x20true','carrot','style','2px','Mango','60HIXEVf','moonflower','ceil','img/starfruit.png','bamboo','block','grape','Coconut','input','weight-warning','lilac','img/raspberry.png','moonblossom','fontSize','wet','moonmango','img/pumpkin.png','<img\x20src=\x22','Celestiberry','537910IJamyX','resetBtn','weight','frozen','durian','Corn','\x22\x20alt=\x22','Durian','corn','head','Dragon\x20Fruit','img/dragonfruit.png','auto','zomb','plant-btn','Moon\x20Blossom','Rose','img/bloodbanana.png','active','img/celestiberry.png','starfruit','add','charAt','4px','img/moonblossom.png','\x20is\x20','img/durian.png','toggle','cacao','fruit-btn','img/moonmango.png','dragonfruit','img/mushroom.png','rose','Papaya','img/cranberry.png','1905446yMHXOA','img/candyblossom.png','bloodlit','textContent','nowrap','plasma','watermelon','<div\x20class=\x22plant-label\x22>','<div\x20class=\x22category-title\x22>','passionfruit','Mushroom','cranberry','91wlJGlx','rainbow','img/peach.png','Strawberry','choc','img/moonmelon.png','overflowX','Cactus','img/carrot.png','purpledahlia','.input-row','pinklily','img/passionfruit.png','chilled','Hive\x20Fruit','none','mod-btn','papaya','click','coconut','pollinated','img/watermelon.png','remove','img/hive.png','Wet','#ff5c5c','beanstalk','Honeyglazed','disabled','daffodil','Eggplant','classList','</div>','Foxglove','Blood\x20Banana','pepper','blueberry','voidtouched','img/soulfruit.png','div','0.98em','apple','basePricePerKg','moonglow','img/purpledahlia.png','mint','Moonglow','img/nightshade.png','forEach','img/easteregg.png','cactus','honeyglazed','display','img/moonglow.png','img/sunflower.png','easteregg','Sunflower','onload','getElementById','bloodbanana','strawberry','Disco','img/banana.png','className','push','innerHTML','celestial','img/apple.png','760701ErUZJS','marginLeft','Nightshade','peach','eggplant','flexWrap','pumpkin'];_0x4f19=function(){return _0x30df54;};return _0x4f19();}function getBaseValueConstant(_0x31d92a){const _0x4e8187=_0x14e42e;switch(_0x31d92a){case _0x4e8187(0x1c8):return 277.5;case _0x4e8187(0x14f):return 0x94d;case _0x4e8187(0x175):return 1666.6;case _0x4e8187(0x1b4):return 0x140;case _0x4e8187(0x154):return 0x368;case'nightshade':return 0x361a;case _0x4e8187(0x1be):return 0x146e;case'glowshroom':return 532.5;case _0x4e8187(0x1cc):return 0xa6e;case _0x4e8187(0x1ab):return 0xc8;case _0x4e8187(0x1a4):return 2.04;case'candyblossom':return 11111.111;case _0x4e8187(0x14a):return 0x113;case _0x4e8187(0x1cd):return 0xaf;case _0x4e8187(0x1b5):return 0x1f4;case _0x4e8187(0x1f4):return 0x493e0;case _0x4e8187(0x144):return 0x78;case'daffodil':return 0x61a8;case _0x4e8187(0x18b):return 61.25;case _0x4e8187(0x1db):return 0x40;case _0x4e8187(0x13e):return 241.6;case _0x4e8187(0x152):return 0xfa;case _0x4e8187(0x1ba):return 30.53;case _0x4e8187(0x169):return 0xa;case _0x4e8187(0x1c3):return 69.4;case _0x4e8187(0x190):return 0x7d0;case _0x4e8187(0x1e0):return 280.85;case _0x4e8187(0x20e):return 55.5;case _0x4e8187(0x165):return 78.19;case _0x4e8187(0x1d8):return 0x4b;case _0x4e8187(0x17d):return 171.875;case _0x4e8187(0x1bc):return 408.45;case _0x4e8187(0x180):return 32.99;case _0x4e8187(0x1fc):return 28.89;case _0x4e8187(0x15a):return 5555.555;case _0x4e8187(0x1f8):return 177.5;case _0x4e8187(0x1d9):return 0x12c;case _0x4e8187(0x1a2):return 111.11;case'celestiberry':return 0x7d0;case'moonmango':return 222.22;case _0x4e8187(0x1f7):return 777.77;case _0x4e8187(0x18e):return 0x18b;case _0x4e8187(0x206):return 12.4;case _0x4e8187(0x20f):return 1561.96;case _0x4e8187(0x182):return 0x1388;case _0x4e8187(0x147):return 0x1388;case _0x4e8187(0x19a):return 0x20a;case _0x4e8187(0x158):return 0xf3b;case _0x4e8187(0x1fd):return 0x29a;case'pinklily':return 0xc64;case _0x4e8187(0x1e3):return 0x115d;default:return null;}}function getBasePricePerKg(_0x4b3cb1,_0x161231){const _0x3c170d=_0x14e42e;if(!_0x4b3cb1)return null;let _0x556398=_0x161231||0x1,_0x41e365=0x0,_0x41f671=plantMinWeights[_0x4b3cb1],_0x5dae9f=getBaseValueConstant(_0x4b3cb1);if(_0x41f671!==undefined&&_0x556398<_0x41f671)_0x41e365=_0x5dae9f;else switch(_0x4b3cb1){case _0x3c170d(0x1c8):_0x41e365=277.5*_0x556398;break;case _0x3c170d(0x14f):_0x41e365=0x94d*_0x556398;break;case _0x3c170d(0x175):_0x41e365=1666.6*_0x556398;break;case'pepper':_0x41e365=0x140*_0x556398;break;case _0x3c170d(0x154):_0x41e365=0x368*_0x556398;break;case _0x3c170d(0x1e8):_0x41e365=0x361a*_0x556398;break;case _0x3c170d(0x1be):_0x41e365=0x146e*_0x556398;break;case'glowshroom':_0x41e365=532.5*_0x556398;break;case _0x3c170d(0x1cc):_0x41e365=0xa6e*_0x556398;break;case'beanstalk':_0x41e365=0xc8*_0x556398;break;case _0x3c170d(0x1a4):_0x41e365=2.04*_0x556398;break;case _0x3c170d(0x210):_0x41e365=11111.111*_0x556398;break;case'carrot':_0x41e365=0x113*_0x556398;break;case _0x3c170d(0x1cd):_0x41e365=0xaf*_0x556398;break;case _0x3c170d(0x1b5):_0x41e365=0x1f4*_0x556398;break;case _0x3c170d(0x1f4):_0x41e365=0x493e0*_0x556398;break;case _0x3c170d(0x144):_0x41e365=0x78*_0x556398;break;case'daffodil':_0x41e365=0x61a8*_0x556398;break;case _0x3c170d(0x18b):_0x41e365=61.25*_0x556398;break;case _0x3c170d(0x1db):_0x41e365=0x40*_0x556398;break;case'mushroom':_0x41e365=241.6*_0x556398;break;case _0x3c170d(0x152):_0x41e365=0xfa*_0x556398;break;case _0x3c170d(0x1ba):_0x41e365=30.53*_0x556398;break;case _0x3c170d(0x169):_0x41e365=0xa*_0x556398;break;case _0x3c170d(0x1c3):_0x41e365=69.4*_0x556398;break;case _0x3c170d(0x190):_0x41e365=0x7d0*_0x556398;break;case'moonmelon':_0x41e365=280.85*_0x556398;break;case _0x3c170d(0x20e):_0x41e365=55.5*_0x556398;break;case'durian':_0x41e365=78.19*_0x556398;break;case'peach':_0x41e365=0x4b*_0x556398;break;case'cacao':_0x41e365=171.875*_0x556398;break;case _0x3c170d(0x1bc):_0x41e365=408.45*_0x556398;break;case _0x3c170d(0x180):_0x41e365=32.99*_0x556398;break;case _0x3c170d(0x1fc):_0x41e365=28.89*_0x556398;break;case'moonblossom':_0x41e365=5555.555*_0x556398;break;case'raspberry':_0x41e365=177.5*_0x556398;break;case _0x3c170d(0x1d9):_0x41e365=0x12c*_0x556398;break;case _0x3c170d(0x1a2):_0x41e365=111.11*_0x556398;break;case'celestiberry':_0x41e365=0x7d0*_0x556398;break;case _0x3c170d(0x15d):_0x41e365=222.22*_0x556398;break;case _0x3c170d(0x1f7):_0x41e365=777.77*_0x556398;break;case _0x3c170d(0x18e):_0x41e365=0x18b*_0x556398;break;case _0x3c170d(0x206):_0x41e365=12.4*_0x556398;break;case _0x3c170d(0x20f):_0x41e365=1561.96*_0x556398;break;case _0x3c170d(0x182):_0x41e365=0x1388*_0x556398;break;case _0x3c170d(0x147):_0x41e365=0x1388*_0x556398;break;case _0x3c170d(0x19a):_0x41e365=0x20a*_0x556398;break;case'lilac':_0x41e365=0xf3b*_0x556398;break;case _0x3c170d(0x1fd):_0x41e365=0x29a*_0x556398;break;case _0x3c170d(0x19c):_0x41e365=0xc64*_0x556398;break;case'nectarine':_0x41e365=0x115d*_0x556398;break;default:_0x41e365=null;break;}return _0x41e365;}function _0x7fc8(_0x538182,_0x5019ee){const _0x4f197c=_0x4f19();return _0x7fc8=function(_0x7fc8ea,_0x206514){_0x7fc8ea=_0x7fc8ea-0x139;let _0x549936=_0x4f197c[_0x7fc8ea];return _0x549936;},_0x7fc8(_0x538182,_0x5019ee);}function getBaseValueCalculated(_0x1400ec,_0x3eaf24){const _0x5b195f=_0x14e42e;if(!_0x1400ec)return null;let _0x505601=_0x3eaf24||0x1;switch(_0x1400ec){case _0x5b195f(0x1c8):return _0x505601<2.85?0x8d0:277.5*_0x505601*_0x505601;case _0x5b195f(0x14f):return _0x505601<1.9?0x217e:0x94d*_0x505601*_0x505601;case _0x5b195f(0x175):return _0x505601<2.85?0x34e2:1666.6*_0x505601*_0x505601;case _0x5b195f(0x1b4):return _0x505601<4.75?0x1c20:0x140*_0x505601*_0x505601;case _0x5b195f(0x154):return _0x505601<2.85?0x1bad:0x368*_0x505601*_0x505601;case _0x5b195f(0x1e8):return _0x505601<0.48?0xc57:0x361a*_0x505601*_0x505601;case _0x5b195f(0x1be):return _0x505601<0.95?0x1282:0x146e*_0x505601*_0x505601;case _0x5b195f(0x20b):return _0x505601<0.7?0x10f:532.5*_0x505601*_0x505601;case _0x5b195f(0x1cc):return _0x505601<1.42?0x1527:0xa6e*_0x505601*_0x505601;case _0x5b195f(0x1ab):return _0x505601<9.5?0x4682:0xc8*_0x505601*_0x505601;case _0x5b195f(0x1a4):return _0x505601<13.31?0x169:2.04*_0x505601*_0x505601;case _0x5b195f(0x210):return _0x505601<2.85?0x1608a:11111.111*_0x505601*_0x505601;case _0x5b195f(0x14a):return _0x505601<0.24?0x12:0x113*_0x505601*_0x505601;case _0x5b195f(0x1cd):return _0x505601<0.29?0xe:0xaf*_0x505601*_0x505601;case _0x5b195f(0x1b5):return _0x505601<0.17?0x12:0x1f4*_0x505601*_0x505601;case _0x5b195f(0x1f4):return _0x505601<0.0499?0x2ff:0x493e0*_0x505601*_0x505601;case'tomato':return _0x505601<0.44?0x1b:0x78*_0x505601*_0x505601;case _0x5b195f(0x1ae):return _0x505601<0.16?0x387:0x61a8*_0x505601*_0x505601;case _0x5b195f(0x18b):return _0x505601<7.3?0xa94:61.25*_0x505601*_0x505601;case'pumpkin':return _0x505601<6.9?0xbfd:0x40*_0x505601*_0x505601;case _0x5b195f(0x13e):return _0x505601<25.9?0x21456:241.6*_0x505601*_0x505601;case _0x5b195f(0x152):return _0x505601<3.8?0xe1a:0xfa*_0x505601*_0x505601;case _0x5b195f(0x1ba):return _0x505601<2.85?0xf8:30.53*_0x505601*_0x505601;case _0x5b195f(0x169):return _0x505601<1.9?0x24:0xa*_0x505601*_0x505601;case'cactus':return _0x505601<6.65?0xbfd:69.4*_0x505601*_0x505601;case _0x5b195f(0x190):return _0x505601<0.95?0x70d:0x7d0*_0x505601*_0x505601;case _0x5b195f(0x1e0):return _0x505601<6.84?0x3f75:280.85*_0x505601*_0x505601;case _0x5b195f(0x20e):return _0x505601<2.85?0x1c3:55.5*_0x505601*_0x505601;case'durian':return _0x505601<7.6?0x11a1:78.19*_0x505601*_0x505601;case _0x5b195f(0x1d8):return _0x505601<1.9?0x10f:0x4b*_0x505601*_0x505601;case _0x5b195f(0x17d):return _0x505601<7.6?0x26c8:171.875*_0x505601*_0x505601;case'moonglow':return _0x505601<6.65?0x4682:408.45*_0x505601*_0x505601;case'dragonfruit':return _0x505601<11.38?0x10bf:32.99*_0x505601*_0x505601;case _0x5b195f(0x1fc):return _0x505601<14.28?0x16ea:28.89*_0x505601*_0x505601;case _0x5b195f(0x15a):return _0x505601<2.86?0xb045:5555.555*_0x505601*_0x505601;case'raspberry':return _0x505601<0.71?0x5a:177.5*_0x505601*_0x505601;case'eggplant':return _0x505601<4.75?0x1a71:0x12c*_0x505601*_0x505601;case _0x5b195f(0x1a2):return _0x505601<2.86?0x387:111.11*_0x505601*_0x505601;case _0x5b195f(0x142):return _0x505601<1.9?0x1c34:0x7d0*_0x505601*_0x505601;case _0x5b195f(0x15d):return _0x505601<14.25?0x5823:222.22*_0x505601*_0x505601;case _0x5b195f(0x1f7):return _0x505601<1.425?0x62b:777.77*_0x505601*_0x505601;case'passionfruit':return _0x505601<2.867?0xc84:0x18b*_0x505601*_0x505601;case'soulfruit':return _0x505601<23.75?0x1b52:12.4*_0x505601*_0x505601;case _0x5b195f(0x20f):return _0x505601<5.9?0x0:1561.96*_0x505601*_0x505601;case _0x5b195f(0x182):return _0x505601<0.95?0x0:0x1388*_0x505601*_0x505601;case'foxglove':return _0x505601<1.9?0x0:0x1388*_0x505601*_0x505601;case _0x5b195f(0x19a):return _0x505601<11.4?0x0:0x20a*_0x505601*_0x505601;case _0x5b195f(0x158):return _0x505601<2.846?0x0:0xf3b*_0x505601*_0x505601;case _0x5b195f(0x1fd):return _0x505601<14.23?0x0:0x29a*_0x505601*_0x505601;case'pinklily':return _0x505601<4.3?0x0:0xc64*_0x505601*_0x505601;case _0x5b195f(0x1e3):return _0x505601<2.807?0x0:0x115d*_0x505601*_0x505601;default:return _0x505601*_0x505601;}}function updateBasePricePerKg(){const _0x1133c1=_0x14e42e,_0x2eff49=getActivePlantId(),_0xda3f90=getBaseValueConstant(_0x2eff49),_0x2a3911=document['getElementById'](_0x1133c1(0x1bb));_0x2eff49&&_0xda3f90!==null?_0x2a3911[_0x1133c1(0x188)]='Base\x20per\x20kg:\x20$'+_0xda3f90:_0x2a3911[_0x1133c1(0x188)]='';}
+const modifiers = [
+  'wet', 'chilled',
+  // Created by @chocoreto
+  'disco', 'choc', 'bloodlit', 'celestial', 'moonlit',
+  'frozen', 'zomb', 'shocked', 'plasma',
+  'voidtouched', 'pollinated', 'honeyglazed'
+];
+const modifierLabels = {
+  wet: 'Wet',
+  chilled: 'Chilled',
+  // Created by @chocoreto
+  disco: 'Disco',
+  choc: 'Choc',
+  bloodlit: 'Bloodlit',
+  celestial: 'Celestial',
+  moonlit: 'Moonlit',
+  frozen: 'Frozen',
+  zomb: 'Zombified',
+  shocked: 'Shocked',
+  plasma: 'Plasma',
+  voidtouched: 'Voidtouched',
+  pollinated: 'Pollinated',
+  honeyglazed: 'Honeyglazed'
+};
+const fruitTypes = [
+  { id: 'rainbow', label: 'Rainbow' },
+  { id: 'gold', label: 'Gold' }
+];
+const categories = {
+  // Created by @chocoreto
+  "Seed Shop": ['carrot','strawberry','blueberry','orangetulip','tomato','corn','daffodil','watermelon','pumpkin','apple','bamboo','coconut','cactus','dragonfruit','mango','grape','mushroom','pepper','cacao','beanstalk'],
+  "Night Event": ['nightshade','mint','glowshroom','moonmelon','starfruit','moonflower','bloodbanana','moonglow','moonblossom','celestiberry','moonmango'],
+  "Easter Event": ['candyblossom','easteregg'],
+  "Normal Seed Pack": ['raspberry','pear','peach'],
+  "Event Seed Pack": ['cranberry','durian','eggplant'],
+  "Exotic Plants": ['papaya','banana','passionfruit','soulfruit'],
+  "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine']
+};
+
+const modifierContainer = document.getElementById('modifiers');
+modifierContainer.innerHTML = '';
+modifiers.forEach(id => {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'mod-btn';
+  btn.id = `modbtn-${id}`;
+  btn.textContent = modifierLabels[id] || (id.charAt(0).toUpperCase() + id.slice(1));
+  btn.onclick = () => toggleModifier(id);
+  modifierContainer.appendChild(btn);
+});
+const fruitRow = document.getElementById('fruitRow');
+fruitRow.innerHTML = '';
+fruitTypes.forEach(fruit => {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'fruit-btn';
+  btn.id = `fruitbtn-${fruit.id}`;
+  btn.textContent = fruit.label;
+  btn.onclick = () => toggleFruitBtn(fruit.id);
+  fruitRow.appendChild(btn);
+});
+
+const plantImages = {
+  carrot: "img/carrot.png",
+  strawberry: "img/strawberry.png",
+  blueberry: "img/blueberry.png",
+  orangetulip: "img/orangetulip.png",
+  tomato: "img/tomato.png",
+  corn: "img/corn.png",
+  daffodil: "img/daffodil.png",
+  watermelon: "img/watermelon.png",
+  pumpkin: "img/pumpkin.png",
+  apple: "img/apple.png",
+  bamboo: "img/bamboo.png",
+  coconut: "img/coconut.png",
+  cactus: "img/cactus.png",
+  dragonfruit: "img/dragonfruit.png",
+  mango: "img/mango.png",
+  grape: "img/grape.png",
+  mushroom: "img/mushroom.png",
+  pepper: "img/pepper.png",
+  cacao: "img/cacao.png",
+  beanstalk: "img/beanstalk.png",
+  nightshade: "img/nightshade.png",
+  mint: "img/mint.png",
+  glowshroom: "img/glowshroom.png",
+  moonmelon: "img/moonmelon.png",
+  starfruit: "img/starfruit.png",
+  moonflower: "img/moonflower.png",
+  bloodbanana: "img/bloodbanana.png",
+  moonglow: "img/moonglow.png",
+  moonblossom: "img/moonblossom.png",
+  celestiberry: "img/celestiberry.png",
+  moonmango: "img/moonmango.png",
+  candyblossom: "img/candyblossom.png",
+  easteregg: "img/easteregg.png",
+  raspberry: "img/raspberry.png",
+  pear: "img/pear.png",
+  peach: "img/peach.png",
+  cranberry: "img/cranberry.png",
+  durian: "img/durian.png",
+  eggplant: "img/eggplant.png",
+  papaya: "img/papaya.png",
+  banana: "img/banana.png",
+  passionfruit: "img/passionfruit.png",
+  soulfruit: "img/soulfruit.png",
+  hive: "img/hive.png",
+  rose: "img/rose.png",
+  foxglove: "img/foxglove.png",
+  purpledahlia: "img/purpledahlia.png",
+  lilac: "img/lilac.png",
+  sunflower: "img/sunflower.png",
+  pinklily: "img/pinklily.png",
+  nectarine: "img/nectarine.png"
+  // Created by @chocoreto
+};
+
+const plantLabels = {
+  carrot: "Carrot",
+  strawberry: "Strawberry",
+  blueberry: "Blueberry",
+  orangetulip: "Orange Tulip",
+  tomato: "Tomato",
+  corn: "Corn",
+  daffodil: "Daffodil",
+  watermelon: "Watermelon",
+  pumpkin: "Pumpkin",
+  apple: "Apple",
+  bamboo: "Bamboo",
+  coconut: "Coconut",
+  cactus: "Cactus",
+  dragonfruit: "Dragon Fruit",
+  mango: "Mango",
+  grape: "Grape",
+  mushroom: "Mushroom",
+  pepper: "Pepper",
+  cacao: "Cacao",
+  beanstalk: "Beanstalk",
+  nightshade: "Nightshade",
+  mint: "Mint",
+  glowshroom: "Glowshroom",
+  moonmelon: "Moon Melon",
+  starfruit: "Star Fruit",
+  moonflower: "Moon Flower",
+  bloodbanana: "Blood Banana",
+  moonglow: "Moonglow",
+  moonblossom: "Moon Blossom",
+  celestiberry: "Celestiberry",
+  moonmango: "Moon Mango",
+  candyblossom: "Candy Blossom",
+  easteregg: "Easter Egg",
+  raspberry: "Raspberry",
+  pear: "Pear",
+  peach: "Peach",
+  cranberry: "Cranberry",
+  durian: "Durian",
+  eggplant: "Eggplant",
+  papaya: "Papaya",
+  banana: "Banana",
+  passionfruit: "Passionfruit",
+  soulfruit: "Soul Fruit",
+  hive: "Hive Fruit",
+  rose: "Rose",
+  foxglove: "Foxglove",
+  purpledahlia: "Purpledahlia",
+  lilac: "Lilac",
+  sunflower: "Sunflower",
+  pinklily: "Pink Lily",
+  nectarine: "Nectarine"
+};
+
+const categoryContainer = document.getElementById('categoryContainer');
+const plantIds = [];
+Object.entries(categories).forEach(([title, ids]) => {
+  const categoryDiv = document.createElement('div');
+  categoryDiv.className = 'category';
+  categoryDiv.innerHTML = `<div class="category-title">${title}</div>`;
+  const btnWrap = document.createElement('div');
+  btnWrap.className = 'category-list';
+  btnWrap.style.display = 'flex';
+  btnWrap.style.flexWrap = 'nowrap';
+  btnWrap.style.overflowX = 'auto';
+  btnWrap.style.gap = '0';
+  ids.forEach(id => {
+    plantIds.push(id);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'plant-btn';
+    btn.id = `plantbtn-${id}`;
+    const imgSrc = plantImages[id];
+    const label = plantLabels[id] || (id.charAt(0).toUpperCase() + id.slice(1));
+    btn.innerHTML = imgSrc
+      ? `<img src="${imgSrc}" alt="${label}" class="plant-img"/><div class="plant-label">${label}</div>`
+      : `<div class="plant-label">${label}</div>`;
+    btn.onclick = () => togglePlantBtn(id);
+    btnWrap.appendChild(btn);
+  });
+  categoryDiv.appendChild(btnWrap);
+  categoryContainer.appendChild(categoryDiv);
+});
+
+function toggleModifier(id) {
+  const btn = document.getElementById(`modbtn-${id}`);
+  const isActive = btn.classList.contains('active');
+  if (id === 'frozen') {
+    if (!isActive) {
+      setModifierActive('frozen', true);
+      setModifierActive('wet', false, true);
+      setModifierActive('chilled', false, true);
+    } else {
+      setModifierActive('frozen', false);
+      setModifierActive('wet', false, false);
+      setModifierActive('chilled', false, false);
+    }
+  } else if (id === 'wet' || id === 'chilled') {
+    if (!isActive) {
+      setModifierActive(id, true);
+      setModifierActive(id === 'wet' ? 'chilled' : 'wet', false);
+      setModifierActive('frozen', false, true);
+    } else {
+      setModifierActive(id, false);
+      setModifierActive('frozen', false, false);
+    }
+  } else {
+    setModifierActive(id, !isActive);
+  }
+  calculateValue();
+}
+function setModifierActive(id, active, disable = false) {
+  const btn = document.getElementById(`modbtn-${id}`);
+  if (!btn) return;
+  if (active) btn.classList.add('active');
+  else btn.classList.remove('active');
+  btn.disabled = !!disable;
+}
+function toggleFruitBtn(id) {
+  fruitTypes.forEach(fruit => {
+    const btn = document.getElementById(`fruitbtn-${fruit.id}`);
+    if (fruit.id === id) btn.classList.toggle('active');
+    else btn.classList.remove('active');
+  });
+  calculateValue();
+}
+function togglePlantBtn(changed) {
+  plantIds.forEach(id => {
+    const btn = document.getElementById(`plantbtn-${id}`);
+    if (btn) btn.classList.toggle('active', id === changed);
+  });
+  calculateValue();
+  updateBasePricePerKg();
+}
+
+function getActivePlantId() {
+  for (const id of plantIds) {
+    const btn = document.getElementById(`plantbtn-${id}`);
+    if (btn && btn.classList.contains('active')) return id;
+  }
+  return null;
+}
+function isModifierActive(id) {
+  const btn = document.getElementById(`modbtn-${id}`);
+  return btn && btn.classList.contains('active');
+}
+function isFruitActive(id) {
+  const btn = document.getElementById(`fruitbtn-${id}`);
+  return btn && btn.classList.contains('active');
+}
+const plantMinWeights = {
+  easteregg: 2.85,
+  moonflower: 1.90,
+  starfruit: 2.85,
+  pepper: 4.75,
+  grape: 2.85,
+  nightshade: 0.48,
+  mint: 0.95,
+  glowshroom: 0.70,
+  bloodbanana: 1.42,
+  beanstalk: 9.5,
+  coconut: 13.31,
+  candyblossom: 2.85,
+  carrot: 0.24,
+  strawberry: 0.29,
+  blueberry: 0.17,
+  orangetulip: 0.0499,
+  tomato: 0.44,
+  daffodil: 0.16,
+  watermelon: 7.3,
+  pumpkin: 6.9,
+  mushroom: 25.9,
+  bamboo: 3.80,
+  apple: 2.85,
+  corn: 1.90,
+  cactus: 6.65,
+  cranberry: 0.95,
+  moonmelon: 6.84,
+  pear: 2.85,
+  durian: 7.6,
+  peach: 1.90,
+  cacao: 7.6,
+  moonglow: 6.65,
+  dragonfruit: 11.38,
+  mango: 14.28,
+  moonblossom: 2.86,
+  raspberry: 0.71,
+  eggplant: 4.75,
+  papaya: 2.86,
+  celestiberry: 1.90,
+  moonmango: 14.25,
+  banana: 1.425,
+  passionfruit: 2.867,
+  soulfruit: 23.75,
+  hive: 5.9, // was 7.614
+  rose: 0.95,
+  foxglove: 1.9,
+  purpledahlia: 11.4,
+  lilac: 2.846,
+  sunflower: 14.23,
+  pinklily: 4.3,
+  nectarine: 2.807
+};
+function calculateValue() {
+  const weight = parseFloat(document.getElementById('weight').value) || 0;
+  const activePlant = getActivePlantId();
+
+  if (activePlant && plantMinWeights[activePlant] !== undefined && weight < plantMinWeights[activePlant]) {
+    warnElem.textContent = `Minimum weight for ${activePlant.charAt(0).toUpperCase() + activePlant.slice(1)} is ${plantMinWeights[activePlant]} kg`;
+    warnElem.style.display = 'block';
+  } else {
+    warnElem.textContent = '';
+    warnElem.style.display = 'none';
+  }
+
+  let candyblossom = false, beanstalk = false, corn = false, coconut = false, easteregg = false, moonflower = false, starfruit = false, pepper = false, grape = false, nightshade = false, mint = false, glowshroom = false, bloodbanana = false, carrot = false, strawberry = false, blueberry = false, orangetulip = false, tomato = false, daffodil = false, watermelon = false, pumpkin = false, bamboo = false, cactus = false, apple = false, mushroom = false, moonmelon = false, cranberry = false, pear = false, durian = false, moonglow = false, peach = false, cacao = false, dragonfruit = false, mango = false, moonblossom = false, eggplant = false, raspberry = false, papaya = false, celestiberry = false, banana = false, passionfruit = false, soulfruit = false, moonmango = false, hive = false, rose = false, foxglove = false, purpledahlia = false, lilac = false, sunflower = false, pinklily = false, nectarine = false;
+
+  if (activePlant) {
+    eval(`${activePlant} = true`);
+  }
+
+  let modifierMultiplier = 0;
+  modifierMultiplier += isModifierActive('shocked') ? 99 : 0;
+  modifierMultiplier += isModifierActive('frozen') ? 9 : 0;
+  modifierMultiplier += isModifierActive('wet') ? 1 : 0;
+  modifierMultiplier += isModifierActive('chilled') ? 1 : 0;
+  modifierMultiplier += isModifierActive('choc') ? 1 : 0;
+  modifierMultiplier += isModifierActive('moonlit') ? 1 : 0;
+  modifierMultiplier += isModifierActive('bloodlit') ? 3 : 0;
+  modifierMultiplier += isModifierActive('celestial') ? 119 : 0;
+  modifierMultiplier += isModifierActive('disco') ? 124 : 0;
+  modifierMultiplier += isModifierActive('zomb') ? 24 : 0;
+  modifierMultiplier += isModifierActive('plasma') ? 4 : 0;
+  modifierMultiplier += isModifierActive('voidtouched') ? 134 : 0;
+  modifierMultiplier += isModifierActive('pollinated') ? 2 : 0;
+  modifierMultiplier += isModifierActive('honeyglazed') ? 4 : 0;
+
+  let baseValue = 0;
+  if (easteregg) {
+    baseValue = (weight < 2.85) ? 2256 : 277.5 * weight * weight;
+  }
+  else if (moonflower) {
+    baseValue = (weight < 1.90) ? 8574 : 2381 * weight * weight;
+  }
+  else if (starfruit) {
+    baseValue = (weight < 2.85) ? 13538 : 1666.6 * weight * weight;
+  }
+  else if (pepper) {
+    baseValue = (weight < 4.75) ? 7200 : 320 * weight * weight;
+  }
+  else if (grape) {
+    baseValue = (weight < 2.85) ? 7085 : 872 * weight * weight;
+  }
+  else if (nightshade) {
+    baseValue = (weight < 0.48) ? 3159 : 13850 * weight * weight;
+  }
+  else if (mint) {
+    baseValue = (weight < 0.95) ? 4738 : 5230 * weight * weight;
+  }
+  else if (glowshroom) {
+    baseValue = (weight < 0.70) ? 271 : 532.5 * weight * weight;
+  }
+  else if (bloodbanana) {
+    baseValue = (weight < 1.42) ? 5415 : 2670 * weight * weight;
+  }
+  else if (beanstalk) {
+    baseValue = (weight < 9.5) ? 18050 : 200 * weight * weight;
+  }
+  else if (coconut) {
+    baseValue = (weight < 13.31) ? 361 : 2.04 * weight * weight;
+  }
+  else if (candyblossom) {
+    baseValue = (weight < 2.85) ? 90250 : 11111.111 * weight * weight;
+  }
+  else if (carrot) {
+    baseValue = (weight < 0.24) ? 18 : 275 * weight * weight;
+  }
+  else if (strawberry) {
+    baseValue = (weight < 0.29) ? 14 : 175 * weight * weight;
+  }
+  else if (blueberry) {
+    baseValue = (weight < 0.17) ? 18 : 500 * weight * weight;
+  }
+  else if (orangetulip) {
+    baseValue = (weight < 0.0499) ? 767 : 300000 * weight * weight;
+  }
+  else if (tomato) {
+    baseValue = (weight < 0.44) ? 27 : 120 * weight * weight;
+  }
+  else if (daffodil) {
+    baseValue = (weight < 0.16) ? 903 : 25000 * weight * weight;
+  }
+  else if (watermelon) {
+    baseValue = (weight < 7.3) ? 2708 : 61.25 * weight * weight;
+  }
+  else if (pumpkin) {
+    baseValue = (weight < 6.90) ? 3069 : 64 * weight * weight;
+  }
+  else if (mushroom) {
+    baseValue = (weight < 25.9) ? 136278 : 241.6 * weight * weight;
+  }
+  else if (bamboo) {
+    baseValue = (weight < 3.80) ? 3610 : 250 * weight * weight;
+  }
+  else if (apple) {
+    baseValue = (weight < 2.85) ? 248 : 30.53 * weight * weight;
+  }
+  else if (corn) {
+    baseValue = (weight < 1.90) ? 36 : 10.00 * weight * weight;
+  }
+  else if (cactus) {
+    baseValue = (weight < 6.65) ? 3069 : 69.4 * weight * weight;
+  }
+  else if (cranberry) {
+    baseValue = (weight < 0.95) ? 1805 : 2000 * weight * weight;
+  }
+  else if (moonmelon) {
+    baseValue = (weight < 6.84) ? 16245 : 280.85 * weight * weight;
+  }
+  else if (pear) {
+    baseValue = (weight < 2.85) ? 451 : 55.5 * weight * weight;
+  }
+  else if (durian) {
+    baseValue = (weight < 7.60) ? 4513 : 78.19 * weight * weight;
+  }
+  else if (peach) {
+    baseValue = (weight < 1.90) ? 271 : 75 * weight * weight;
+  }
+  else if (cacao) {
+    baseValue = (weight < 7.6) ? 9928 : 171.875 * weight * weight;
+  }
+  else if (moonglow) {
+    baseValue = (weight < 6.65) ? 18050 : 408.45 * weight * weight;
+  }
+  else if (dragonfruit) {
+    baseValue = (weight < 11.38) ? 4287 : 32.99 * weight * weight;
+  }
+  else if (mango) {
+    baseValue = (weight < 14.28 ) ? 5866 : 28.89 * weight * weight;
+  }
+  else if (moonblossom) {
+    baseValue = (weight < 2.86) ? 45125 : 5555.555 * weight * weight;
+  }
+  else if (raspberry) {
+    baseValue = (weight < 0.71) ? 90 : 177.5 * weight * weight;
+  }
+  else if (eggplant) {
+    baseValue = (weight < 4.75) ? 6769 : 300 * weight * weight;
+  }
+  else if (papaya) {
+    baseValue = (weight < 2.86) ? 903 : 111.11 * weight * weight;
+  }
+  else if (celestiberry) {
+    baseValue = (weight < 1.90) ? 7220 : 2000 * weight * weight;
+  }
+  else if (moonmango) {
+    baseValue = (weight < 14.25) ? 22563 : 222.22 * weight * weight;
+  }
+  else if (banana) {
+    baseValue = (weight < 1.425) ? 1579 : 777.77 * weight * weight;
+  }
+  else if (passionfruit) {
+    baseValue = (weight < 2.867) ? 3204 : 395 * weight * weight;
+  }
+  else if (soulfruit) {
+    baseValue = (weight < 23.75) ? 6994 : 12.4 * weight * weight;
+  }
+  else if (hive) {
+    baseValue = (weight < 5.9) ? 54372 : 1561.96 * weight * weight;
+  }
+  else if (rose) {
+    baseValue = (weight < 0.95) ? 5000 : 5000 * weight * weight;
+  }
+  else if (foxglove) {
+    baseValue = (weight < 1.9) ? 18050 : 5000 * weight * weight;
+  }
+  else if (purpledahlia) {
+    baseValue = (weight < 11.4) ? 67840 : 522 * weight * weight;
+  }
+  else if (lilac) {
+    baseValue = (weight < 2.846) ? 31581 : 3899 * weight * weight;
+  }
+  else if (sunflower) {
+    baseValue = (weight < 14.23) ? 134861 : 666 * weight * weight;
+  }
+  // Created by @chocoreto
+  else if (pinklily) {
+    baseValue = (weight < 4.3) ? 58663 : 3172 * weight * weight;
+  }
+  else if (nectarine) {
+    baseValue = (weight < 2.807) ? 4445 : 4445 * weight * weight;
+  }
+  else { 
+    baseValue = weight * weight;
+  }
+
+  let fruitMultiplier = isFruitActive('rainbow') ? 50 :
+                        isFruitActive('gold') ? 20 : 1;
+
+  let result = Math.ceil(baseValue * fruitMultiplier * (1 + modifierMultiplier));
+  document.getElementById('value').innerText = `≈$${result.toLocaleString()}`;
+}
+
+function clearAll() {
+  plantIds.forEach(id => {
+    const btn = document.getElementById(`plantbtn-${id}`);
+    if (btn) btn.classList.remove('active');
+  });
+  modifiers.forEach(id => setModifierActive(id, false, false));
+  fruitTypes.forEach(fruit => {
+    const btn = document.getElementById(`fruitbtn-${fruit.id}`);
+    if (btn) btn.classList.remove('active');
+  });
+  document.getElementById('weight').value = 1.00;
+  document.getElementById('value').innerText = '$0';
+  warnElem.textContent = '';
+  warnElem.style.display = 'none';
+  calculateValue();
+  updateBasePricePerKg();
+}
+
+document.getElementById('weight').addEventListener('input', () => {
+  calculateValue();
+  updateBasePricePerKg();
+});
+document.getElementById('resetBtn').addEventListener('click', () => {
+  clearAll();
+  updateBasePricePerKg();
+});
+
+window.onload = () => {
+  calculateValue();
+  updateBasePricePerKg();
+};
+
+const style = document.createElement('style');
+style.innerHTML = `
+.plant-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 10px 6px 10px;
+  margin: 4px 8px 4px 0;
+  border-radius: 18px;
+  background: #232634;
+  color: var(--text-muted, #b7b9c7);
+  border: 2px solid var(--input-border, #35384a);
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+  user-select: none;
+  outline: none;
+  min-width: 90px;
+  min-height: 90px;
+  text-align: center;
+  box-shadow: 0 1px 6px #0002;
+}
+.plant-btn .plant-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+.plant-btn .plant-label {
+  font-size: 0.98em;
+  margin-top: 2px;
+  color: inherit;
+  font-weight: 500;
+  text-shadow: 0 1px 4px #0003;
+  pointer-events: none;
+  user-select: none;
+}
+.plant-btn.active {
+  background: var(--primary, #7f9cff);
+  color: #fff;
+  border-color: var(--primary, #7f9cff);
+  box-shadow: 0 2px 12px #7f9cff33;
+}
+.plant-btn:active {
+  background: var(--primary-dark, #4b5fd6);
+}
+`;
+document.head.appendChild(style);
+
+const inputRow = document.querySelector('.input-row');
+let warnElem = document.createElement('div');
+warnElem.id = 'weight-warning';
+warnElem.style.display = 'none';
+warnElem.style.color = '#ff5c5c';
+warnElem.style.fontSize = '0.98em';
+warnElem.style.marginTop = '4px';
+warnElem.style.marginLeft = '2px';
+inputRow.appendChild(warnElem);
+
+function getBaseValueConstant(plantId) {
+  switch (plantId) {
+    case 'easteregg': return 277.5;
+    case 'moonflower': return 2381;
+    case 'starfruit': return 1666.6;
+    case 'pepper': return 320;
+    case 'grape': return 872;
+    case 'nightshade': return 13850;
+    case 'mint': return 5230;
+    case 'glowshroom': return 532.5;
+    case 'bloodbanana': return 2670;
+    case 'beanstalk': return 200;
+    case 'coconut': return 2.04;
+    case 'candyblossom': return 11111.111;
+    case 'carrot': return 275;
+    case 'strawberry': return 175;
+    case 'blueberry': return 500;
+    case 'orangetulip': return 300000;
+    case 'tomato': return 120;
+    case 'daffodil': return 25000;
+    case 'watermelon': return 61.25;
+    case 'pumpkin': return 64;
+    case 'mushroom': return 241.6;
+    case 'bamboo': return 250;
+    case 'apple': return 30.53;
+    case 'corn': return 10.00;
+    case 'cactus': return 69.4;
+    case 'cranberry': return 2000;
+    case 'moonmelon': return 280.85;
+    case 'pear': return 55.5;
+    case 'durian': return 78.19;
+    case 'peach': return 75;
+    case 'cacao': return 171.875;
+    case 'moonglow': return 408.45;
+    case 'dragonfruit': return 32.99;
+    case 'mango': return 28.89;
+    case 'moonblossom': return 5555.555;
+    case 'raspberry': return 177.5;
+    case 'eggplant': return 300;
+    case 'papaya': return 111.11;
+    case 'celestiberry': return 2000;
+    case 'moonmango': return 222.22;
+    case 'banana': return 777.77;
+    case 'passionfruit': return 395;
+    case 'soulfruit': return 12.4;
+    case 'hive': return 1561.96; // was 781
+    case 'rose': return 5000;
+    case 'foxglove': return 5000;
+    case 'purpledahlia': return 522;
+    case 'lilac': return 3899;
+    case 'sunflower': return 666;
+    case 'pinklily': return 3172;
+    case 'nectarine': return 4445;
+    default: return null;
+  }
+}
+
+function getBasePricePerKg(plantId, weight) {
+  if (!plantId) return null;
+  let w = weight || 1;
+  let base = 0;
+  let minWeight = plantMinWeights[plantId];
+  let baseConst = getBaseValueConstant(plantId);
+  if (minWeight !== undefined && w < minWeight) {
+    base = baseConst;
+  } else {
+    switch (plantId) {
+      case 'easteregg': base = 277.5 * w; break;
+      case 'moonflower': base = 2381 * w; break;
+      case 'starfruit': base = 1666.6 * w; break;
+      case 'pepper': base = 320 * w; break;
+      case 'grape': base = 872 * w; break;
+      case 'nightshade': base = 13850 * w; break;
+      case 'mint': base = 5230 * w; break;
+      case 'glowshroom': base = 532.5 * w; break;
+      case 'bloodbanana': base = 2670 * w; break;
+      case 'beanstalk': base = 200 * w; break;
+      case 'coconut': base = 2.04 * w; break;
+      case 'candyblossom': base = 11111.111 * w; break;
+      case 'carrot': base = 275 * w; break;
+      case 'strawberry': base = 175 * w; break;
+      case 'blueberry': base = 500 * w; break;
+      case 'orangetulip': base = 300000 * w; break;
+      case 'tomato': base = 120 * w; break;
+      case 'daffodil': base = 25000 * w; break;
+      case 'watermelon': base = 61.25 * w; break;
+      case 'pumpkin': base = 64 * w; break;
+      case 'mushroom': base = 241.6 * w; break;
+      case 'bamboo': base = 250 * w; break;
+      case 'apple': base = 30.53 * w; break;
+      case 'corn': base = 10.00 * w; break;
+      case 'cactus': base = 69.4 * w; break;
+      case 'cranberry': base = 2000 * w; break;
+      case 'moonmelon': base = 280.85 * w; break;
+      case 'pear': base = 55.5 * w; break;
+      case 'durian': base = 78.19 * w; break;
+      case 'peach': base = 75 * w; break;
+      case 'cacao': base = 171.875 * w; break;
+      case 'moonglow': base = 408.45 * w; break;
+      case 'dragonfruit': base = 32.99 * w; break;
+      case 'mango': base = 28.89 * w; break;
+      case 'moonblossom': base = 5555.555 * w; break;
+      case 'raspberry': base = 177.5 * w; break;
+      case 'eggplant': base = 300 * w; break;
+      case 'papaya': base = 111.11 * w; break;
+      case 'celestiberry': base = 2000 * w; break;
+      case 'moonmango': base = 222.22 * w; break;
+      case 'banana': base = 777.77 * w; break;
+      case 'passionfruit': base = 395 * w; break;
+      case 'soulfruit': base = 12.4 * w; break;
+      case 'hive': base = 1561.96 * w; break; // was 781
+      case 'rose': base = 5000 * w; break;
+      case 'foxglove': base = 5000 * w; break;
+      case 'purpledahlia': base = 522 * w; break;
+      case 'lilac': base = 3899 * w; break;
+      case 'sunflower': base = 666 * w; break;
+      case 'pinklily': base = 3172 * w; break;
+      case 'nectarine': base = 4445 * w; break;
+      default: base = null; break;
+    }
+  }
+  return base;
+}
+
+function getBaseValueCalculated(plantId, weight) {
+  if (!plantId) return null;
+  let w = weight || 1;
+  switch (plantId) {
+    case 'easteregg': return (w < 2.85) ? 2256 : 277.5 * w * w;
+    case 'moonflower': return (w < 1.90) ? 8574 : 2381 * w * w;
+    case 'starfruit': return (w < 2.85) ? 13538 : 1666.6 * w * w;
+    case 'pepper': return (w < 4.75) ? 7200 : 320 * w * w;
+    case 'grape': return (w < 2.85) ? 7085 : 872 * w * w;
+    case 'nightshade': return (w < 0.48) ? 3159 : 13850 * w * w;
+    case 'mint': return (w < 0.95) ? 4738 : 5230 * w * w;
+    case 'glowshroom': return (w < 0.70) ? 271 : 532.5 * w * w;
+    case 'bloodbanana': return (w < 1.42) ? 5415 : 2670 * w * w;
+    case 'beanstalk': return (w < 9.5) ? 18050 : 200 * w * w;
+    case 'coconut': return (w < 13.31) ? 361 : 2.04 * w * w;
+    case 'candyblossom': return (w < 2.85) ? 90250 : 11111.111 * w * w;
+    case 'carrot': return (w < 0.24) ? 18 : 275 * w * w;
+    case 'strawberry': return (w < 0.29) ? 14 : 175 * w * w;
+    case 'blueberry': return (w < 0.17) ? 18 : 500 * w * w;
+    case 'orangetulip': return (w < 0.0499) ? 767 : 300000 * w * w;
+    case 'tomato': return (w < 0.44) ? 27 : 120 * w * w;
+    case 'daffodil': return (w < 0.16) ? 903 : 25000 * w * w;
+    case 'watermelon': return (w < 7.3) ? 2708 : 61.25 * w * w;
+    case 'pumpkin': return (w < 6.90) ? 3069 : 64 * w * w;
+    case 'mushroom': return (w < 25.9) ? 136278 : 241.6 * w * w;
+    case 'bamboo': return (w < 3.80) ? 3610 : 250 * w * w;
+    case 'apple': return (w < 2.85) ? 248 : 30.53 * w * w;
+    case 'corn': return (w < 1.90) ? 36 : 10.00 * w * w;
+    case 'cactus': return (w < 6.65) ? 3069 : 69.4 * w * w;
+    case 'cranberry': return (w < 0.95) ? 1805 : 2000 * w * w;
+    case 'moonmelon': return (w < 6.84) ? 16245 : 280.85 * w * w;
+    case 'pear': return (w < 2.85) ? 451 : 55.5 * w * w;
+    case 'durian': return (w < 7.60) ? 4513 : 78.19 * w * w;
+    case 'peach': return (w < 1.90) ? 271 : 75 * w * w;
+    case 'cacao': return (w < 7.6) ? 9928 : 171.875 * w * w;
+    case 'moonglow': return (w < 6.65) ? 18050 : 408.45 * w * w;
+    case 'dragonfruit': return (w < 11.38) ? 4287 : 32.99 * w * w;
+    case 'mango': return (w < 14.28) ? 5866 : 28.89 * w * w;
+    case 'moonblossom': return (w < 2.86) ? 45125 : 5555.555 * w * w;
+    case 'raspberry': return (w < 0.71) ? 90 : 177.5 * w * w;
+    case 'eggplant': return (w < 4.75) ? 6769 : 300 * w * w;
+    case 'papaya': return (w < 2.86) ? 903 : 111.11 * w * w;
+    case 'celestiberry': return (w < 1.90) ? 7220 : 2000 * w * w;
+    case 'moonmango': return (w < 14.25) ? 22563 : 222.22 * w * w;
+    case 'banana': return (w < 1.425) ? 1579 : 777.77 * w * w;
+    case 'passionfruit': return (w < 2.867) ? 3204 : 395 * w * w;
+    case 'soulfruit': return (w < 23.75) ? 6994 : 12.4 * w * w;
+    case 'hive': return (w < 5.9) ? 0 : 1561.96 * w * w; // was 781
+    case 'rose': return (w < 0.95) ? 0 : 5000 * w * w;
+    case 'foxglove': return (w < 1.9) ? 0 : 5000 * w * w;
+    case 'purpledahlia': return (w < 11.4) ? 0 : 522 * w * w;
+    case 'lilac': return (w < 2.846) ? 0 : 3899 * w * w;
+    case 'sunflower': return (w < 14.23) ? 0 : 666 * w * w;
+    case 'pinklily': return (w < 4.3) ? 0 : 3172 * w * w;
+    case 'nectarine': return (w < 2.807) ? 0 : 4445 * w * w;
+    default: return w * w;
+  }
+}
+
+function updateBasePricePerKg() {
+  const plantId = getActivePlantId();
+  const baseConst = getBaseValueConstant(plantId);
+  const basePriceDiv = document.getElementById('basePricePerKg');
+  if (plantId && baseConst !== null) {
+    basePriceDiv.textContent = `Base per kg: $${baseConst}`;
+  } else {
+    basePriceDiv.textContent = '';
+  }
+}
