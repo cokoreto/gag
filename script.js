@@ -483,7 +483,7 @@ function calculateValue() {
     baseValue = (weight < 23.75) ? 6994 : 12.4 * weight * weight;
   }
   else if (hive) {
-    baseValue = (weight < 5.9) ? 54372 : 1561.96 * weight * weight;
+    baseValue = (weight < 5.9) ? 27202 : 781.42 * weight * weight;
   }
   else if (rose) {
     baseValue = (weight < 0.95) ? 5000 : 5000 * weight * weight;
@@ -659,7 +659,7 @@ function getBaseValueConstant(plantId) {
     case 'banana': return 777.77;
     case 'passionfruit': return 395;
     case 'soulfruit': return 12.4;
-    case 'hive': return 1561.96; // was 781
+    case 'hive': return 781.42
     case 'rose': return 5000;
     case 'foxglove': return 5000;
     case 'purpledahlia': return 522;
@@ -785,7 +785,7 @@ function getBaseValueCalculated(plantId, weight) {
     case 'banana': return (w < 1.425) ? 1579 : 777.77 * w * w;
     case 'passionfruit': return (w < 2.867) ? 3204 : 395 * w * w;
     case 'soulfruit': return (w < 23.75) ? 6994 : 12.4 * w * w;
-    case 'hive': return (w < 5.9) ? 0 : 1561.96 * w * w; // was 781
+    case 'hive': return (w < 5.9) ? 0 : 1561.96 * w * w;
     case 'rose': return (w < 0.95) ? 0 : 5000 * w * w;
     case 'foxglove': return (w < 1.9) ? 0 : 5000 * w * w;
     case 'purpledahlia': return (w < 11.4) ? 0 : 522 * w * w;
