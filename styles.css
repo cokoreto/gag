@@ -690,3 +690,43 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   box-shadow: 0 0 0 4px #ffe06699, 0 2px 12px #ffe06655;
   z-index: 10;
 }
+#plant-search-suggestion {
+  /* Style sudah diatur inline JS, tambahkan fallback di CSS */
+  position: absolute;
+  background: #232634;
+  border: 1.5px solid #35384a;
+  border-radius: 8px;
+  color: #f3f6fa;
+  font-size: 1.08em;
+  box-shadow: 0 2px 12px #0008;
+  z-index: 100;
+  display: none;
+  max-height: 220px;
+  overflow-y: auto;
+  min-width: 220px;
+  padding: 2px 0;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 64px; /* sebelumnya 56px, supaya lebih jauh dari input */
+}
+#plant-search-suggestion > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+#plant-search-suggestion > div:hover {
+  background: #35384a;
+}
+#plant-search-suggestion > div img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #181a20;
+  margin-right: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px #0005;
+}
