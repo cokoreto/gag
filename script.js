@@ -3,7 +3,8 @@ const modifiers = [
   // Created by @chocoreto
   'disco', 'choc', 'bloodlit', 'heavenly', 'celestial', 'moonlit',
   'frozen', 'zomb', 'shocked', 'plasma',
-  'voidtouched', 'pollinated', 'honeyglazed'
+  'voidtouched', 'pollinated', 'honeyglazed',
+  'burnt', 'cooked', 'dawnbound', 'meteoric', 'molten'
 ];
 const modifierLabels = {
   wet: 'Wet',
@@ -21,7 +22,12 @@ const modifierLabels = {
   plasma: 'Plasma',
   voidtouched: 'Voidtouched',
   pollinated: 'Pollinated',
-  honeyglazed: 'Honeyglazed'
+  honeyglazed: 'Honeyglazed',
+  burnt: 'Burnt',
+  cooked: 'Cooked',
+  dawnbound: 'Dawnbound',
+  meteoric: 'Meteoric',
+  molten: 'Molten'
 };
 const fruitTypes = [
   { id: 'rainbow', label: 'Rainbow' },
@@ -235,6 +241,16 @@ Object.entries(categories).forEach(([title, ids]) => {
 });
 
 function toggleModifier(id) {
+  if (id === 'dawnbound') {
+    const activePlant = getActivePlantId();
+    if (activePlant !== 'sunflower') return;
+  }
+  if (id === 'burnt') {
+    setModifierActive('cooked', false, false);
+  }
+  if (id === 'cooked') {
+    setModifierActive('burnt', false, false);
+  }
   const btn = document.getElementById(`modbtn-${id}`);
   const isActive = btn.classList.contains('active');
   if (id === 'frozen') {
@@ -379,6 +395,17 @@ function calculateValue() {
   const weight = parseFloat(document.getElementById('weight').value) || 0;
   const activePlant = getActivePlantId();
 
+  // Dawnbound hanya aktif untuk Sunflower, disable di plant lain
+  const dawnboundBtn = document.getElementById('modbtn-dawnbound');
+  if (dawnboundBtn) {
+    if (activePlant === 'sunflower') {
+      dawnboundBtn.disabled = false;
+    } else {
+      dawnboundBtn.disabled = true;
+      dawnboundBtn.classList.remove('active');
+    }
+  }
+
   if (activePlant && plantMinWeights[activePlant] !== undefined && weight < plantMinWeights[activePlant]) {
     warnElem.textContent = `Minimum weight for ${activePlant.charAt(0).toUpperCase() + activePlant.slice(1)} is ${plantMinWeights[activePlant]} kg`;
     warnElem.style.display = 'block';
@@ -410,6 +437,12 @@ function calculateValue() {
   modifierMultiplier += isModifierActive('voidtouched') ? 134 : 0;
   modifierMultiplier += isModifierActive('pollinated') ? 2 : 0;
   modifierMultiplier += isModifierActive('honeyglazed') ? 4 : 0;
+  // new modifiers
+  modifierMultiplier += isModifierActive('burnt') ? 3 : 0;
+  modifierMultiplier += isModifierActive('cooked') ? 9 : 0;
+  modifierMultiplier += isModifierActive('dawnbound') ? 149 : 0;
+  modifierMultiplier += isModifierActive('meteoric') ? 124 : 0;
+  modifierMultiplier += isModifierActive('molten') ? 24 : 0;
 
   let baseValue = 0;
   if (easteregg) {
@@ -620,6 +653,32 @@ function calculateValue() {
 
   let result = Math.ceil(baseValue * fruitMultiplier * (1 + modifierMultiplier));
   document.getElementById('value').innerText = `≈$${result.toLocaleString()}`;
+
+  // --- FORMULA DISPLAY ---
+  // Tampilkan rumus di bawah Estimated Value
+  const formulaDiv = document.getElementById('formulaText');
+  // Dapatkan base constant
+  let baseConst = getBaseValueConstant(activePlant);
+  let baseConstText = baseConst !== null ? baseConst : 'base';
+  let fruitText = fruitMultiplier === 50 ? '50 (rainbow)' : (fruitMultiplier === 20 ? '20 (gold)' : '1');
+  // List modifier aktif
+  let activeMods = [];
+  [
+    ['shocked',99],['frozen',9],['wet',1],['chilled',1],['choc',1],['moonlit',1],['bloodlit',3],['heavenly',4],
+    ['celestial',119],['disco',124],['zomb',24],['plasma',4],['voidtouched',134],['pollinated',2],['honeyglazed',4],
+    ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24]
+  ].forEach(([id, mult]) => {
+    if (isModifierActive(id)) activeMods.push(`+${mult} (${modifierLabels[id]})`);
+  });
+  let modsText = activeMods.length > 0 ? activeMods.join(' ') : '+0';
+  // Rumus
+  let formulaStr = '';
+  if (activePlant && weight > 0) {
+    formulaStr = `((<b>${baseConstText}</b> × <b>${weight}</b><sup>2</sup>) × <b>${fruitText}</b>) × (1${modsText.replace(/\+/g, ' +')})`;
+  } else {
+    formulaStr = '';
+  }
+  formulaDiv.innerHTML = formulaStr;
 }
 
 function clearAll() {
@@ -866,29 +925,30 @@ function getBaseValueCalculated(plantId, weight) {
     case 'banana': return (w < 1.425) ? 1579 : 777.77 * w * w;
     case 'passionfruit': return (w < 2.867) ? 3204 : 395 * w * w;
     case 'soulfruit': return (w < 23.75) ? 6994 : 12.4 * w * w;
-    case 'hive': return (w < 5.9) ? 0 : 1561.96 * w * w;
-    case 'rose': return (w < 0.95) ? 0 : 5000 * w * w;
-    case 'foxglove': return (w < 1.9) ? 0 : 5000 * w * w;
-    case 'purpledahlia': return (w < 11.4) ? 0 : 522 * w * w;
-    case 'lilac': return (w < 2.846) ? 0 : 3899 * w * w;
-    case 'sunflower': return (w < 14.23) ? 0 : 666 * w * w;
-    case 'pinklily': return (w < 4.3) ? 0 : 3172 * w * w;
-    case 'nectarine': return (w < 2.807) ? 0 : 4445 * w * w;
-    case 'emberlily': return (w < 11.40) ? 0 : 386 * w * w;
-    case 'nectarshade': return (w < 0.75) ? 0 : 78500 * w * w;
-    case 'manuka': return (w < 0.29) ? 0 : 270086 * w * w;
-    case 'dandelion': return (w < 3.79) ? 0 : 3141 * w * w;
-    case 'lumira': return (w < 5.69) ? 0 : 2370 * w * w;
-    case 'honeysuckle': return (w < 11.40) ? 0 : 694 * w * w;
-    case 'beebalm': return (w < 0.94) ? 0 : 66153 * w * w;
-    case 'nectarthorn': return (w < 5.76) ? 0 : 906.56 * w * w;
-    case 'suncoil': return (w < 9.5) ? 0 : 800 * w * w;
-    case 'crocus': return (w < 0.285) ? 0 : 333333 * w * w;
-    case 'succulent': return (w < 4.75) ? 0 : 1000 * w * w;
-    case 'violetcorn': return (w < 2.85) ? 0 : 5555.56 * w * w;
-    case 'bendboo': return (w < 17.09) ? 0 : 479.01 * w * w;
-    case 'cocovine': return (w < 13.3) ? 0 : 340 * w * w;
-    case 'dragonpepper': return (w < 5.69) ? 0 : 2470.2 * w * w;
+    case 'hive': return (w < 5.9) ? 27202 : 781.42 * w * w;
+    case 'rose': return (w < 0.95) ? 5000 : 5000 * w * w;
+    case 'foxglove': return (w < 1.9) ? 18050 : 5000 * w * w;
+    case 'purpledahlia': return (w < 11.4) ? 67840 : 522 * w * w;
+    case 'lilac': return (w < 2.846) ? 31581 : 3899 * w * w;
+    case 'sunflower': return (w < 14.23) ? 134861 : 666 * w * w;
+    // Created by @chocoreto
+    case 'pinklily': return (w < 4.3) ? 58663 : 3172 * w * w;
+    case 'nectarine': return (w < 2.807) ? 4445 : 4445 * w * w;
+    case 'emberlily': return (w < 11.40) ? 386 : 386 * w * w;
+    case 'nectarshade': return (w < 0.75) ? 45125 : 78500 * w * w;
+    case 'manuka': return (w < 0.29) ? 22707 : 270086 * w * w;
+    case 'dandelion': return (w < 3.79) ? 3141 : 3141 * w * w;
+    case 'lumira': return (w < 5.69) ? 2370 : 2370 * w * w;
+    case 'honeysuckle': return (w < 11.40) ? 694 : 694 * w * w;
+    case 'beebalm': return (w < 0.94) ? 66153 : 18033.5 * w * w;
+    case 'nectarthorn': return (w < 5.76) ? 981 : 906.56 * w * w;
+    case 'suncoil': return (w < 9.5) ? 888 : 800 * w * w;
+    case 'crocus': return (w < 0.285) ? 333333 : 333333 * w * w;
+    case 'succulent': return (w < 4.75) ? 1108 : 1000 * w * w;
+    case 'violetcorn': return (w < 2.85) ? 6150 : 5555.56 * w * w;
+    case 'bendboo': return (w < 17.09) ? 531 : 479.01 * w * w;
+    case 'cocovine': return (w < 13.3) ? 432 : 340 * w * w;
+    case 'dragonpepper': return (w < 5.69) ? 3740 : 2470.2 * w * w;
     default: return w * w;
   }
 }

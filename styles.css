@@ -436,6 +436,44 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #232634;
   border-color: #bfa84a;
 }
+.mod-btn.active#modbtn-burnt,
+.mod-btn:hover#modbtn-burnt {
+  background: #a0522d;
+  color: #fff;
+  border-color: #a0522d;
+  box-shadow: 0 2px 12px #a0522d55;
+}
+.mod-btn.active#modbtn-cooked,
+.mod-btn:hover#modbtn-cooked {
+  background: #ffb347;
+  color: #232634;
+  border-color: #ffb347;
+  box-shadow: 0 2px 12px #ffb34755;
+}
+
+/* Dawnbound, Meteoric, Molten custom colors */
+.mod-btn.active#modbtn-dawnbound,
+.mod-btn:hover#modbtn-dawnbound {
+  background: linear-gradient(90deg, #ffb347 0%, #ffe066 100%);
+  color: #a86c00;
+  border-color: #ffe066;
+  box-shadow: 0 2px 12px #ffe06655;
+  text-shadow: 0 1px 8px #fffbe6, 0 0px 2px #bfa700;
+}
+.mod-btn.active#modbtn-meteoric,
+.mod-btn:hover#modbtn-meteoric {
+  background: linear-gradient(90deg, #ff5e13 0%, #ffb347 100%);
+  color: #fff;
+  border-color: #ff5e13;
+  box-shadow: 0 2px 12px #ffb34755;
+}
+.mod-btn.active#modbtn-molten,
+.mod-btn:hover#modbtn-molten {
+  background: #a83232;
+  color: #fff;
+  border-color: #a83232;
+  box-shadow: 0 2px 12px #a8323255;
+}
 
 /* FRUIT BUTTONS COLOR ANIMATION - dark theme */
 .fruit-btn.active#fruitbtn-rainbow,
@@ -602,47 +640,28 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   background: #ffe066;
 }
 
-/* Shining effect for fruit buttons */
-.fruit-btn.active#fruitbtn-rainbow,
-.fruit-btn:hover#fruitbtn-rainbow {
-  background: linear-gradient(90deg, #ff3b3b, #ffb300, #ffe066, #00ffb0, #5fd6ff, #a259ff, #ff3b3b);
-  background-size: 400% 100%;
-  animation: gradient-move-loop 12s linear infinite;
-  color: #232634;
-  border-color: #ffb300;
-}
-.fruit-btn.active#fruitbtn-gold,
-.fruit-btn:hover#fruitbtn-gold {
-  background: #ffe066;
-  color: #232634;
+/* Shining effect for dawnbound, meteoric, molten */
+.mod-btn.active#modbtn-dawnbound,
+.mod-btn:hover#modbtn-dawnbound {
+  background: linear-gradient(90deg, #ffe066 0%, #fffbe6 100%);
+  color: #bfa700;
   border-color: #ffe066;
+  box-shadow: 0 2px 12px #ffe06655;
+  text-shadow: 0 1px 8px #fffbe6, 0 0px 2px #bfa700;
 }
-
-/* Shining pseudo-element */
-.mod-btn.active::after,
-.mod-btn:hover::after,
-.fruit-btn.active::after,
-.fruit-btn:hover::after {
-  content: "";
-  position: absolute;
-  left: -60%;
-  top: 0;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.35) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
-  animation: shine-move 2s linear infinite;
+.mod-btn.active#modbtn-meteoric,
+.mod-btn:hover#modbtn-meteoric {
+  background: linear-gradient(90deg, #ffb347 0%, #ff5e13 100%);
+  color: #fff;
+  border-color: #ff5e13;
+  box-shadow: 0 2px 12px #ffb34755;
 }
-
-@keyframes shine-move {
-  0% { left: -60%; }
-  100% { left: 120%; }
+.mod-btn.active#modbtn-molten,
+.mod-btn:hover#modbtn-molten {
+  background: #ff3b3b;
+  color: #fff;
+  border-color: #a83232;
+  box-shadow: 0 2px 12px #a8323255;
 }
 
 @keyframes disco-color-cycle {
