@@ -749,3 +749,45 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   flex-shrink: 0;
   box-shadow: 0 1px 4px #0005;
 }
+.mod-btn.active#modbtn-alienlike,
+.mod-btn:hover#modbtn-alienlike {
+  background: #7d5fff;
+  color: #fff;
+  border-color: #7d5fff;
+}
+.mod-btn.active#modbtn-sundried,
+.mod-btn:hover#modbtn-sundried {
+  background: #e1a95f;
+  color: #232634;
+  border-color: #e1a95f;
+}
+.mod-btn.active#modbtn-galactic,
+.mod-btn:hover#modbtn-galactic {
+  background: #2e2b5f;
+  color: #fff;
+  border-color: #2e2b5f;
+}
+.mod-btn.active#modbtn-windstruck,
+.mod-btn:hover#modbtn-windstruck {
+  background: #b2f0f7;
+  color: #232634;
+  border-color: #b2f0f7;
+}
+.mod-btn.active#modbtn-paradisal,
+.mod-btn:hover#modbtn-paradisal {
+  background: #6ee7b7;
+  color: #232634;
+  border-color: #6ee7b7;
+}
+.mod-btn.active#modbtn-twisted,
+.mod-btn:hover#modbtn-twisted {
+  background: #b45309;
+  color: #fff;
+  border-color: #b45309;
+}
+.mod-btn.active#modbtn-verdant,
+.mod-btn:hover#modbtn-verdant {
+  background: #4ade80;
+  color: #232634;
+  border-color: #4ade80;
+}

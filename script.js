@@ -1,15 +1,14 @@
 const modifiers = [
   'wet', 'chilled',
-  // Created by @chocoreto
   'disco', 'choc', 'bloodlit', 'heavenly', 'celestial', 'moonlit',
   'frozen', 'zomb', 'shocked', 'plasma',
   'voidtouched', 'pollinated', 'honeyglazed',
-  'burnt', 'cooked', 'dawnbound', 'meteoric', 'molten'
+  'burnt', 'cooked', 'dawnbound', 'meteoric', 'molten',
+  'alienlike', 'sundried', 'galactic', 'windstruck', 'paradisal', 'twisted', 'verdant'
 ];
 const modifierLabels = {
   wet: 'Wet',
   chilled: 'Chilled',
-  // Created by @chocoreto
   disco: 'Disco',
   choc: 'Choc',
   bloodlit: 'Bloodlit',
@@ -27,14 +26,20 @@ const modifierLabels = {
   cooked: 'Cooked',
   dawnbound: 'Dawnbound',
   meteoric: 'Meteoric',
-  molten: 'Molten'
+  molten: 'Molten',
+  alienlike: 'Alienlike',
+  sundried: 'Sundried',
+  galactic: 'Galactic',
+  windstruck: 'Windstruck',
+  paradisal: 'Paradisal',
+  twisted: 'Twisted',
+  verdant: 'Verdant'
 };
 const fruitTypes = [
   { id: 'rainbow', label: 'Rainbow' },
   { id: 'gold', label: 'Gold' }
 ];
 const categories = {
-  // Created by @chocoreto
   "Seed Shop": ['carrot','strawberry','blueberry','orangetulip','tomato','corn','daffodil','watermelon','pumpkin','apple','bamboo','coconut','cactus','dragonfruit','mango','grape','mushroom','pepper','cacao','beanstalk','emberlily'],
   "Night Event": ['nightshade','mint','glowshroom','moonmelon','starfruit','moonflower','bloodbanana','moonglow','moonblossom','celestiberry','moonmango'],
   "Easter Event": ['candyblossom','easteregg'],
@@ -44,6 +49,9 @@ const categories = {
   "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine','nectarshade','manuka','dandelion','lumira','honeysuckle'],
   "Crafting Seeds": [
     'beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper'
+  ],
+  "Summer Event": [
+    'cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','sugarapple','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'
   ]
 };
 
@@ -128,7 +136,6 @@ const plantImages = {
   dandelion: "img/dandelion.png",
   lumira: "img/lumira.png",
   honeysuckle: "img/honeysuckle.png",
-  // Created by @chocoreto
   beebalm: "img/beebalm.png",
   nectarthorn: "img/nectarthorn.png",
   suncoil: "img/suncoil.png",
@@ -137,7 +144,22 @@ const plantImages = {
   violetcorn: "img/violetcorn.png",
   bendboo: "img/bendboo.png",
   cocovine: "img/cocovine.png",
-  dragonpepper: "img/dragonpepper.png"
+  dragonpepper: "img/dragonpepper.png",
+  cauliflower: "img/cauliflower.png",
+  greenapple: "img/greenapple.png",
+  avocado: "img/avocado.png",
+  pineapple: "img/pineapple.png",
+  kiwi: "img/kiwi.png",
+  bellpepper: "img/bellpepper.png",
+  pricklypear: "img/pricklypear.png",
+  loquat: "img/loquat.png",
+  feijoa: "img/feijoa.png",
+  sugarapple: "img/sugarapple.png",
+  wildcarrot: "img/wildcarrot.png",
+  cantaloupe: "img/cantaloupe.png",
+  parasolflower: "img/parasolflower.png",
+  rosydelight: "img/rosydelight.png",
+  elephantears: "img/elephantears.png"
 };
 
 const plantLabels = {
@@ -198,7 +220,6 @@ const plantLabels = {
   dandelion: "Dandelion",
   lumira: "Lumira",
   honeysuckle: "Honeysuckle",
-  // Created by @chocoreto
   beebalm: "Beebalm",
   nectarthorn: "Nectar Thorn",
   suncoil: "Suncoil",
@@ -207,7 +228,22 @@ const plantLabels = {
   violetcorn: "Violet Corn",
   bendboo: "Bendboo",
   cocovine: "Cocovine",
-  dragonpepper: "Dragon Pepper"
+  dragonpepper: "Dragon Pepper",
+  cauliflower: "Cauliflower",
+  greenapple: "Green Apple",
+  avocado: "Avocado",
+  pineapple: "Pineapple",
+  kiwi: "Kiwi",
+  bellpepper: "Bell Pepper",
+  pricklypear: "Prickly Pear",
+  loquat: "Loquat",
+  feijoa: "Feijoa",
+  sugarapple: "Sugar Apple",
+  wildcarrot: "Wild Carrot",
+  cantaloupe: "Cantaloupe",
+  parasolflower: "Parasol Flower",
+  rosydelight: "Rosy Delight",
+  elephantears: "Elephant Ears"
 };
 
 const categoryContainer = document.getElementById('categoryContainer');
@@ -297,7 +333,6 @@ function togglePlantBtn(changed) {
     const btn = document.getElementById(`plantbtn-${id}`);
     if (btn) btn.classList.toggle('active', id === changed);
   });
-  // Set weight ke minimum jika ada
   if (plantMinWeights[changed] !== undefined) {
     document.getElementById('weight').value = plantMinWeights[changed];
   } else {
@@ -380,7 +415,6 @@ const plantMinWeights = {
   dandelion: 3.79,
   lumira: 5.69,
   honeysuckle: 11.40,
-  // Created by @chocoreto
   beebalm: 0.940,
   nectarthorn: 5.760,
   suncoil: 9.500,
@@ -390,12 +424,26 @@ const plantMinWeights = {
   bendboo: 17.090,
   cocovine: 13.300,
   dragonpepper: 5.690,
+  cauliflower: 4.740,
+  greenapple: 2.850,
+  avocado: 3.320,
+  pineapple: 2.850,
+  kiwi: 4.750,
+  bellpepper: 7.610,
+  pricklypear: 6.650,
+  loquat: 6.170,
+  feijoa: 9.500,
+  sugarapple: 8.550,
+  wildcarrot: 0.286,
+  cantaloupe: 5.220,
+  parasolflower: 5.700,
+  rosydelight: 9.500,
+  elephantears: 17.100
 };
 function calculateValue() {
   const weight = parseFloat(document.getElementById('weight').value) || 0;
   const activePlant = getActivePlantId();
 
-  // Dawnbound hanya aktif untuk Sunflower, disable di plant lain
   const dawnboundBtn = document.getElementById('modbtn-dawnbound');
   if (dawnboundBtn) {
     if (activePlant === 'sunflower') {
@@ -416,6 +464,7 @@ function calculateValue() {
 
   let candyblossom = false, beanstalk = false, corn = false, coconut = false, easteregg = false, moonflower = false, starfruit = false, pepper = false, grape = false, nightshade = false, mint = false, glowshroom = false, bloodbanana = false, carrot = false, strawberry = false, blueberry = false, orangetulip = false, tomato = false, daffodil = false, watermelon = false, pumpkin = false, bamboo = false, cactus = false, apple = false, mushroom = false, moonmelon = false, cranberry = false, pear = false, durian = false, moonglow = false, peach = false, cacao = false, dragonfruit = false, mango = false, moonblossom = false, eggplant = false, raspberry = false, papaya = false, celestiberry = false, banana = false, passionfruit = false, soulfruit = false, moonmango = false, hive = false, rose = false, foxglove = false, purpledahlia = false, lilac = false, sunflower = false, pinklily = false, nectarine = false, emberlily = false, nectarshade = false, manuka = false, dandelion = false, lumira = false, honeysuckle = false;
   let beebalm = false, nectarthorn = false, suncoil = false, crocus = false, succulent = false, violetcorn = false, bendboo = false, cocovine = false, dragonpepper = false;
+  let cauliflower = false, greenapple = false, avocado = false, pineapple = false, kiwi = false, bellpepper = false, pricklypear = false, loquat = false, feijoa = false, sugarapple = false, wildcarrot = false, cantaloupe = false, parasolflower = false, rosydelight = false, elephantears = false;
 
   if (activePlant) {
     eval(`${activePlant} = true`);
@@ -437,12 +486,18 @@ function calculateValue() {
   modifierMultiplier += isModifierActive('voidtouched') ? 134 : 0;
   modifierMultiplier += isModifierActive('pollinated') ? 2 : 0;
   modifierMultiplier += isModifierActive('honeyglazed') ? 4 : 0;
-  // new modifiers
   modifierMultiplier += isModifierActive('burnt') ? 3 : 0;
   modifierMultiplier += isModifierActive('cooked') ? 9 : 0;
   modifierMultiplier += isModifierActive('dawnbound') ? 149 : 0;
   modifierMultiplier += isModifierActive('meteoric') ? 124 : 0;
   modifierMultiplier += isModifierActive('molten') ? 24 : 0;
+  modifierMultiplier += isModifierActive('alienlike') ? 99 : 0;
+  modifierMultiplier += isModifierActive('sundried') ? 84 : 0;
+  modifierMultiplier += isModifierActive('galactic') ? 119 : 0;
+  modifierMultiplier += isModifierActive('windstruck') ? 1 : 0;
+  modifierMultiplier += isModifierActive('paradisal') ? 17 : 0;
+  modifierMultiplier += isModifierActive('twisted') ? 4 : 0;
+  modifierMultiplier += isModifierActive('verdant') ? 3 : 0;
 
   let baseValue = 0;
   if (easteregg) {
@@ -592,7 +647,6 @@ function calculateValue() {
   else if (sunflower) {
     baseValue = (weight < 14.23) ? 134861 : 666 * weight * weight;
   }
-  // Created by @chocoreto
   else if (pinklily) {
     baseValue = (weight < 4.3) ? 58663 : 3172 * weight * weight;
   }
@@ -644,6 +698,51 @@ function calculateValue() {
   else if (dragonpepper) {
     baseValue = (weight < 5.69) ? 3740 : 2470.2 * weight * weight;
   }
+  else if (cauliflower) {
+    baseValue = (weight < 4.74) ? 8 : 1.60 * weight * weight;
+  }
+  else if (greenapple) {
+    baseValue = (weight < 2.85) ? 95 : 33.44 * weight * weight;
+  }
+  else if (avocado) {
+    baseValue = (weight < 3.32) ? 28 : 8.32 * weight * weight;
+  }
+  else if (pineapple) {
+    baseValue = (weight < 2.85) ? 222 : 222.56 * weight * weight;
+  }
+  else if (kiwi) {
+    baseValue = (weight < 4.75) ? 110 : 110.00 * weight * weight;
+  }
+  else if (bellpepper) {
+    baseValue = (weight < 7.61) ? 85 : 85.61 * weight * weight;
+  }
+  else if (pricklypear) {
+    baseValue = (weight < 6.65) ? 143 : 143.27 * weight * weight;
+  }
+  else if (loquat) {
+    baseValue = (weight < 6.17) ? 190 : 190.00 * weight * weight;
+  }
+  else if (feijoa) {
+    baseValue = (weight < 9.5) ? 130 : 130.00 * weight * weight;
+  }
+  else if (sugarapple) {
+    baseValue = (weight < 8.55) ? 592 : 592.60 * weight * weight;
+  }
+  else if (wildcarrot) {
+    baseValue = (weight < 0.286) ? 275 : 275000.00 * weight * weight;
+  }
+  else if (cantaloupe) {
+    baseValue = (weight < 5.22) ? 1129 : 1129.00 * weight * weight;
+  }
+  else if (parasolflower) {
+    baseValue = (weight < 5.7) ? 5577 : 5577.78 * weight * weight;
+  }
+  else if (rosydelight) {
+    baseValue = (weight < 9.5) ? 690 : 690.00 * weight * weight;
+  }
+  else if (elephantears) {
+    baseValue = (weight < 17.1) ? 237 : 237.60 * weight * weight;
+  }
   else { 
     baseValue = weight * weight;
   }
@@ -654,24 +753,20 @@ function calculateValue() {
   let result = Math.ceil(baseValue * fruitMultiplier * (1 + modifierMultiplier));
   document.getElementById('value').innerText = `≈$${result.toLocaleString()}`;
 
-  // --- FORMULA DISPLAY ---
-  // Tampilkan rumus di bawah Estimated Value
   const formulaDiv = document.getElementById('formulaText');
-  // Dapatkan base constant
   let baseConst = getBaseValueConstant(activePlant);
   let baseConstText = baseConst !== null ? baseConst : 'base';
   let fruitText = fruitMultiplier === 50 ? '50 (rainbow)' : (fruitMultiplier === 20 ? '20 (gold)' : '1');
-  // List modifier aktif
   let activeMods = [];
   [
     ['shocked',99],['frozen',9],['wet',1],['chilled',1],['choc',1],['moonlit',1],['bloodlit',3],['heavenly',4],
     ['celestial',119],['disco',124],['zomb',24],['plasma',4],['voidtouched',134],['pollinated',2],['honeyglazed',4],
-    ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24]
+    ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24],
+    ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',17],['twisted',4],['verdant',3]
   ].forEach(([id, mult]) => {
     if (isModifierActive(id)) activeMods.push(`+${mult} (${modifierLabels[id]})`);
   });
   let modsText = activeMods.length > 0 ? activeMods.join(' ') : '+0';
-  // Rumus
   let formulaStr = '';
   if (activePlant && weight > 0) {
     formulaStr = `((<b>${baseConstText}</b> × <b>${weight}</b><sup>2</sup>) × <b>${fruitText}</b>) × (1${modsText.replace(/\+/g, ' +')})`;
@@ -782,7 +877,6 @@ function getBaseValueConstant(plantId) {
     case 'dandelion': return 3141;
     case 'lumira': return 2370;
     case 'honeysuckle': return 694;
-    // Created by @chocoreto
     case 'beebalm': return 18033.5;
     case 'nectarthorn': return 906.56;
     case 'suncoil': return 800;
@@ -792,10 +886,24 @@ function getBaseValueConstant(plantId) {
     case 'bendboo': return 479.01;
     case 'cocovine': return 340;
     case 'dragonpepper': return 2470.2;
+    case 'cauliflower': return 1.60;
+    case 'greenapple': return 33.44;
+    case 'avocado': return 8.32;
+    case 'pineapple': return 222.56;
+    case 'kiwi': return 110.00;
+    case 'bellpepper': return 85.61;
+    case 'pricklypear': return 143.27;
+    case 'loquat': return 190.00;
+    case 'feijoa': return 130.00;
+    case 'sugarapple': return 592.60;
+    case 'wildcarrot': return 275000.00;
+    case 'cantaloupe': return 1129.00;
+    case 'parasolflower': return 5577.78;
+    case 'rosydelight': return 690.00;
+    case 'elephantears': return 237.60;
     default: return null;
   }
 }
-
 function getBasePricePerKg(plantId, weight) {
   if (!plantId) return null;
   let w = weight || 1;
@@ -872,12 +980,26 @@ function getBasePricePerKg(plantId, weight) {
       case 'bendboo': base = 479.01 * w; break;
       case 'cocovine': base = 340 * w; break;
       case 'dragonpepper': base = 2470.2 * w; break;
+      case 'cauliflower': base = 1.60 * w; break;
+      case 'greenapple': base = 33.44 * w; break;
+      case 'avocado': base = 8.32 * w; break;
+      case 'pineapple': base = 222.56 * w; break;
+      case 'kiwi': base = 110.00 * w; break;
+      case 'bellpepper': base = 85.61 * w; break;
+      case 'pricklypear': base = 143.27 * w; break;
+      case 'loquat': base = 190.00 * w; break;
+      case 'feijoa': base = 130.00 * w; break;
+      case 'sugarapple': base = 592.60 * w; break;
+      case 'wildcarrot': base = 275000.00 * w; break;
+      case 'cantaloupe': base = 1129.00 * w; break;
+      case 'parasolflower': base = 5577.78 * w; break;
+      case 'rosydelight': base = 690.00 * w; break;
+      case 'elephantears': base = 237.60 * w; break;
       default: base = null; break;
     }
   }
   return base;
 }
-
 function getBaseValueCalculated(plantId, weight) {
   if (!plantId) return null;
   let w = weight || 1;
@@ -931,7 +1053,6 @@ function getBaseValueCalculated(plantId, weight) {
     case 'purpledahlia': return (w < 11.4) ? 67840 : 522 * w * w;
     case 'lilac': return (w < 2.846) ? 31581 : 3899 * w * w;
     case 'sunflower': return (w < 14.23) ? 134861 : 666 * w * w;
-    // Created by @chocoreto
     case 'pinklily': return (w < 4.3) ? 58663 : 3172 * w * w;
     case 'nectarine': return (w < 2.807) ? 4445 : 4445 * w * w;
     case 'emberlily': return (w < 11.40) ? 386 : 386 * w * w;
@@ -949,6 +1070,21 @@ function getBaseValueCalculated(plantId, weight) {
     case 'bendboo': return (w < 17.09) ? 531 : 479.01 * w * w;
     case 'cocovine': return (w < 13.3) ? 432 : 340 * w * w;
     case 'dragonpepper': return (w < 5.69) ? 3740 : 2470.2 * w * w;
+    case 'cauliflower': return (w < 4.74) ? 8 : 1.60 * w * w;
+    case 'greenapple': return (w < 2.85) ? 95 : 33.44 * w * w;
+    case 'avocado': return (w < 3.32) ? 28 : 8.32 * w * w;
+    case 'pineapple': return (w < 2.85) ? 222 : 222.56 * w * w;
+    case 'kiwi': return (w < 4.75) ? 110 : 110.00 * w * w;
+    case 'bellpepper': return (w < 7.61) ? 85 : 85.61 * w * w;
+    case 'pricklypear': return (w < 6.65) ? 143 : 143.27 * w * w;
+    case 'loquat': return (w < 6.17) ? 190 : 190.00 * w * w;
+    case 'feijoa': return (w < 9.5) ? 130 : 130.00 * w * w;
+    case 'sugarapple': return (w < 8.55) ? 592 : 592.60 * w * w;
+    case 'wildcarrot': return (w < 0.286) ? 275 : 275000.00 * w * w;
+    case 'cantaloupe': return (w < 5.22) ? 1129 : 1129.00 * w * w;
+    case 'parasolflower': return (w < 5.7) ? 5577 : 5577.78 * w * w;
+    case 'rosydelight': return (w < 9.5) ? 690 : 690.00 * w * w;
+    case 'elephantears': return (w < 17.1) ? 237 : 237.60 * w * w;
     default: return w * w;
   }
 }
@@ -964,12 +1100,9 @@ function updateBasePricePerKg() {
   }
 }
 
-// Animasi hujan gambar
 window.addEventListener('DOMContentLoaded', () => {
-  // Ambil semua nama file gambar dari plantImages
   const imgNames = Object.values(plantImages);
 
-  // Buat canvas di bawah body
   let canvas = document.getElementById('rain-canvas');
   if (!canvas) {
     canvas = document.createElement('canvas');
@@ -981,7 +1114,7 @@ window.addEventListener('DOMContentLoaded', () => {
     canvas.style.height = '100vh';
     canvas.style.pointerEvents = 'none';
     canvas.style.zIndex = 0;
-    canvas.style.opacity = '0.28'; // lebih terlihat
+    canvas.style.opacity = '0.28';
     document.body.prepend(canvas);
   }
 
@@ -996,7 +1129,6 @@ window.addEventListener('DOMContentLoaded', () => {
   resize();
   window.addEventListener('resize', resize);
 
-  // Preload images
   const loadedImgs = [];
   let loadedCount = 0;
   imgNames.forEach(src => {
@@ -1013,7 +1145,6 @@ window.addEventListener('DOMContentLoaded', () => {
     loadedImgs.push(img);
   });
 
-  // Rain drop objects
   let drops = [];
   function randomImg() {
     return loadedImgs[Math.floor(Math.random() * loadedImgs.length)];
@@ -1033,7 +1164,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function startRain() {
-    // Inisialisasi drops setelah gambar siap
     drops = [];
     const dropCount = Math.max(18, Math.floor(W / 60));
     for (let i = 0; i < dropCount; i++) {
@@ -1063,13 +1193,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// --- Tambahkan fitur search plant + suggestion ---
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('searchPlantInput');
   const suggestionBox = document.getElementById('plant-search-suggestion');
   if (!searchInput || !suggestionBox) return;
 
-  // Ambil daftar plant untuk suggestion
   const plantList = plantIds.map(id => ({
     id,
     label: plantLabels[id] || (id.charAt(0).toUpperCase() + id.slice(1))
@@ -1082,7 +1210,6 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     const q = query.trim().toLowerCase();
-    // Cari yang mengandung query di label (prioritas: startsWith, lalu includes)
     let filtered = plantList.filter(p => p.label.toLowerCase().startsWith(q));
     if (filtered.length === 0) {
       filtered = plantList.filter(p => p.label.toLowerCase().includes(q));
@@ -1093,7 +1220,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     filtered.slice(0, 12).forEach(p => {
       const div = document.createElement('div');
-      // Tambahkan gambar di depan label
       const img = document.createElement('img');
       img.src = plantImages[p.id] || '';
       img.alt = p.label;
@@ -1104,25 +1230,21 @@ document.addEventListener('DOMContentLoaded', function() {
       div.dataset.plantId = p.id;
       div.tabIndex = 0;
       div.onclick = () => {
-        // Pilih plant yang benar
         selectPlantById(p.id);
         suggestionBox.style.display = 'none';
         searchInput.value = p.label;
       };
-      div.onmousedown = e => e.preventDefault(); // agar tidak kehilangan focus input
+      div.onmousedown = e => e.preventDefault();
       suggestionBox.appendChild(div);
     });
-    // Atur posisi agar ada jarak dari input (top: 64px di CSS)
     suggestionBox.style.display = 'block';
   }
 
   function selectPlantById(plantId) {
-    // Unselect semua, select yang sesuai
     plantIds.forEach(id => {
       const btn = document.getElementById(`plantbtn-${id}`);
       if (btn) btn.classList.toggle('active', id === plantId);
     });
-    // Set weight ke minimum jika ada
     if (plantMinWeights[plantId] !== undefined) {
       document.getElementById('weight').value = plantMinWeights[plantId];
     } else {
@@ -1130,7 +1252,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     calculateValue();
     updateBasePricePerKg();
-    // Scroll ke tombol plant yang dipilih
     const btn = document.getElementById(`plantbtn-${plantId}`);
     if (btn) {
       btn.scrollIntoView({behavior: 'smooth', block: 'center'});
@@ -1145,13 +1266,11 @@ document.addEventListener('DOMContentLoaded', function() {
       suggestionBox.style.display = 'none';
       return;
     }
-    // Cari plant yang label-nya persis sama (case-insensitive)
     const found = plantList.find(p => p.label.toLowerCase() === query);
     if (found) {
       selectPlantById(found.id);
       suggestionBox.style.display = 'none';
     } else {
-      // Jika tidak ada yang persis, tampilkan saran
       showSuggestions(query);
     }
   }
@@ -1164,7 +1283,6 @@ document.addEventListener('DOMContentLoaded', function() {
       searchAndHighlightPlant();
       suggestionBox.style.display = 'none';
     } else if (e.key === 'ArrowDown') {
-      // Fokus ke suggestion pertama
       const first = suggestionBox.querySelector('div');
       if (first) first.focus();
     }
@@ -1173,7 +1291,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => { suggestionBox.style.display = 'none'; }, 120);
   });
 
-  // Navigasi keyboard di suggestion
   suggestionBox.addEventListener('keydown', function(e) {
     const items = Array.from(suggestionBox.querySelectorAll('div'));
     const idx = items.indexOf(document.activeElement);
