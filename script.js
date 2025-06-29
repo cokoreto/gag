@@ -4,7 +4,8 @@ const modifiers = [
   'frozen', 'zomb', 'shocked', 'plasma',
   'voidtouched', 'pollinated', 'honeyglazed',
   'burnt', 'cooked', 'dawnbound', 'meteoric', 'molten',
-  'alienlike', 'sundried', 'galactic', 'windstruck', 'paradisal', 'twisted', 'verdant'
+  'alienlike', 'sundried', 'galactic', 'windstruck', 'paradisal', 'twisted', 'verdant',
+  'aurora', 'drenched'
 ];
 const modifierLabels = {
   wet: 'Wet',
@@ -33,7 +34,9 @@ const modifierLabels = {
   windstruck: 'Windstruck',
   paradisal: 'Paradisal',
   twisted: 'Twisted',
-  verdant: 'Verdant'
+  verdant: 'Verdant',
+  aurora: 'Aurora',
+  drenched: 'Drenched'
 };
 const fruitTypes = [
   { id: 'rainbow', label: 'Rainbow' },
@@ -308,6 +311,33 @@ function toggleModifier(id) {
       setModifierActive(id, false);
       setModifierActive('frozen', false, false);
     }
+  } else if (id === 'paradisal') {
+    const btn = document.getElementById('modbtn-paradisal');
+    const isActive = btn.classList.contains('active');
+    if (!isActive) {
+      setModifierActive('paradisal', true);
+      setModifierActive('verdant', false, false);
+      setModifierActive('sundried', false, false);
+    }
+    else {
+      setModifierActive('paradisal', false);
+      setModifierActive('verdant', false, false);
+      setModifierActive('sundried', false, false);
+    }
+  } else if (id === 'verdant' || id === 'sundried') {
+    const paradisalActive = isModifierActive('paradisal');
+    if (paradisalActive) {
+      // Only allow one of verdant/sundried
+      if (!isModifierActive(id)) {
+        setModifierActive(id === 'verdant' ? 'sundried' : 'verdant', false, true);
+        setModifierActive(id, true, false);
+      } else {
+        setModifierActive('verdant', false, false);
+        setModifierActive('sundried', false, false);
+      }
+      calculateValue();
+      return;
+    }
   } else {
     setModifierActive(id, !isActive);
   }
@@ -495,9 +525,11 @@ function calculateValue() {
   modifierMultiplier += isModifierActive('sundried') ? 84 : 0;
   modifierMultiplier += isModifierActive('galactic') ? 119 : 0;
   modifierMultiplier += isModifierActive('windstruck') ? 1 : 0;
-  modifierMultiplier += isModifierActive('paradisal') ? 17 : 0;
+  modifierMultiplier += isModifierActive('paradisal') ? 99 : 0;
   modifierMultiplier += isModifierActive('twisted') ? 4 : 0;
   modifierMultiplier += isModifierActive('verdant') ? 3 : 0;
+  modifierMultiplier += isModifierActive('aurora') ? 89 : 0;
+  modifierMultiplier += isModifierActive('drenched') ? 4 : 0;
 
   let baseValue = 0;
   if (easteregg) {
@@ -762,7 +794,8 @@ function calculateValue() {
     ['shocked',99],['frozen',9],['wet',1],['chilled',1],['choc',1],['moonlit',1],['bloodlit',3],['heavenly',4],
     ['celestial',119],['disco',124],['zomb',24],['plasma',4],['voidtouched',134],['pollinated',2],['honeyglazed',4],
     ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24],
-    ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',17],['twisted',4],['verdant',3]
+    ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',99],['twisted',4],['verdant',3],
+    ['aurora',89],['drenched',4]
   ].forEach(([id, mult]) => {
     if (isModifierActive(id)) activeMods.push(`+${mult} (${modifierLabels[id]})`);
   });

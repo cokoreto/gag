@@ -791,3 +791,17 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #232634;
   border-color: #4ade80;
 }
+.mod-btn.active#modbtn-aurora,
+.mod-btn:hover#modbtn-aurora {
+  background: linear-gradient(90deg, #7fffd4 0%, #6a5acd 100%);
+  color: #fff;
+  border-color: #7fffd4;
+  box-shadow: 0 2px 12px #7fffd488;
+}
+.mod-btn.active#modbtn-drenched,
+.mod-btn:hover#modbtn-drenched {
+  background: linear-gradient(90deg, #4fc3f7 0%, #1976d2 100%);
+  color: #fff;
+  border-color: #4fc3f7;
+  box-shadow: 0 2px 12px #4fc3f788;
+}
