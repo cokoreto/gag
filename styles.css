@@ -36,7 +36,7 @@ html, body {
   padding: 38px 28px 28px 28px;
   position: relative;
   overflow: hidden;
-  margin-top: 54px; /* tambahkan margin-top agar tidak tertutup top-bar */
+  margin-top: 54px;
   z-index: 1;
 }
 .container::before {
@@ -337,7 +337,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   -webkit-background-clip: text;
   animation: smooth-gradient-move 8s linear infinite;
   -webkit-text-fill-color: transparent;
-  /* For smoothness, use a longer duration and more gradient stops */
 }
 @keyframes smooth-gradient-move {
   0% {
@@ -348,13 +347,11 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   }
 }
 
-/* Animasi gradasi berjalan halus tanpa replay terlihat */
 @keyframes gradient-move-loop {
   0% { background-position: 0% 0; }
   100% { background-position: 100% 0; }
 }
 
-/* MODIFIER BUTTONS COLOR ANIMATION - dark theme + smooth loop */
 .mod-btn.active#modbtn-wet,
 .mod-btn:hover#modbtn-wet {
   background: #4a6fa3;
@@ -588,7 +585,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #232634;
   border-color: #e0e0e0;
 }
-/* ...existing code... */
 .mod-btn.active#modbtn-disco,
 .mod-btn:hover#modbtn-disco {
   background: #a259ff;
@@ -640,7 +636,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   background: #ffe066;
 }
 
-/* Shining effect for dawnbound, meteoric, molten */
 .mod-btn.active#modbtn-dawnbound,
 .mod-btn:hover#modbtn-dawnbound {
   background: linear-gradient(90deg, #ffe066 0%, #fffbe6 100%);
@@ -665,15 +660,14 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
 }
 
 @keyframes disco-color-cycle {
-  0%   { background-color: #c0392b; }   /* merah */
-  20%  { background-color: #8e44ad; }   /* ungu */
-  40%  { background-color: #ffe066; }   /* kuning */
-  60%  { background-color: #7cff7c; }   /* hijau muda */
-  80%  { background-color: #5fd6ff; }   /* biru muda */
+  0%   { background-color: #c0392b; }
+  20%  { background-color: #8e44ad; }
+  40%  { background-color: #ffe066; }
+  60%  { background-color: #7cff7c; }
+  80%  { background-color: #5fd6ff; }
   100% { background-color: #c0392b; }
 }
 
-/* Heavenly modifier button style */
 .mod-btn.active#modbtn-heavenly,
 .mod-btn:hover#modbtn-heavenly {
   background: linear-gradient(90deg, #ffe066 0%, #fffbe6 100%);
@@ -689,7 +683,7 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.28; /* lebih jelas dari sebelumnya */
+  opacity: 0.28;
 }
 @keyframes search-shake {
   0% { transform: scale(1) rotate(0deg);}
@@ -710,7 +704,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   z-index: 10;
 }
 #plant-search-suggestion {
-  /* Style sudah diatur inline JS, tambahkan fallback di CSS */
   position: absolute;
   background: #232634;
   border: 1.5px solid #35384a;
@@ -726,7 +719,7 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   padding: 2px 0;
   left: 50%;
   transform: translateX(-50%);
-  top: 64px; /* sebelumnya 56px, supaya lebih jauh dari input */
+  top: 64px;
 }
 #plant-search-suggestion > div {
   display: flex;

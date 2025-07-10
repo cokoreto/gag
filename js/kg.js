@@ -40,7 +40,7 @@ function calculateKgFromPrice() {
     return;
   }
 
-  kgResultDiv.textContent = `Estimated Weight: ${kg.toFixed(4)} kg`;
+  kgResultDiv.innerHTML = `Estimated kg for <b>${plantId}</b> with value of <b>${price}</b> is <b><u>${kg.toFixed(4)} kg</u></b>`;
 }
 
 document.getElementById('priceInput').addEventListener('input', calculateKgFromPrice);
