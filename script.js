@@ -5,42 +5,52 @@ const modifiers = [
   'voidtouched', 'pollinated', 'honeyglazed',
   'burnt', 'cooked', 'dawnbound', 'meteoric', 'molten',
   'alienlike', 'sundried', 'galactic', 'windstruck', 'paradisal', 'twisted', 'verdant',
-  'aurora', 'drenched'
+  'aurora', 'drenched',
+  'cloudtouched', 'fried', 'sandy',
+  'amber', 'oldamber', 'ancientamber', 'clay', 'ceramic'
 ];
 const modifierLabels = {
-  wet: 'Wet',
-  chilled: 'Chilled',
-  disco: 'Disco',
-  choc: 'Choc',
-  bloodlit: 'Bloodlit',
-  heavenly: 'Heavenly',
-  celestial: 'Celestial',
-  moonlit: 'Moonlit',
-  frozen: 'Frozen',
-  zomb: 'Zombified',
-  shocked: 'Shocked',
-  plasma: 'Plasma',
-  voidtouched: 'Voidtouched',
-  pollinated: 'Pollinated',
-  honeyglazed: 'Honeyglazed',
-  burnt: 'Burnt',
-  cooked: 'Cooked',
-  dawnbound: 'Dawnbound',
-  meteoric: 'Meteoric',
-  molten: 'Molten',
-  alienlike: 'Alienlike',
-  sundried: 'Sundried',
-  galactic: 'Galactic',
-  windstruck: 'Windstruck',
-  paradisal: 'Paradisal',
-  twisted: 'Twisted',
-  verdant: 'Verdant',
-  aurora: 'Aurora',
-  drenched: 'Drenched'
+  wet: 'Wet 2X',
+  chilled: 'Chilled 2X',
+  disco: 'Disco 125X',
+  choc: 'Choc 2X',
+  bloodlit: 'Bloodlit 4X',
+  heavenly: 'Heavenly 5X',
+  celestial: 'Celestial 120X',
+  moonlit: 'Moonlit 2X',
+  frozen: 'Frozen 10X',
+  zomb: 'Zombified 25X',
+  shocked: 'Shocked 100X',
+  plasma: 'Plasma 5X',
+  voidtouched: 'Voidtouched 135X',
+  pollinated: 'Pollinated 3X',
+  honeyglazed: 'Honeyglazed 5X',
+  burnt: 'Burnt 4X',
+  cooked: 'Cooked 10X',
+  dawnbound: 'Dawnbound 150X',
+  meteoric: 'Meteoric 125X',
+  molten: 'Molten 25X',
+  alienlike: 'Alienlike 100X',
+  sundried: 'Sundried 85X',
+  galactic: 'Galactic 120X',
+  windstruck: 'Windstruck 2X',
+  paradisal: 'Paradisal 100X',
+  twisted: 'Twisted 2X',
+  verdant: 'Verdant 4X',
+  aurora: 'Aurora 90X',
+  drenched: 'Drenched 5X',
+  cloudtouched: 'Cloudtouched 5X',
+  fried: 'Fried 8X',
+  sandy: 'Sandy 3X',
+  amber: 'Amber 10X',
+  oldamber: 'OldAmber 20X',
+  ancientamber: 'Ancient Amber 50X',
+  clay: 'Clay 3X',
+  ceramic: 'Ceramic 30X'
 };
 const fruitTypes = [
-  { id: 'rainbow', label: 'Rainbow' },
-  { id: 'gold', label: 'Gold' }
+  { id: 'rainbow', label: 'Rainbow 50X' },
+  { id: 'gold', label: 'Gold 20X' }
 ];
 const categories = {
   "Seed Shop": ['carrot','strawberry','blueberry','orangetulip','tomato','corn','daffodil','watermelon','pumpkin','apple','bamboo','coconut','cactus','dragonfruit','mango','grape','mushroom','pepper','cacao','beanstalk','emberlily'],
@@ -325,19 +335,17 @@ function toggleModifier(id) {
       setModifierActive('sundried', false, false);
     }
   } else if (id === 'verdant' || id === 'sundried') {
-    const paradisalActive = isModifierActive('paradisal');
-    if (paradisalActive) {
-      // Only allow one of verdant/sundried
-      if (!isModifierActive(id)) {
-        setModifierActive(id === 'verdant' ? 'sundried' : 'verdant', false, true);
-        setModifierActive(id, true, false);
-      } else {
-        setModifierActive('verdant', false, false);
-        setModifierActive('sundried', false, false);
-      }
-      calculateValue();
-      return;
+    // Logika seperti wet/chilled: jika salah satu aktif, yang lain disable
+    const other = id === 'verdant' ? 'sundried' : 'verdant';
+    if (!isActive) {
+      setModifierActive(id, true, false);
+      setModifierActive(other, false, true);
+    } else {
+      setModifierActive(id, false, false);
+      setModifierActive(other, false, false);
     }
+    calculateValue();
+    return;
   } else {
     setModifierActive(id, !isActive);
   }
@@ -530,250 +538,258 @@ function calculateValue() {
   modifierMultiplier += isModifierActive('verdant') ? 3 : 0;
   modifierMultiplier += isModifierActive('aurora') ? 89 : 0;
   modifierMultiplier += isModifierActive('drenched') ? 4 : 0;
+  modifierMultiplier += isModifierActive('cloudtouched') ? 4 : 0;
+  modifierMultiplier += isModifierActive('fried') ? 7 : 0;
+  modifierMultiplier += isModifierActive('sandy') ? 2 : 0;
+  modifierMultiplier += isModifierActive('amber') ? 9 : 0;
+  modifierMultiplier += isModifierActive('oldamber') ? 19 : 0;
+  modifierMultiplier += isModifierActive('ancientamber') ? 49 : 0;
+  modifierMultiplier += isModifierActive('clay') ? 2 : 0;
+  modifierMultiplier += isModifierActive('ceramic') ? 29 : 0;
 
   let baseValue = 0;
   if (easteregg) {
-    baseValue = (weight < 2.85) ? 2256 : 277.5 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 277.5 * weight * weight;
   }
   else if (moonflower) {
-    baseValue = (weight < 1.90) ? 8574 : 2381 * weight * weight;
+    baseValue = (weight < 1.90) ? null : 2381 * weight * weight;
   }
   else if (starfruit) {
-    baseValue = (weight < 2.85) ? 13538 : 1666.6 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 1666.6 * weight * weight;
   }
   else if (pepper) {
-    baseValue = (weight < 4.75) ? 7200 : 320 * weight * weight;
+    baseValue = (weight < 4.75) ? null : 320 * weight * weight;
   }
   else if (grape) {
-    baseValue = (weight < 2.85) ? 7085 : 872 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 872 * weight * weight;
   }
   else if (nightshade) {
-    baseValue = (weight < 0.48) ? 3159 : 13850 * weight * weight;
+    baseValue = (weight < 0.48) ? null : 13850 * weight * weight;
   }
   else if (mint) {
-    baseValue = (weight < 0.95) ? 4738 : 5230 * weight * weight;
+    baseValue = (weight < 0.95) ? null : 5230 * weight * weight;
   }
   else if (glowshroom) {
-    baseValue = (weight < 0.70) ? 271 : 532.5 * weight * weight;
+    baseValue = (weight < 0.70) ? null : 532.5 * weight * weight;
   }
   else if (bloodbanana) {
-    baseValue = (weight < 1.42) ? 5415 : 2670 * weight * weight;
+    baseValue = (weight < 1.42) ? null : 2670 * weight * weight;
   }
   else if (beanstalk) {
-    baseValue = (weight < 9.5) ? 18050 : 200 * weight * weight;
+    baseValue = (weight < 9.5) ? null : 200 * weight * weight;
   }
   else if (coconut) {
-    baseValue = (weight < 13.31) ? 361 : 2.04 * weight * weight;
+    baseValue = (weight < 13.31) ? null : 2.04 * weight * weight;
   }
   else if (candyblossom) {
-    baseValue = (weight < 2.85) ? 90250 : 11111.111 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 11111.111 * weight * weight;
   }
   else if (carrot) {
-    baseValue = (weight < 0.24) ? 18 : 275 * weight * weight;
+    baseValue = (weight < 0.24) ? null : 275 * weight * weight;
   }
   else if (strawberry) {
-    baseValue = (weight < 0.29) ? 14 : 175 * weight * weight;
+    baseValue = (weight < 0.29) ? null : 175 * weight * weight;
   }
   else if (blueberry) {
-    baseValue = (weight < 0.17) ? 18 : 500 * weight * weight;
+    baseValue = (weight < 0.17) ? null : 500 * weight * weight;
   }
   else if (orangetulip) {
-    baseValue = (weight < 0.0499) ? 767 : 300000 * weight * weight;
+    baseValue = (weight < 0.0499) ? null : 300000 * weight * weight;
   }
   else if (tomato) {
-    baseValue = (weight < 0.44) ? 27 : 120 * weight * weight;
+    baseValue = (weight < 0.44) ? null : 120 * weight * weight;
   }
   else if (daffodil) {
-    baseValue = (weight < 0.16) ? 903 : 25000 * weight * weight;
+    baseValue = (weight < 0.16) ? null : 25000 * weight * weight;
   }
   else if (watermelon) {
-    baseValue = (weight < 7.3) ? 2708 : 61.25 * weight * weight;
+    baseValue = (weight < 7.3) ? null : 61.25 * weight * weight;
   }
   else if (pumpkin) {
-    baseValue = (weight < 6.90) ? 3069 : 64 * weight * weight;
+    baseValue = (weight < 6.90) ? null : 64 * weight * weight;
   }
   else if (mushroom) {
-    baseValue = (weight < 25.9) ? 136278 : 241.6 * weight * weight;
+    baseValue = (weight < 25.9) ? null : 241.6 * weight * weight;
   }
   else if (bamboo) {
-    baseValue = (weight < 3.80) ? 3610 : 250 * weight * weight;
+    baseValue = (weight < 3.80) ? null : 250 * weight * weight;
   }
   else if (apple) {
-    baseValue = (weight < 2.85) ? 248 : 30.53 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 30.53 * weight * weight;
   }
   else if (corn) {
-    baseValue = (weight < 1.90) ? 36 : 10.00 * weight * weight;
+    baseValue = (weight < 1.90) ? null : 10.00 * weight * weight;
   }
   else if (cactus) {
-    baseValue = (weight < 6.65) ? 3069 : 69.4 * weight * weight;
+    baseValue = (weight < 6.65) ? null : 69.4 * weight * weight;
   }
   else if (cranberry) {
-    baseValue = (weight < 0.95) ? 1805 : 2000 * weight * weight;
+    baseValue = (weight < 0.95) ? null : 2000 * weight * weight;
   }
   else if (moonmelon) {
-    baseValue = (weight < 6.84) ? 16245 : 280.85 * weight * weight;
+    baseValue = (weight < 6.84) ? null : 280.85 * weight * weight;
   }
   else if (pear) {
-    baseValue = (weight < 2.85) ? 451 : 55.5 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 55.5 * weight * weight;
   }
   else if (durian) {
-    baseValue = (weight < 7.60) ? 4513 : 78.19 * weight * weight;
+    baseValue = (weight < 7.60) ? null : 78.19 * weight * weight;
   }
   else if (peach) {
-    baseValue = (weight < 1.90) ? 271 : 75 * weight * weight;
+    baseValue = (weight < 1.90) ? null : 75 * weight * weight;
   }
   else if (cacao) {
-    baseValue = (weight < 7.6) ? 9928 : 171.875 * weight * weight;
+    baseValue = (weight < 7.6) ? null : 171.875 * weight * weight;
   }
   else if (moonglow) {
-    baseValue = (weight < 6.65) ? 18050 : 408.45 * weight * weight;
+    baseValue = (weight < 6.65) ? null : 408.45 * weight * weight;
   }
   else if (dragonfruit) {
-    baseValue = (weight < 11.38) ? 4287 : 32.99 * weight * weight;
+    baseValue = (weight < 11.38) ? null : 32.99 * weight * weight;
   }
   else if (mango) {
-    baseValue = (weight < 14.28 ) ? 5866 : 28.89 * weight * weight;
+    baseValue = (weight < 14.28 ) ? null : 28.89 * weight * weight;
   }
   else if (moonblossom) {
-    baseValue = (weight < 2.86) ? 45125 : 5555.555 * weight * weight;
+    baseValue = (weight < 2.86) ? null : 5555.555 * weight * weight;
   }
   else if (raspberry) {
-    baseValue = (weight < 0.71) ? 90 : 177.5 * weight * weight;
+    baseValue = (weight < 0.71) ? null : 177.5 * weight * weight;
   }
   else if (eggplant) {
-    baseValue = (weight < 4.75) ? 6769 : 300 * weight * weight;
+    baseValue = (weight < 4.75) ? null : 300 * weight * weight;
   }
   else if (papaya) {
-    baseValue = (weight < 2.86) ? 903 : 111.11 * weight * weight;
+    baseValue = (weight < 2.86) ? null : 111.11 * weight * weight;
   }
   else if (celestiberry) {
-    baseValue = (weight < 1.90) ? 7220 : 2000 * weight * weight;
+    baseValue = (weight < 1.90) ? null : 2000 * weight * weight;
   }
   else if (moonmango) {
-    baseValue = (weight < 14.25) ? 22563 : 222.22 * weight * weight;
+    baseValue = (weight < 14.25) ? null : 222.22 * weight * weight;
   }
   else if (banana) {
-    baseValue = (weight < 1.425) ? 1579 : 777.77 * weight * weight;
+    baseValue = (weight < 1.425) ? null : 777.77 * weight * weight;
   }
   else if (passionfruit) {
-    baseValue = (weight < 2.867) ? 3204 : 395 * weight * weight;
+    baseValue = (weight < 2.867) ? null : 395 * weight * weight;
   }
   else if (soulfruit) {
-    baseValue = (weight < 23.75) ? 6994 : 12.4 * weight * weight;
+    baseValue = (weight < 23.75) ? null : 12.4 * weight * weight;
   }
   else if (hive) {
-    baseValue = (weight < 5.9) ? 27202 : 781.42 * weight * weight;
+    baseValue = (weight < 5.9) ? null : 781.42 * weight * weight;
   }
   else if (rose) {
-    baseValue = (weight < 0.95) ? 5000 : 5000 * weight * weight;
+    baseValue = (weight < 0.95) ? null : 5000 * weight * weight;
   }
   else if (foxglove) {
-    baseValue = (weight < 1.9) ? 18050 : 5000 * weight * weight;
+    baseValue = (weight < 1.9) ? null : 5000 * weight * weight;
   }
   else if (purpledahlia) {
-    baseValue = (weight < 11.4) ? 67840 : 522 * weight * weight;
+    baseValue = (weight < 11.4) ? null : 522 * weight * weight;
   }
   else if (lilac) {
-    baseValue = (weight < 2.846) ? 31581 : 3899 * weight * weight;
+    baseValue = (weight < 2.846) ? null : 3899 * weight * weight;
   }
   else if (sunflower) {
-    baseValue = (weight < 14.23) ? 134861 : 666 * weight * weight;
+    baseValue = (weight < 14.23) ? null : 666 * weight * weight;
   }
   else if (pinklily) {
-    baseValue = (weight < 4.3) ? 58663 : 3172 * weight * weight;
+    baseValue = (weight < 4.3) ? null : 3172 * weight * weight;
   }
   else if (nectarine) {
-    baseValue = (weight < 2.807) ? 4445 : 4445 * weight * weight;
+    baseValue = (weight < 2.807) ? null : 4445 * weight * weight;
   }
   else if (emberlily) {
-    baseValue = (weight < 11.40) ? 386 : 386 * weight * weight;
+    baseValue = (weight < 11.40) ? null : 386 * weight * weight;
   }
   else if (nectarshade) {
-    baseValue = (weight < 0.75) ? 45125 : 78500 * weight * weight;
+    baseValue = (weight < 0.75) ? null : 78500 * weight * weight;
   }
   else if (manuka) {
-    baseValue = (weight < 0.29) ? 22707 : 270086 * weight * weight;
+    baseValue = (weight < 0.29) ? null : 270086 * weight * weight;
   }
   else if (dandelion) {
-    baseValue = (weight < 3.79) ? 3141 : 3141 * weight * weight;
+    baseValue = (weight < 3.79) ? null : 3141 * weight * weight;
   }
   else if (lumira) {
-    baseValue = (weight < 5.69) ? 2370 : 2370 * weight * weight;
+    baseValue = (weight < 5.69) ? null : 2370 * weight * weight;
   }
   else if (honeysuckle) {
-    baseValue = (weight < 11.40) ? 694 : 694 * weight * weight;
+    baseValue = (weight < 11.40) ? null : 694 * weight * weight;
   }
   else if (beebalm) {
-    baseValue = (weight < 0.94) ? 66153 : 18033.5 * weight * weight;
+    baseValue = (weight < 0.94) ? null : 18033.5 * weight * weight;
   }
   else if (nectarthorn) {
-    baseValue = (weight < 5.76) ? 981 : 906.56 * weight * weight;
+    baseValue = (weight < 5.76) ? null : 906.56 * weight * weight;
   }
   else if (suncoil) {
-    baseValue = (weight < 9.5) ? 888 : 800 * weight * weight;
+    baseValue = (weight < 9.5) ? null : 800 * weight * weight;
   }
   else if (crocus) {
-    baseValue = (weight < 0.285) ? 333333 : 333333 * weight * weight;
+    baseValue = (weight < 0.285) ? null : 333333 * weight * weight;
   }
   else if (succulent) {
-    baseValue = (weight < 4.75) ? 1108 : 1000 * weight * weight;
+    baseValue = (weight < 4.75) ? null : 1000 * weight * weight;
   }
   else if (violetcorn) {
-    baseValue = (weight < 2.85) ? 6150 : 5555.56 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 5555.56 * weight * weight;
   }
   else if (bendboo) {
-    baseValue = (weight < 17.09) ? 531 : 479.01 * weight * weight;
+    baseValue = (weight < 17.09) ? null : 479.01 * weight * weight;
   }
   else if (cocovine) {
-    baseValue = (weight < 13.3) ? 432 : 340 * weight * weight;
+    baseValue = (weight < 13.3) ? null : 340 * weight * weight;
   }
   else if (dragonpepper) {
-    baseValue = (weight < 5.69) ? 3740 : 2470.2 * weight * weight;
+    baseValue = (weight < 5.69) ? null : 2470.2 * weight * weight;
   }
   else if (cauliflower) {
-    baseValue = (weight < 4.74) ? 8 : 1.60 * weight * weight;
+    baseValue = (weight < 4.74) ? null : 1.60 * weight * weight;
   }
   else if (greenapple) {
-    baseValue = (weight < 2.85) ? 95 : 33.44 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 33.44 * weight * weight;
   }
   else if (avocado) {
-    baseValue = (weight < 3.32) ? 28 : 8.32 * weight * weight;
+    baseValue = (weight < 3.32) ? null : 8.32 * weight * weight;
   }
   else if (pineapple) {
-    baseValue = (weight < 2.85) ? 222 : 222.56 * weight * weight;
+    baseValue = (weight < 2.85) ? null : 222.56 * weight * weight;
   }
   else if (kiwi) {
-    baseValue = (weight < 4.75) ? 110 : 110.00 * weight * weight;
+    baseValue = (weight < 4.75) ? null : 110.00 * weight * weight;
   }
   else if (bellpepper) {
-    baseValue = (weight < 7.61) ? 85 : 85.61 * weight * weight;
+    baseValue = (weight < 7.61) ? null : 85.61 * weight * weight;
   }
   else if (pricklypear) {
-    baseValue = (weight < 6.65) ? 143 : 143.27 * weight * weight;
+    baseValue = (weight < 6.65) ? null : 143.27 * weight * weight;
   }
   else if (loquat) {
-    baseValue = (weight < 6.17) ? 190 : 190.00 * weight * weight;
+    baseValue = (weight < 6.17) ? null : 190.00 * weight * weight;
   }
   else if (feijoa) {
-    baseValue = (weight < 9.5) ? 130 : 130.00 * weight * weight;
+    baseValue = (weight < 9.5) ? null : 130.00 * weight * weight;
   }
   else if (sugarapple) {
-    baseValue = (weight < 8.55) ? 592 : 592.60 * weight * weight;
+    baseValue = (weight < 8.55) ? null : 592.60 * weight * weight;
   }
   else if (wildcarrot) {
-    baseValue = (weight < 0.286) ? 275 : 275000.00 * weight * weight;
+    baseValue = (weight < 0.286) ? null : 275000.00 * weight * weight;
   }
   else if (cantaloupe) {
-    baseValue = (weight < 5.22) ? 1129 : 1129.00 * weight * weight;
+    baseValue = (weight < 5.22) ? null : 1129.00 * weight * weight;
   }
   else if (parasolflower) {
-    baseValue = (weight < 5.7) ? 5577 : 5577.78 * weight * weight;
+    baseValue = (weight < 5.7) ? null : 5577.78 * weight * weight;
   }
   else if (rosydelight) {
-    baseValue = (weight < 9.5) ? 690 : 690.00 * weight * weight;
+    baseValue = (weight < 9.5) ? null : 690.00 * weight * weight;
   }
   else if (elephantears) {
-    baseValue = (weight < 17.1) ? 237 : 237.60 * weight * weight;
+    baseValue = (weight < 17.1) ? null : 237.60 * weight * weight;
   }
   else { 
     baseValue = weight * weight;
@@ -795,7 +811,8 @@ function calculateValue() {
     ['celestial',119],['disco',124],['zomb',24],['plasma',4],['voidtouched',134],['pollinated',2],['honeyglazed',4],
     ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24],
     ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',99],['twisted',4],['verdant',3],
-    ['aurora',89],['drenched',4]
+    ['aurora',89],['drenched',4],
+    ['cloudtouched',4],['fried',7],['sandy',2],['amber',9],['oldamber',19],['ancientamber',49],['clay',2],['ceramic',29]
   ].forEach(([id, mult]) => {
     if (isModifierActive(id)) activeMods.push(`+${mult} (${modifierLabels[id]})`);
   });
@@ -1037,87 +1054,87 @@ function getBaseValueCalculated(plantId, weight) {
   if (!plantId) return null;
   let w = weight || 1;
   switch (plantId) {
-    case 'easteregg': return (w < 2.85) ? 2256 : 277.5 * w * w;
-    case 'moonflower': return (w < 1.90) ? 8574 : 2381 * w * w;
-    case 'starfruit': return (w < 2.85) ? 13538 : 1666.6 * w * w;
-    case 'pepper': return (w < 4.75) ? 7200 : 320 * w * w;
-    case 'grape': return (w < 2.85) ? 7085 : 872 * w * w;
-    case 'nightshade': return (w < 0.48) ? 3159 : 13850 * w * w;
-    case 'mint': return (w < 0.95) ? 4738 : 5230 * w * w;
-    case 'glowshroom': return (w < 0.70) ? 271 : 532.5 * w * w;
-    case 'bloodbanana': return (w < 1.42) ? 5415 : 2670 * w * w;
-    case 'beanstalk': return (w < 9.5) ? 18050 : 200 * w * w;
-    case 'coconut': return (w < 13.31) ? 361 : 2.04 * w * w;
-    case 'candyblossom': return (w < 2.85) ? 90250 : 11111.111 * w * w;
-    case 'carrot': return (w < 0.24) ? 18 : 275 * w * w;
-    case 'strawberry': return (w < 0.29) ? 14 : 175 * w * w;
-    case 'blueberry': return (w < 0.17) ? 18 : 500 * w * w;
-    case 'orangetulip': return (w < 0.0499) ? 767 : 300000 * w * w;
-    case 'tomato': return (w < 0.44) ? 27 : 120 * w * w;
-    case 'daffodil': return (w < 0.16) ? 903 : 25000 * w * w;
-    case 'watermelon': return (w < 7.3) ? 2708 : 61.25 * w * w;
-    case 'pumpkin': return (w < 6.90) ? 3069 : 64 * w * w;
-    case 'mushroom': return (w < 25.9) ? 136278 : 241.6 * w * w;
-    case 'bamboo': return (w < 3.80) ? 3610 : 250 * w * w;
-    case 'apple': return (w < 2.85) ? 248 : 30.53 * w * w;
-    case 'corn': return (w < 1.90) ? 36 : 10.00 * w * w;
-    case 'cactus': return (w < 6.65) ? 3069 : 69.4 * w * w;
-    case 'cranberry': return (w < 0.95) ? 1805 : 2000 * w * w;
-    case 'moonmelon': return (w < 6.84) ? 16245 : 280.85 * w * w;
-    case 'pear': return (w < 2.85) ? 451 : 55.5 * w * w;
-    case 'durian': return (w < 7.60) ? 4513 : 78.19 * w * w;
-    case 'peach': return (w < 1.90) ? 271 : 75 * w * w;
-    case 'cacao': return (w < 7.6) ? 9928 : 171.875 * w * w;
-    case 'moonglow': return (w < 6.65) ? 18050 : 408.45 * w * w;
-    case 'dragonfruit': return (w < 11.38) ? 4287 : 32.99 * w * w;
-    case 'mango': return (w < 14.28) ? 5866 : 28.89 * w * w;
-    case 'moonblossom': return (w < 2.86) ? 45125 : 5555.555 * w * w;
-    case 'raspberry': return (w < 0.71) ? 90 : 177.5 * w * w;
-    case 'eggplant': return (w < 4.75) ? 6769 : 300 * w * w;
-    case 'papaya': return (w < 2.86) ? 903 : 111.11 * w * w;
-    case 'celestiberry': return (w < 1.90) ? 7220 : 2000 * w * w;
-    case 'moonmango': return (w < 14.25) ? 22563 : 222.22 * w * w;
-    case 'banana': return (w < 1.425) ? 1579 : 777.77 * w * w;
-    case 'passionfruit': return (w < 2.867) ? 3204 : 395 * w * w;
-    case 'soulfruit': return (w < 23.75) ? 6994 : 12.4 * w * w;
-    case 'hive': return (w < 5.9) ? 27202 : 781.42 * w * w;
-    case 'rose': return (w < 0.95) ? 5000 : 5000 * w * w;
-    case 'foxglove': return (w < 1.9) ? 18050 : 5000 * w * w;
-    case 'purpledahlia': return (w < 11.4) ? 67840 : 522 * w * w;
-    case 'lilac': return (w < 2.846) ? 31581 : 3899 * w * w;
-    case 'sunflower': return (w < 14.23) ? 134861 : 666 * w * w;
-    case 'pinklily': return (w < 4.3) ? 58663 : 3172 * w * w;
-    case 'nectarine': return (w < 2.807) ? 4445 : 4445 * w * w;
-    case 'emberlily': return (w < 11.40) ? 386 : 386 * w * w;
-    case 'nectarshade': return (w < 0.75) ? 45125 : 78500 * w * w;
-    case 'manuka': return (w < 0.29) ? 22707 : 270086 * w * w;
-    case 'dandelion': return (w < 3.79) ? 3141 : 3141 * w * w;
-    case 'lumira': return (w < 5.69) ? 2370 : 2370 * w * w;
-    case 'honeysuckle': return (w < 11.40) ? 694 : 694 * w * w;
-    case 'beebalm': return (w < 0.94) ? 66153 : 18033.5 * w * w;
-    case 'nectarthorn': return (w < 5.76) ? 981 : 906.56 * w * w;
-    case 'suncoil': return (w < 9.5) ? 888 : 800 * w * w;
-    case 'crocus': return (w < 0.285) ? 333333 : 333333 * w * w;
-    case 'succulent': return (w < 4.75) ? 1108 : 1000 * w * w;
-    case 'violetcorn': return (w < 2.85) ? 6150 : 5555.56 * w * w;
-    case 'bendboo': return (w < 17.09) ? 531 : 479.01 * w * w;
-    case 'cocovine': return (w < 13.3) ? 432 : 340 * w * w;
-    case 'dragonpepper': return (w < 5.69) ? 3740 : 2470.2 * w * w;
-    case 'cauliflower': return (w < 4.74) ? 8 : 1.60 * w * w;
-    case 'greenapple': return (w < 2.85) ? 95 : 33.44 * w * w;
-    case 'avocado': return (w < 3.32) ? 28 : 8.32 * w * w;
-    case 'pineapple': return (w < 2.85) ? 222 : 222.56 * w * w;
-    case 'kiwi': return (w < 4.75) ? 110 : 110.00 * w * w;
-    case 'bellpepper': return (w < 7.61) ? 85 : 85.61 * w * w;
-    case 'pricklypear': return (w < 6.65) ? 143 : 143.27 * w * w;
-    case 'loquat': return (w < 6.17) ? 190 : 190.00 * w * w;
-    case 'feijoa': return (w < 9.5) ? 130 : 130.00 * w * w;
-    case 'sugarapple': return (w < 8.55) ? 592 : 592.60 * w * w;
-    case 'wildcarrot': return (w < 0.286) ? 275 : 275000.00 * w * w;
-    case 'cantaloupe': return (w < 5.22) ? 1129 : 1129.00 * w * w;
-    case 'parasolflower': return (w < 5.7) ? 5577 : 5577.78 * w * w;
-    case 'rosydelight': return (w < 9.5) ? 690 : 690.00 * w * w;
-    case 'elephantears': return (w < 17.1) ? 237 : 237.60 * w * w;
+    case 'easteregg': return (w < 2.85) ? null : 277.5 * w * w;
+    case 'moonflower': return (w < 1.90) ? null : 2381 * w * w;
+    case 'starfruit': return (w < 2.85) ? null : 1666.6 * w * w;
+    case 'pepper': return (w < 4.75) ? null : 320 * w * w;
+    case 'grape': return (w < 2.85) ? null : 872 * w * w;
+    case 'nightshade': return (w < 0.48) ? null : 13850 * w * w;
+    case 'mint': return (w < 0.95) ? null : 5230 * w * w;
+    case 'glowshroom': return (w < 0.70) ? null : 532.5 * w * w;
+    case 'bloodbanana': return (w < 1.42) ? null : 2670 * w * w;
+    case 'beanstalk': return (w < 9.5) ? null : 200 * w * w;
+    case 'coconut': return (w < 13.31) ? null : 2.04 * w * w;
+    case 'candyblossom': return (w < 2.85) ? null : 11111.111 * w * w;
+    case 'carrot': return (w < 0.24) ? null : 275 * w * w;
+    case 'strawberry': return (w < 0.29) ? null : 175 * w * w;
+    case 'blueberry': return (w < 0.17) ? null : 500 * w * w;
+    case 'orangetulip': return (w < 0.0499) ? null : 300000 * w * w;
+    case 'tomato': return (w < 0.44) ? null : 120 * w * w;
+    case 'daffodil': return (w < 0.16) ? null : 25000 * w * w;
+    case 'watermelon': return (w < 7.3) ? null : 61.25 * w * w;
+    case 'pumpkin': return (w < 6.90) ? null : 64 * w * w;
+    case 'mushroom': return (w < 25.9) ? null : 241.6 * w * w;
+    case 'bamboo': return (w < 3.80) ? null : 250 * w * w;
+    case 'apple': return (w < 2.85) ? null : 30.53 * w * w;
+    case 'corn': return (w < 1.90) ? null : 10.00 * w * w;
+    case 'cactus': return (w < 6.65) ? null : 69.4 * w * w;
+    case 'cranberry': return (w < 0.95) ? null : 2000 * w * w;
+    case 'moonmelon': return (w < 6.84) ? null : 280.85 * w * w;
+    case 'pear': return (w < 2.85) ? null : 55.5 * w * w;
+    case 'durian': return (w < 7.60) ? null : 78.19 * w * w;
+    case 'peach': return (w < 1.90) ? null : 75 * w * w;
+    case 'cacao': return (w < 7.6) ? null : 171.875 * w * w;
+    case 'moonglow': return (w < 6.65) ? null : 408.45 * w * w;
+    case 'dragonfruit': return (w < 11.38) ? null : 32.99 * w * w;
+    case 'mango': return (w < 14.28) ? null : 28.89 * w * w;
+    case 'moonblossom': return (w < 2.86) ? null : 5555.555 * w * w;
+    case 'raspberry': return (w < 0.71) ? null : 177.5 * w * w;
+    case 'eggplant': return (w < 4.75) ? null : 300 * w * w;
+    case 'papaya': return (w < 2.86) ? null : 111.11 * w * w;
+    case 'celestiberry': return (w < 1.90) ? null : 2000 * w * w;
+    case 'moonmango': return (w < 14.25) ? null : 222.22 * w * w;
+    case 'banana': return (w < 1.425) ? null : 777.77 * w * w;
+    case 'passionfruit': return (w < 2.867) ? null : 395 * w * w;
+    case 'soulfruit': return (w < 23.75) ? null : 12.4 * w * w;
+    case 'hive': return (w < 5.9) ? null : 781.42 * w * w;
+    case 'rose': return (w < 0.95) ? null : 5000 * w * w;
+    case 'foxglove': return (w < 1.9) ? null : 5000 * w * w;
+    case 'purpledahlia': return (w < 11.4) ? null : 522 * w * w;
+    case 'lilac': return (w < 2.846) ? null : 3899 * w * w;
+    case 'sunflower': return (w < 14.23) ? null : 666 * w * w;
+    case 'pinklily': return (w < 4.3) ? null : 3172 * w * w;
+    case 'nectarine': return (w < 2.807) ? null : 4445 * w * w;
+    case 'emberlily': return (w < 11.40) ? null : 386 * w * w;
+    case 'nectarshade': return (w < 0.75) ? null : 78500 * w * w;
+    case 'manuka': return (w < 0.29) ? null : 270086 * w * w;
+    case 'dandelion': return (w < 3.79) ? null : 3141 * w * w;
+    case 'lumira': return (w < 5.69) ? null : 2370 * w * w;
+    case 'honeysuckle': return (w < 11.40) ? null : 694 * w * w;
+    case 'beebalm': return (w < 0.94) ? null : 18033.5 * w * w;
+    case 'nectarthorn': return (w < 5.76) ? null : 906.56 * w * w;
+    case 'suncoil': return (w < 9.5) ? null : 800 * w * w;
+    case 'crocus': return (w < 0.285) ? null : 333333 * w * w;
+    case 'succulent': return (w < 4.75) ? null : 1000 * w * w;
+    case 'violetcorn': return (w < 2.85) ? null : 5555.56 * w * w;
+    case 'bendboo': return (w < 17.09) ? null : 479.01 * w * w;
+    case 'cocovine': return (w < 13.3) ? null : 340 * w * w;
+    case 'dragonpepper': return (w < 5.69) ? null : 2470.2 * w * w;
+    case 'cauliflower': return (w < 4.74) ? null : 1.60 * w * w;
+    case 'greenapple': return (w < 2.85) ? null : 33.44 * w * w;
+    case 'avocado': return (w < 3.32) ? null : 8.32 * w * w;
+    case 'pineapple': return (w < 2.85) ? null : 222.56 * w * w;
+    case 'kiwi': return (w < 4.75) ? null : 110.00 * w * w;
+    case 'bellpepper': return (w < 7.61) ? null : 85.61 * w * w;
+    case 'pricklypear': return (w < 6.65) ? null : 143.27 * w * w;
+    case 'loquat': return (w < 6.17) ? null : 190.00 * w * w;
+    case 'feijoa': return (w < 9.5) ? null : 130.00 * w * w;
+    case 'sugarapple': return (w < 8.55) ? null : 592.60 * w * w;
+    case 'wildcarrot': return (w < 0.286) ? null : 275000.00 * w * w;
+    case 'cantaloupe': return (w < 5.22) ? null : 1129.00 * w * w;
+    case 'parasolflower': return (w < 5.7) ? null : 5577.78 * w * w;
+    case 'rosydelight': return (w < 9.5) ? null : 690.00 * w * w;
+    case 'elephantears': return (w < 17.1) ? null : 237.60 * w * w;
     default: return w * w;
   }
 }
@@ -1340,3 +1357,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+

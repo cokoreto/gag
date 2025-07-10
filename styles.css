@@ -386,6 +386,14 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #fff;
   border-color: #6b1a1a;
 }
+.mod-btn.active#modbtn-heavenly,
+.mod-btn:hover#modbtn-heavenly {
+  background: linear-gradient(90deg, #ffe066 0%, #fffbe6 100%);
+  color: #bfa700;
+  border-color: #ffe066;
+  box-shadow: 0 2px 12px #ffe06655;
+  text-shadow: 0 1px 8px #fffbe6, 0 0px 2px #bfa700;
+}
 .mod-btn.active#modbtn-celestial,
 .mod-btn:hover#modbtn-celestial {
   background: #a85c8c;
@@ -429,12 +437,16 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   border-color: #2a003a;
 }
 .mod-btn.active#modbtn-pollinated,
-.mod-btn:hover#modbtn-pollinated,
+.mod-btn:hover#modbtn-pollinated {
+  background: #ffe066;
+  color: #232634;
+  border-color: #ffe066;
+}
 .mod-btn.active#modbtn-honeyglazed,
 .mod-btn:hover#modbtn-honeyglazed {
-  background: #bfa84a;
+  background: #ffd700;
   color: #232634;
-  border-color: #bfa84a;
+  border-color: #ffd700;
 }
 .mod-btn.active#modbtn-burnt,
 .mod-btn:hover#modbtn-burnt {
@@ -450,8 +462,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   border-color: #ffb347;
   box-shadow: 0 2px 12px #ffb34755;
 }
-
-/* Dawnbound, Meteoric, Molten custom colors */
 .mod-btn.active#modbtn-dawnbound,
 .mod-btn:hover#modbtn-dawnbound {
   background: linear-gradient(90deg, #ffb347 0%, #ffe066 100%);
@@ -474,121 +484,111 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   border-color: #a83232;
   box-shadow: 0 2px 12px #a8323255;
 }
-
-/* FRUIT BUTTONS COLOR ANIMATION - dark theme */
-.fruit-btn.active#fruitbtn-rainbow,
-.fruit-btn:hover#fruitbtn-rainbow {
-  background: linear-gradient(270deg, #6b1a1a, #bfa84a, #4e7c4e, #3b5c7e, #6c3bbf, #6b1a1a);
-  background-size: 400% 100%;
-  animation: gradient-move-loop 12s linear infinite;
+.mod-btn.active#modbtn-alienlike,
+.mod-btn:hover#modbtn-alienlike {
+  background: #7d5fff;
   color: #fff;
-  border-color: #bfa84a;
+  border-color: #7d5fff;
 }
-.fruit-btn.active#fruitbtn-gold,
-.fruit-btn:hover#fruitbtn-gold {
-  background: #bfa84a;
+.mod-btn.active#modbtn-sundried,
+.mod-btn:hover#modbtn-sundried {
+  background: #e1a95f;
   color: #232634;
-  border-color: #bfa84a;
+  border-color: #e1a95f;
 }
-
-/* Efek shining/mengkilap pada tombol modifier & fruit */
-.mod-btn.active,
-.mod-btn:hover,
-.fruit-btn.active,
-.fruit-btn:hover {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
+.mod-btn.active#modbtn-galactic,
+.mod-btn:hover#modbtn-galactic {
+  background: #2e2b5f;
+  color: #fff;
+  border-color: #2e2b5f;
 }
-
-/* Shining pseudo-element: always running, interval 2s */
-.mod-btn.active::after,
-.mod-btn:hover::after,
-.fruit-btn.active::after,
-.fruit-btn:hover::after {
-  content: "";
-  position: absolute;
-  left: -60%;
-  top: 0;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.18) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
-  animation: shine-move 2s linear infinite;
+.mod-btn.active#modbtn-windstruck,
+.mod-btn:hover#modbtn-windstruck {
+  background: #b2f0f7;
+  color: #232634;
+  border-color: #b2f0f7;
 }
-
-@keyframes shine-move {
-  0% { left: -60%; }
-  100% { left: 120%; }
+.mod-btn.active#modbtn-paradisal,
+.mod-btn:hover#modbtn-paradisal {
+  background: #6ee7b7;
+  color: #232634;
+  border-color: #6ee7b7;
 }
-@media (max-width: 700px) {
-  .container { padding: 10px 2vw; }
-  .category { min-width: 120px; }
-  .input-row { flex-direction: column; align-items: flex-start; }
-  #categoryContainer { gap: 10px 0; }
-  .category > div:not(.category-title) { gap: 0; }
+.mod-btn.active#modbtn-twisted,
+.mod-btn:hover#modbtn-twisted {
+  background: #b45309;
+  color: #fff;
+  border-color: #b45309;
 }
-@media (max-width: 900px) {
-  #categoryContainer {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px 10px;
-  }
-  .category {
-    padding: 10px 8px 12px 8px;
-  }
+.mod-btn.active#modbtn-verdant,
+.mod-btn:hover#modbtn-verdant {
+  background: #4ade80;
+  color: #232634;
+  border-color: #4ade80;
 }
-@media (max-width: 600px) {
-  #categoryContainer {
-    grid-template-columns: 1fr;
-    gap: 10px 0;
-  }
-  .category {
-    padding: 8px 4px 10px 4px;
-  }
+.mod-btn.active#modbtn-aurora,
+.mod-btn:hover#modbtn-aurora {
+  background: linear-gradient(90deg, #7fffd4 0%, #6a5acd 100%);
+  color: #fff;
+  border-color: #7fffd4;
+  box-shadow: 0 2px 12px #7fffd488;
 }
-::selection {
-  background: #7f9cff44;
+.mod-btn.active#modbtn-drenched,
+.mod-btn:hover#modbtn-drenched {
+  background: linear-gradient(90deg, #4fc3f7 0%, #1976d2 100%);
+  color: #fff;
+  border-color: #4fc3f7;
+  box-shadow: 0 2px 12px #4fc3f788;
 }
-::-webkit-scrollbar {
-  width: 10px;
-  background: #232634;
+.mod-btn.active#modbtn-cloudtouched,
+.mod-btn:hover#modbtn-cloudtouched {
+  background: #b3e0ff;
+  color: #232634;
+  border-color: #b3e0ff;
 }
-::-webkit-scrollbar-thumb {
-  background: #35384a;
-  border-radius: 8px;
+.mod-btn.active#modbtn-fried,
+.mod-btn:hover#modbtn-fried {
+  background: #ffb347;
+  color: #232634;
+  border-color: #ffb347;
 }
-.plant-btn:hover {
-  animation: plant-swing 1.2s cubic-bezier(.36,.07,.19,.97) infinite;
+.mod-btn.active#modbtn-sandy,
+.mod-btn:hover#modbtn-sandy {
+  background: #ffe4b5;
+  color: #232634;
+  border-color: #ffe4b5;
 }
-@keyframes plant-swing {
-  0% { transform: rotate(0deg);}
-  10% { transform: rotate(8deg);}
-  20% { transform: rotate(-8deg);}
-  30% { transform: rotate(6deg);}
-  40% { transform: rotate(-6deg);}
-  50% { transform: rotate(4deg);}
-  60% { transform: rotate(-4deg);}
-  70% { transform: rotate(2deg);}
-  80% { transform: rotate(-2deg);}
-  90% { transform: rotate(1deg);}
-  100% { transform: rotate(0deg);}
+.mod-btn.active#modbtn-amber,
+.mod-btn:hover#modbtn-amber {
+  background: #ffc107;
+  color: #232634;
+  border-color: #ffc107;
 }
-
-/* Shining effect for modifier buttons */
-.mod-btn.active#modbtn-wet,
-.mod-btn:hover#modbtn-wet {
-  background: #aee7ff;
+.mod-btn.active#modbtn-oldamber,
+.mod-btn:hover#modbtn-oldamber {
+  background: #ffda6a;
+  color: #232634;
+  border-color: #ffda6a;
 }
-.mod-btn.active#modbtn-chilled,
-.mod-btn:hover#modbtn-chilled {
-  background: #bfc4cc;
+.mod-btn.active#modbtn-ancientamber,
+.mod-btn:hover#modbtn-ancientamber {
+  background: #ffbf00;
+  color: #232634;
+  border-color: #ffbf00;
 }
+.mod-btn.active#modbtn-clay,
+.mod-btn:hover#modbtn-clay {
+  background: #b87333;
+  color: #fff;
+  border-color: #b87333;
+}
+.mod-btn.active#modbtn-ceramic,
+.mod-btn:hover#modbtn-ceramic {
+  background: #e0e0e0;
+  color: #232634;
+  border-color: #e0e0e0;
+}
+/* ...existing code... */
 .mod-btn.active#modbtn-disco,
 .mod-btn:hover#modbtn-disco {
   background: #a259ff;
@@ -804,4 +804,46 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #fff;
   border-color: #4fc3f7;
   box-shadow: 0 2px 12px #4fc3f788;
+}
+.mod-btn.active#modbtn-cloudtouched,
+.mod-btn:hover#modbtn-cloudtouched {
+  background: #b3e0ff;
+  color: #232634;
+  border-color: #b3e0ff;
+}
+.mod-btn.active#modbtn-fried,
+.mod-btn:hover#modbtn-fried {
+  background: #ffb347;
+  color: #232634;
+  border-color: #ffb347;
+}
+.mod-btn.active#modbtn-sandy,
+.mod-btn:hover#modbtn-sandy {
+  background: #ffe4b5;
+  color: #232634;
+  border-color: #ffe4b5;
+}
+.mod-btn.active#modbtn-amber,
+.mod-btn:hover#modbtn-amber {
+  background: #ffc107;
+  color: #232634;
+  border-color: #ffc107;
+}
+.mod-btn.active#modbtn-clay,
+.mod-btn:hover#modbtn-clay {
+  background: #b87333;
+  color: #fff;
+  border-color: #b87333;
+}
+.mod-btn.active#modbtn-ceramic,
+.mod-btn:hover#modbtn-ceramic {
+  background: #e0e0e0;
+  color: #232634;
+  border-color: #e0e0e0;
+}
+.mod-btn.active#modbtn-ancientamber,
+.mod-btn:hover#modbtn-ancientamber {
+  background: #ffbf00;
+  color: #232634;
+  border-color: #ffbf00;
 }
