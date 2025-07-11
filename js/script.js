@@ -1,5 +1,5 @@
 const categories = {
-  "Seed Shop": ['carrot','strawberry','blueberry','orangetulip','tomato','corn','daffodil','watermelon','pumpkin','apple','bamboo','coconut','cactus','dragonfruit','mango','grape','mushroom','pepper','cacao','beanstalk','emberlily'],
+  "Seed Shop": ['carrot','strawberry','blueberry','orangetulip','tomato','corn','daffodil','watermelon','pumpkin','apple','bamboo','coconut','cactus','dragonfruit','mango','grape','mushroom','pepper','cacao','beanstalk','emberlily', 'sugarapple', 'burningbud'],
   "Night Event": ['nightshade','mint','glowshroom','moonmelon','starfruit','moonflower','bloodbanana','moonglow','moonblossom','celestiberry','moonmango'],
   "Easter Event": ['candyblossom','easteregg'],
   "Normal Seed Pack": ['raspberry','pear','peach'],
@@ -7,7 +7,7 @@ const categories = {
   "Exotic Plants": ['papaya','banana','passionfruit','soulfruit'],
   "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine','nectarshade','manuka','dandelion','lumira','honeysuckle'],
   "Crafting Seeds": ['beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper'],
-  "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','sugarapple','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
+  "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
   "Prehistoric Event": ['stonebite','paradisepetal','horneddinoshroom','boneboo','fireflyfern','fossilight','boneblossom']
 };
 
@@ -65,64 +65,43 @@ Object.entries(categories).forEach(([title, ids]) => {
 });
 
 function toggleModifier(id) {
-  if (id === 'dawnbound') {
-    const activePlant = getActivePlantId();
-    if (activePlant !== 'sunflower') return;
-  }
-  if (id === 'burnt') {
-    setModifierActive('cooked', false, false);
-  }
-  if (id === 'cooked') {
-    setModifierActive('burnt', false, false);
-  }
-  const btn = document.getElementById(`modbtn-${id}`);
-  const isActive = btn.classList.contains('active');
-  if (id === 'frozen') {
-    if (!isActive) {
-      setModifierActive('frozen', true);
-      setModifierActive('wet', false, true);
-      setModifierActive('chilled', false, true);
-    } else {
-      setModifierActive('frozen', false);
-      setModifierActive('wet', false, false);
-      setModifierActive('chilled', false, false);
-    }
-  } else if (id === 'wet' || id === 'chilled') {
-    if (!isActive) {
-      setModifierActive(id, true);
-      setModifierActive(id === 'wet' ? 'chilled' : 'wet', false);
-      setModifierActive('frozen', false, true);
-    } else {
-      setModifierActive(id, false);
-      setModifierActive('frozen', false, false);
-    }
-  } else if (id === 'paradisal') {
-    const btn = document.getElementById('modbtn-paradisal');
-    const isActive = btn.classList.contains('active');
-    if (!isActive) {
-      setModifierActive('paradisal', true);
-      setModifierActive('verdant', false, false);
-      setModifierActive('sundried', false, false);
-    }
-    else {
-      setModifierActive('paradisal', false);
-      setModifierActive('verdant', false, false);
-      setModifierActive('sundried', false, false);
-    }
-  } else if (id === 'verdant' || id === 'sundried') {
-    const other = id === 'verdant' ? 'sundried' : 'verdant';
-    if (!isActive) {
-      setModifierActive(id, true, false);
-      setModifierActive(other, false, true);
-    } else {
-      setModifierActive(id, false, false);
-      setModifierActive(other, false, false);
-    }
+
+  if (id === 'cooked' || id === 'burnt') {
+    const group = ['cooked', 'burnt'];
+    group.forEach(gid => {
+      setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
+    });
     calculateValue();
     return;
-  } else {
-    setModifierActive(id, !isActive);
   }
+
+  if (id === 'frozen' || id === 'wet' || id === 'chilled') {
+    const group = ['frozen', 'wet', 'chilled'];
+    group.forEach(gid => {
+      setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
+    });
+    calculateValue();
+    return;
+  }
+
+  if (id === 'paradisal' || id === 'verdant' || id === 'sundried') {
+    const group = ['paradisal', 'verdant', 'sundried'];
+    group.forEach(gid => {
+      setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
+    });
+    calculateValue();
+    return;
+
+  } else if (id === 'amber' || id === 'oldamber' || id === 'ancientamber') {
+    const amberGroup = ['amber', 'oldamber', 'ancientamber'];
+    amberGroup.forEach(aid => {
+      setModifierActive(aid, aid === id ? !isModifierActive(id) : false);
+    });
+    calculateValue();
+    return;
+  }
+
+  setModifierActive(id, !isModifierActive(id));
   calculateValue();
 }
 function setModifierActive(id, active, disable = false) {
@@ -429,5 +408,20 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
     }
   });
+});
+
+document.getElementById('searchModifierInput').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase();
+  document.querySelectorAll('#modifiers .mod-btn').forEach(btn => {
+    const text = btn.textContent.toLowerCase();
+    btn.style.display = text.includes(query) ? '' : 'none';
+  });
+});
+
+modifierContainer.addEventListener('click', function(e) {
+  if (e.target.classList.contains('mod-btn')) {
+    document.getElementById('searchModifierInput').value = '';
+    document.getElementById('searchModifierInput').dispatchEvent(new Event('input'));
+  }
 });
 

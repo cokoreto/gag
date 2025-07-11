@@ -28,7 +28,7 @@ function calculateValue() {
   beebalm = false, nectarthorn = false, suncoil = false, crocus = false, succulent = false, violetcorn = false,
   bendboo = false, cocovine = false, dragonpepper = false,cauliflower = false, greenapple = false, avocado = false,
   pineapple = false, kiwi = false, bellpepper = false, pricklypear = false, loquat = false, feijoa = false,
-  sugarapple = false, wildcarrot = false, cantaloupe = false, parasolflower = false, rosydelight = false,
+  sugarapple = false, burningbud = false, wildcarrot = false, cantaloupe = false, parasolflower = false, rosydelight = false,
   elephantears = false, stonebite = false, paradisepetal = false, horneddinoshroom = false, boneboo = false,
   fireflyfern = false, fossilight = false, boneblossom = false;
 
@@ -304,6 +304,9 @@ function calculateValue() {
   else if (sugarapple) {
     baseValue = (weight < plantMinWeights['sugarapple']) ? null : 592.60 * weight * weight;
   }
+  else if (burningbud) {
+    baseValue = (weight < plantMinWeights['burningbud']) ? null : 486.04 * weight * weight;
+  }
   else if (wildcarrot) {
     baseValue = (weight < plantMinWeights['wildcarrot']) ? null : 275000.00 * weight * weight;
   }
@@ -453,6 +456,7 @@ function getBaseValueConstant(plantId) {
     case 'loquat': return 190.00;
     case 'feijoa': return 130.00;
     case 'sugarapple': return 592.60;
+    case 'burningbud': return 486.04;
     case 'wildcarrot': return 275000.00;
     case 'cantaloupe': return 1129.00;
     case 'parasolflower': return 5577.78;
@@ -554,6 +558,7 @@ function getBasePricePerKg(plantId, weight) {
       case 'loquat': base = 190.00 * w; break;
       case 'feijoa': base = 130.00 * w; break;
       case 'sugarapple': base = 592.60 * w; break;
+      case 'burningbud': base = 486.04 * w; break;
       case 'wildcarrot': base = 275000.00 * w; break;
       case 'cantaloupe': base = 1129.00 * w; break;
       case 'parasolflower': base = 5577.78 * w; break;
@@ -651,6 +656,7 @@ function getBaseValueCalculated(plantId, weight) {
     case 'loquat': return (w < plantMinWeights['loquat']) ? null : 190.00 * w * w;
     case 'feijoa': return (w < plantMinWeights['feijoa']) ? null : 130.00 * w * w;
     case 'sugarapple': return (w < plantMinWeights['sugarapple']) ? null : 592.60 * w * w;
+    case 'burningbud': return (w < plantMinWeights['burningbud']) ? null : 486.04 * w * w;
     case 'wildcarrot': return (w < plantMinWeights['wildcarrot']) ? null : 275000.00 * w * w;
     case 'cantaloupe': return (w < plantMinWeights['cantaloupe']) ? null : 1129.00 * w * w;
     case 'parasolflower': return (w < plantMinWeights['parasolflower']) ? null : 5577.78 * w * w;
