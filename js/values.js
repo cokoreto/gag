@@ -341,7 +341,7 @@ function calculateValue() {
     baseValue = (weight < plantMinWeights['fossilight']) ? null : 5531.27 * weight * weight;
   }
   else if (boneblossom) {
-    baseValue = (weight < plantMinWeights['boneblossom']) ? null : 3572.34 * weight * weight;
+    baseValue = (weight < plantMinWeights['boneblossom']) ? null : 22244.57 * weight * weight;
   }
   else { 
     baseValue = weight * weight;
@@ -468,7 +468,7 @@ function getBaseValueConstant(plantId) {
     case 'boneboo': return 627.31;
     case 'fireflyfern': return 2882.69;
     case 'fossilight': return 5531.27;
-    case 'boneblossom': return 3572.34;
+    case 'boneblossom': return 22244.57;
     default: return null;
   }
 }
@@ -570,7 +570,7 @@ function getBasePricePerKg(plantId, weight) {
       case 'boneboo': base = 627.31 * w; break;
       case 'fireflyfern': base = 2882.69 * w; break;
       case 'fossilight': base = 5531.27 * w; break;
-      case 'boneblossom': base = 3572.34 * w; break;
+      case 'boneblossom': base = 22244.57 * w; break;
       default: base = null; break;
     }
   }
@@ -668,7 +668,7 @@ function getBaseValueCalculated(plantId, weight) {
     case 'boneboo': return (w < plantMinWeights['boneboo']) ? null : 627.31 * w * w;
     case 'fireflyfern': return (w < plantMinWeights['fireflyfern']) ? null : 2882.69 * w * w;
     case 'fossilight': return (w < plantMinWeights['fossilight']) ? null : 5531.27 * w * w;
-    case 'boneblossom': return (w < plantMinWeights['boneblossom']) ? null : 3572.34 * w * w;
+    case 'boneblossom': return (w < plantMinWeights['boneblossom']) ? null : 22244.57 * w * w;
     default: return w * w;
   }
 }
