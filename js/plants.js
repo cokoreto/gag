@@ -272,5 +272,5 @@ const plantMinWeights = {
   boneboo: 14.500,
   fireflyfern: 4.770,
   fossilight: 3.790,
-  boneblossom: 6.650
+  boneblossom: 2.30
 };
