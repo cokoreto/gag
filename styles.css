@@ -774,7 +774,28 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #232634;
   border-color: #ffbf00;
 }
+.mod-btn.active#modbtn-friendbound,
+.mod-btn:hover#modbtn-friendbound {
+  background: linear-gradient(90deg, #6ee7b7 0%, #3b82f6 100%);
+  color: #fff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 12px #6ee7b755;
+}
 
+.mod-btn.active#modbtn-tempestuous,
+.mod-btn:hover#modbtn-tempestuous {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border-color: #60a5fa;
+  box-shadow: 0 2px 12px #60a5fa55;
+}
+.mod-btn.active#modbtn-infected,
+.mod-btn:hover#modbtn-infected {
+  background: linear-gradient(90deg, #a7f3d0 0%, #f87171 100%);
+  color: #232634;
+  border-color: #f87171;
+  box-shadow: 0 2px 12px #f8717155;
+}
 
 
 .fruit-btn.active#fruitbtn-rainbow,
@@ -929,4 +950,13 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   pointer-events: none;
   z-index: 2;
   animation: shining-move 3.5s cubic-bezier(.4,.7,.3,1) infinite;
+}
+
+
+
+#maxMutationBtn.active {
+  background: linear-gradient(90deg, #ff6ec4 0%, #7873f5 100%);
+  color: #fff;
+  border-color: #7873f5;
+  box-shadow: 0 2px 12px #ff6ec488;
 }

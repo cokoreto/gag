@@ -7,7 +7,8 @@ const modifiers = [
   'alienlike', 'sundried', 'galactic', 'windstruck', 'paradisal', 'twisted', 'verdant',
   'aurora', 'drenched',
   'cloudtouched', 'fried', 'sandy',
-  'amber', 'oldamber', 'ancientamber', 'clay', 'ceramic'
+  'amber', 'oldamber', 'ancientamber', 'clay', 'ceramic',
+  'friendbound', 'tempestuous', 'infected'
 ];
 const modifierLabels = {
   wet: 'Wet 2X',
@@ -46,7 +47,10 @@ const modifierLabels = {
   oldamber: 'OldAmber 20X',
   ancientamber: 'Ancient Amber 50X',
   clay: 'Clay 3X',
-  ceramic: 'Ceramic 30X'
+  ceramic: 'Ceramic 30X',
+  friendbound: 'Friendbound 70X',
+  tempestuous: 'Tempestuous 12X',
+  infected: 'Infected 75X'
 };
 const fruitTypes = [
   { id: 'rainbow', label: 'Rainbow 50X' },

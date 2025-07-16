@@ -22,7 +22,8 @@ function calculateKgFromPrice() {
       ['celestial',119],['disco',124],['zomb',24],['plasma',4],['voidtouched',134],['pollinated',2],['honeyglazed',4],
       ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24],
       ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',99],['twisted',4],['verdant',3],
-      ['aurora',89],['drenched',4],['cloudtouched',4],['fried',7],['sandy',2],['amber',9],['oldamber',19],['ancientamber',49],['clay',2],['ceramic',29]
+      ['aurora',89],['drenched',4],['cloudtouched',4],['fried',7],['sandy',2],['amber',9],['oldamber',19],['ancientamber',49],
+      ['clay',2],['ceramic',29],['friendbound', 69], ['tempestuous', 11], ['infected', 74]
     ].forEach(([id, mult]) => {
       if (isModifierActive(id)) modifierMultiplier += mult;
     });

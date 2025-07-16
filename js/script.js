@@ -8,7 +8,7 @@ const categories = {
   "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine','nectarshade','manuka','dandelion','lumira','honeysuckle'],
   "Crafting Seeds": ['beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper'],
   "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
-  "Prehistoric Event": ['stonebite','paradisepetal','horneddinoshroom','boneboo','fireflyfern','fossilight','boneblossom']
+  "Prehistoric Event": ['stonebite','paradisepetal','horneddinoshroom','boneboo','fireflyfern','fossilight','boneblossom', 'horsetail', 'amberspine', 'grandvolcania', 'lingonberry'],
 };
 
 const modifierContainer = document.getElementById('modifiers');
@@ -424,4 +424,35 @@ modifierContainer.addEventListener('click', function(e) {
     document.getElementById('searchModifierInput').dispatchEvent(new Event('input'));
   }
 });
+
+const maxMutationModifiers = [
+  'rainbow', 'shocked', 'frozen', 'moonlit', 'bloodlit', 'choc', 'celestial', 'disco', 'zomb', 'plasma',
+  'voidtouched', 'pollinated', 'honeyglazed', 'heavenly', 'cooked', 'molten', 'meteoric', 'windstruck',
+  'alienlike', 'paradisal', 'twisted', 'galactic', 'aurora', 'cloudtouched', 'fried', 'ancientamber',
+  'sandy', 'ceramic', 'friendbound', 'tempestuous', 'infected'
+];
+
+const maxMutationBtn = document.getElementById('maxMutationBtn');
+let maxMutationActive = false;
+
+maxMutationBtn.addEventListener('click', function() {
+  maxMutationActive = !maxMutationActive;
+  this.classList.toggle('active', maxMutationActive);
+
+  setFruitActive('rainbow', maxMutationActive);
+
+  modifiers.forEach(id => {
+    setModifierActive(id, maxMutationActive && maxMutationModifiers.includes(id));
+  });
+
+  calculateValue();
+  updateBasePricePerKg();
+});
+
+function setFruitActive(id, active) {
+  const btn = document.getElementById(`fruitbtn-${id}`);
+  if (!btn) return;
+  if (active) btn.classList.add('active');
+  else btn.classList.remove('active');
+}
 

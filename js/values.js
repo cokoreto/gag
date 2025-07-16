@@ -30,7 +30,8 @@ function calculateValue() {
   pineapple = false, kiwi = false, bellpepper = false, pricklypear = false, loquat = false, feijoa = false,
   sugarapple = false, burningbud = false, wildcarrot = false, cantaloupe = false, parasolflower = false, rosydelight = false,
   elephantears = false, stonebite = false, paradisepetal = false, horneddinoshroom = false, boneboo = false,
-  fireflyfern = false, fossilight = false, boneblossom = false;
+  fireflyfern = false, fossilight = false, boneblossom = false, horsetail = false, amberspine = false,
+  grandvolcania = false, lingonberry = false;
 
   if (activePlant) {
     eval(`${activePlant} = true`);
@@ -74,6 +75,9 @@ function calculateValue() {
   modifierMultiplier += isModifierActive('ancientamber') ? 49 : 0;
   modifierMultiplier += isModifierActive('clay') ? 2 : 0;
   modifierMultiplier += isModifierActive('ceramic') ? 29 : 0;
+  modifierMultiplier += isModifierActive('friendbound') ? 69 : 0;
+  modifierMultiplier += isModifierActive('tempestuous') ? 11 : 0;
+  modifierMultiplier += isModifierActive('infected') ? 74 : 0;
 
   let baseValue = 0;
   if (easteregg) {
@@ -343,7 +347,19 @@ function calculateValue() {
   else if (boneblossom) {
     baseValue = (weight < plantMinWeights['boneblossom']) ? null : 22244.57 * weight * weight;
   }
-  else { 
+  else if (horsetail) {
+    baseValue = (weight < plantMinWeights['horsetail']) ? null : 3332.77 * weight * weight;
+  }
+  else if (amberspine) {
+    baseValue = (weight < plantMinWeights['amberspine']) ? null : 1525.53 * weight * weight;
+  }
+  else if (grandvolcania) {
+    baseValue = (weight < plantMinWeights['grandvolcania']) ? null : 1439.18 * weight * weight;
+  }
+  else if (lingonberry) {
+    baseValue = (weight < plantMinWeights['lingonberry']) ? null : 134264.95 * weight * weight;
+  }
+  else {
     baseValue = weight * weight;
   }
 
@@ -364,7 +380,8 @@ function calculateValue() {
     ['burnt',3],['cooked',9],['dawnbound',149],['meteoric',124],['molten',24],
     ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',99],['twisted',4],['verdant',3],
     ['aurora',89],['drenched',4],
-    ['cloudtouched',4],['fried',7],['sandy',2],['amber',9],['oldamber',19],['ancientamber',49],['clay',2],['ceramic',29]
+    ['cloudtouched',4],['fried',7],['sandy',2],['amber',9],['oldamber',19],['ancientamber',49],['clay',2],
+    ['ceramic',29],['friendbound', 69], ['tempestuous', 11], ['infected', 74]
   ].forEach(([id, mult]) => {
     if (isModifierActive(id)) activeMods.push(`+${mult} (${modifierLabels[id]})`);
   });
@@ -469,6 +486,10 @@ function getBaseValueConstant(plantId) {
     case 'fireflyfern': return 2882.69;
     case 'fossilight': return 5531.27;
     case 'boneblossom': return 22244.57;
+    case 'horsetail': return 3332.77;
+    case 'amberspine': return 1525.53;
+    case 'grandvolcania': return 1439.18;
+    case 'lingonberry': return 134264.95;
     default: return null;
   }
 }
@@ -571,6 +592,10 @@ function getBasePricePerKg(plantId, weight) {
       case 'fireflyfern': base = 2882.69 * w; break;
       case 'fossilight': base = 5531.27 * w; break;
       case 'boneblossom': base = 22244.57 * w; break;
+      case 'horsetail': base = 3332.77 * w; break;
+      case 'amberspine': base = 1525.53 * w; break;
+      case 'grandvolcania': base = 1439.18 * w; break;
+      case 'lingonberry': base = 134264.95 * w; break;
       default: base = null; break;
     }
   }
@@ -669,6 +694,10 @@ function getBaseValueCalculated(plantId, weight) {
     case 'fireflyfern': return (w < plantMinWeights['fireflyfern']) ? null : 2882.69 * w * w;
     case 'fossilight': return (w < plantMinWeights['fossilight']) ? null : 5531.27 * w * w;
     case 'boneblossom': return (w < plantMinWeights['boneblossom']) ? null : 22244.57 * w * w;
+    case 'horsetail': return (w < plantMinWeights['horsetail']) ? null : 3332.77 * w * w;
+    case 'amberspine': return (w < plantMinWeights['amberspine']) ? null : 1525.53 * w * w;
+    case 'grandvolcania': return (w < plantMinWeights['grandvolcania']) ? null : 1439.18 * w * w;
+    case 'lingonberry': return (w < plantMinWeights['lingonberry']) ? null : 134264.95 * w * w;
     default: return w * w;
   }
 }

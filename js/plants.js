@@ -87,7 +87,11 @@ const plantLabels = {
   boneboo: "Boneboo",
   fireflyfern: "Firefly Fern",
   fossilight: "Fossilight",
-  boneblossom: "Bone Blossom"
+  boneblossom: "Bone Blossom",
+  horsetail: "Horsetail",
+  amberspine: "Amber Spine",
+  grandvolcania: "Grand Volcania",
+  lingonberry: "Lingonberry"
 };
 
 const plantImages = {
@@ -173,14 +177,17 @@ const plantImages = {
   parasolflower: "img/parasolflower.png",
   rosydelight: "img/rosydelight.png",
   elephantears: "img/elephantears.png",
-
   stonebite: "img/stonebite.png",
   paradisepetal: "img/paradisepetal.png",
   horneddinoshroom: "img/horneddinoshroom.png",
   boneboo: "img/boneboo.png",
   fireflyfern: "img/fireflyfern.png",
   fossilight: "img/fossilight.png",
-  boneblossom: "img/boneblossom.png"
+  boneblossom: "img/boneblossom.png",
+  horsetail: "img/horsetail.png",
+  amberspine: "img/amberspine.png",
+  grandvolcania: "img/grandvolcania.png",
+  lingonberry: "img/lingonberry.png"
 };
 
 const plantMinWeights = {
@@ -272,5 +279,9 @@ const plantMinWeights = {
   boneboo: 14.500,
   fireflyfern: 4.770,
   fossilight: 3.790,
-  boneblossom: 2.30
+  boneblossom: 2.30,
+  horsetail: 2.850,
+  amberspine: 5.700,
+  grandvolcania: 6.650,
+  lingonberry: 0.485
 };
