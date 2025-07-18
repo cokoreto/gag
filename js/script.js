@@ -6,9 +6,10 @@ const categories = {
   "Event Seed Pack": ['cranberry','durian','eggplant'],
   "Exotic Plants": ['papaya','banana','passionfruit','soulfruit'],
   "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine','nectarshade','manuka','dandelion','lumira','honeysuckle'],
-  "Crafting Seeds": ['beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper'],
+  "Crafting Seeds": ['beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper', 'grandvolcania'],
   "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
   "Prehistoric Event": ['stonebite','paradisepetal','horneddinoshroom','boneboo','fireflyfern','fossilight','boneblossom', 'horsetail', 'amberspine', 'grandvolcania', 'lingonberry'],
+  "Popular Plants": ['candyblossom', 'boneblossom', 'moonblossom', 'honeysuckle', 'horneddinoshroom']
 };
 
 const modifierContainer = document.getElementById('modifiers');
@@ -75,8 +76,8 @@ function toggleModifier(id) {
     return;
   }
 
-  if (id === 'frozen' || id === 'wet' || id === 'chilled') {
-    const group = ['frozen', 'wet', 'chilled'];
+  if (id === 'frozen' || id === 'wet' || id === 'chilled' || id === 'drenched') {
+    const group = ['frozen', 'wet', 'chilled', 'drenched'];
     group.forEach(gid => {
       setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
     });
@@ -121,8 +122,10 @@ function toggleFruitBtn(id) {
 }
 function togglePlantBtn(changed) {
   plantIds.forEach(id => {
-    const btn = document.getElementById(`plantbtn-${id}`);
-    if (btn) btn.classList.toggle('active', id === changed);
+    const btns = document.querySelectorAll(`#plantbtn-${id}`);
+    btns.forEach(btn => {
+      btn.classList.toggle('active', id === changed);
+    });
   });
   if (plantMinWeights[changed] !== undefined) {
     document.getElementById('weight').value = plantMinWeights[changed];
@@ -133,10 +136,34 @@ function togglePlantBtn(changed) {
   updateBasePricePerKg();
 }
 
+function selectPlantById(plantId) {
+  plantIds.forEach(id => {
+    const btns = document.querySelectorAll(`#plantbtn-${id}`);
+    btns.forEach(btn => {
+      btn.classList.toggle('active', id === plantId);
+    });
+  });
+  if (plantMinWeights[plantId] !== undefined) {
+    document.getElementById('weight').value = plantMinWeights[plantId];
+  } else {
+    document.getElementById('weight').value = 1.00;
+  }
+  calculateValue();
+  updateBasePricePerKg();
+  const btns = document.querySelectorAll(`#plantbtn-${plantId}`);
+  btns.forEach(btn => {
+    btn.scrollIntoView({behavior: 'smooth', block: 'center'});
+    btn.classList.add('search-highlight');
+    setTimeout(() => btn.classList.remove('search-highlight'), 1200);
+  });
+}
+
 function getActivePlantId() {
   for (const id of plantIds) {
-    const btn = document.getElementById(`plantbtn-${id}`);
-    if (btn && btn.classList.contains('active')) return id;
+    const btns = document.querySelectorAll(`#plantbtn-${id}`);
+    for (const btn of btns) {
+      if (btn && btn.classList.contains('active')) return id;
+    }
   }
   return null;
 }
@@ -151,8 +178,8 @@ function isFruitActive(id) {
 
 function clearAll() {
   plantIds.forEach(id => {
-    const btn = document.getElementById(`plantbtn-${id}`);
-    if (btn) btn.classList.remove('active');
+    const btns = document.querySelectorAll(`#plantbtn-${id}`);
+    btns.forEach(btn => btn.classList.remove('active'));
   });
   modifiers.forEach(id => setModifierActive(id, false, false));
   fruitTypes.forEach(fruit => {
@@ -344,8 +371,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function selectPlantById(plantId) {
     plantIds.forEach(id => {
-      const btn = document.getElementById(`plantbtn-${id}`);
-      if (btn) btn.classList.toggle('active', id === plantId);
+      const btns = document.querySelectorAll(`#plantbtn-${id}`);
+      btns.forEach(btn => {
+        btn.classList.toggle('active', id === plantId);
+      });
     });
     if (plantMinWeights[plantId] !== undefined) {
       document.getElementById('weight').value = plantMinWeights[plantId];
@@ -354,12 +383,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     calculateValue();
     updateBasePricePerKg();
-    const btn = document.getElementById(`plantbtn-${plantId}`);
-    if (btn) {
+    const btns = document.querySelectorAll(`#plantbtn-${plantId}`);
+    btns.forEach(btn => {
       btn.scrollIntoView({behavior: 'smooth', block: 'center'});
       btn.classList.add('search-highlight');
       setTimeout(() => btn.classList.remove('search-highlight'), 1200);
-    }
+    });
   }
 
   function searchAndHighlightPlant() {
@@ -429,7 +458,7 @@ const maxMutationModifiers = [
   'rainbow', 'shocked', 'frozen', 'moonlit', 'bloodlit', 'choc', 'celestial', 'disco', 'zomb', 'plasma',
   'voidtouched', 'pollinated', 'honeyglazed', 'heavenly', 'cooked', 'molten', 'meteoric', 'windstruck',
   'alienlike', 'paradisal', 'twisted', 'galactic', 'aurora', 'cloudtouched', 'fried', 'ancientamber',
-  'sandy', 'ceramic', 'friendbound', 'tempestuous', 'infected'
+  'sandy', 'ceramic', 'friendbound', 'tempestuous', 'infected', "dawnbound"
 ];
 
 const maxMutationBtn = document.getElementById('maxMutationBtn');

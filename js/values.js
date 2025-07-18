@@ -2,16 +2,6 @@ function calculateValue() {
   const weight = parseFloat(document.getElementById('weight').value) || 0;
   const activePlant = getActivePlantId();
 
-  const dawnboundBtn = document.getElementById('modbtn-dawnbound');
-  if (dawnboundBtn) {
-    if (activePlant === 'sunflower') {
-      dawnboundBtn.disabled = false;
-    } else {
-      dawnboundBtn.disabled = true;
-      dawnboundBtn.classList.remove('active');
-    }
-  }
-
   if (activePlant && plantMinWeights[activePlant] !== undefined && weight < plantMinWeights[activePlant]) {
     warnElem.textContent = `Minimum weight for ${activePlant.charAt(0).toUpperCase() + activePlant.slice(1)} is ${plantMinWeights[activePlant]} kg`;
     warnElem.style.display = 'block';

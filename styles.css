@@ -28,16 +28,18 @@ html, body {
   min-height: 100vh;
 }
 .container {
-  max-width: 900px;
+  max-width: 1500px;
   margin: 40px auto;
-  background: var(--bg-card);
+  background: transparent !important;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border: 2.5px solid var(--border);
+  box-shadow: none !important;
   padding: 38px 28px 28px 28px;
   position: relative;
   overflow: hidden;
   margin-top: 54px;
   z-index: 1;
+  backdrop-filter: none;
 }
 .container::before {
   content: "";
@@ -173,8 +175,21 @@ h1 {
   font-weight: 500;
 }
 #modifiers {
-  gap: 13px 28px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 18px 18px;
   margin-bottom: 12px;
+  width: 100%;
+}
+.mod-btn {
+  width: 100%;
+  min-width: 0;
+  min-height: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .fruit-row {
   margin-bottom: 12px;
@@ -959,4 +974,21 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   color: #fff;
   border-color: #7873f5;
   box-shadow: 0 2px 12px #ff6ec488;
+}
+
+
+
+@media (max-width: 1100px) {
+  #modifiers {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  #modifiers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .container {
+    max-width: 99vw;
+    padding: 12px 2vw 18px 2vw;
+  }
 }
