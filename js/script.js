@@ -7,7 +7,7 @@ const categories = {
   "Exotic Plants": ['papaya','banana','passionfruit','soulfruit'],
   "Bee Event": ['hive','rose','foxglove','purpledahlia','lilac','sunflower','pinklily','nectarine','nectarshade','manuka','dandelion','lumira','honeysuckle'],
   "Crafting Seeds": ['beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper', 'grandvolcania'],
-  "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
+  "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pitcherplant','pricklypear','loquat','feijoa','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
   "Prehistoric Event": ['stonebite','paradisepetal','horneddinoshroom','boneboo','fireflyfern','fossilight','boneblossom', 'horsetail', 'amberspine', 'grandvolcania', 'lingonberry'],
   "Zen Event": ['monoblooma', 'serenity', 'taroflower', 'zenrocks', 'hinomai', 'mapleapple', 'softsunshine', 'zenflare', 'spikedmango' ],
   "Popular Plants": ['candyblossom', 'boneblossom', 'moonblossom', 'honeysuckle', 'horneddinoshroom']
@@ -67,45 +67,26 @@ Object.entries(categories).forEach(([title, ids]) => {
 });
 
 function toggleModifier(id) {
-
-  if (id === 'cooked' || id === 'burnt') {
-    const group = ['cooked', 'burnt'];
-    group.forEach(gid => {
-      setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
-    });
-    calculateValue();
-    return;
+  for (const group of exclusiveModifierGroups) {
+    if (group.includes(id)) {
+      group.forEach(gid => {
+        setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
+      });
+      calculateValue();
+      return;
+    }
   }
-
-  if (id === 'frozen' || id === 'wet' || id === 'chilled' || id === 'drenched') {
-    const group = ['frozen', 'wet', 'chilled', 'drenched'];
-    group.forEach(gid => {
-      setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
-    });
-    calculateValue();
-    return;
-  }
-
-  if (id === 'paradisal' || id === 'verdant' || id === 'sundried') {
-    const group = ['paradisal', 'verdant', 'sundried'];
-    group.forEach(gid => {
-      setModifierActive(gid, gid === id ? !isModifierActive(id) : false);
-    });
-    calculateValue();
-    return;
-
-  } else if (id === 'amber' || id === 'oldamber' || id === 'ancientamber') {
-    const amberGroup = ['amber', 'oldamber', 'ancientamber'];
-    amberGroup.forEach(aid => {
-      setModifierActive(aid, aid === id ? !isModifierActive(id) : false);
-    });
-    calculateValue();
-    return;
-  }
-
   setModifierActive(id, !isModifierActive(id));
   calculateValue();
 }
+
+const exclusiveModifierGroups = [
+  ['cooked', 'burnt'],
+  ['frozen', 'wet', 'chilled', 'drenched'],
+  ['paradisal', 'verdant', 'sundried'],
+  ['amber', 'oldamber', 'ancientamber']
+];
+
 function setModifierActive(id, active, disable = false) {
   const btn = document.getElementById(`modbtn-${id}`);
   if (!btn) return;
