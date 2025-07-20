@@ -91,7 +91,16 @@ const plantLabels = {
   horsetail: "Horsetail",
   amberspine: "Amber Spine",
   grandvolcania: "Grand Volcania",
-  lingonberry: "Lingonberry"
+  lingonberry: "Lingonberry",
+  monoblooma: "Monoblooma",
+  serenity: "Serenity",
+  taroflower: "Taro Flower",
+  zenrocks: "Zen Rocks",
+  hinomai: "Hinomai",
+  mapleapple: "Maple Apple",
+  softsunshine: "Soft Sunshine",
+  zenflare: "Zen Flare",
+  spikedmango: "Spiked Mango"
 };
 
 const plantImages = {
@@ -187,7 +196,16 @@ const plantImages = {
   horsetail: "img/horsetail.png",
   amberspine: "img/amberspine.png",
   grandvolcania: "img/grandvolcania.png",
-  lingonberry: "img/lingonberry.png"
+  lingonberry: "img/lingonberry.png",
+  monoblooma: "img/monoblooma.png",
+  serenity: "img/serenity.png",
+  taroflower: "img/taroflower.png",
+  zenrocks: "img/zenrocks.png",
+  hinomai: "img/hinomai.png",
+  mapleapple: "img/mapleapple.png",
+  softsunshine: "img/softsunshine.png",
+  zenflare: "img/zenflare.png",
+  spikedmango: "img/spikedmango.png"
 };
 
 const plantMinWeights = {
@@ -283,5 +301,14 @@ const plantMinWeights = {
   horsetail: 2.850,
   amberspine: 5.700,
   grandvolcania: 6.650,
-  lingonberry: 0.485
+  lingonberry: 0.485,
+  monoblooma: 0.477,
+  serenity: 0.240,
+  taroflower: 6.640,
+  zenrocks: 17.100,
+  hinomai: 9.500,
+  mapleapple: 2.850,
+  softsunshine: 1.900,
+  zenflare: 1.340,
+  spikedmango: 14.250
 };

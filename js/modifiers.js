@@ -15,7 +15,8 @@ const modifiers = [
   'alienlike', 'galactic', 'celestial', 'shocked',
   'disco', 'meteoric',
   'voidtouched',
-  'dawnbound'
+  'dawnbound',
+  'tranquil', 'chakra', 'toxic', 'radioactive'
 ];
 
 const modifierLabels = {
@@ -58,7 +59,11 @@ const modifierLabels = {
   disco: 'Disco 125X',
   meteoric: 'Meteoric 125X',
   voidtouched: 'Voidtouched 135X',
-  dawnbound: 'Dawnbound 150X'
+  dawnbound: 'Dawnbound 150X',
+  tranquil: 'Tranquil 20X',
+  chakra: 'Chakra 8X',
+  toxic: 'Toxic 12X',
+  radioactive: 'Radioactive 80X'
 };
 
 const fruitTypes = [

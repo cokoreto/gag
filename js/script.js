@@ -9,6 +9,7 @@ const categories = {
   "Crafting Seeds": ['beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper', 'grandvolcania'],
   "Summer Event": ['cauliflower','greenapple','avocado','pineapple','kiwi','bellpepper','pricklypear','loquat','feijoa','wildcarrot','cantaloupe','parasolflower','rosydelight','elephantears','banana','pear'],
   "Prehistoric Event": ['stonebite','paradisepetal','horneddinoshroom','boneboo','fireflyfern','fossilight','boneblossom', 'horsetail', 'amberspine', 'grandvolcania', 'lingonberry'],
+  "Zen Event": ['monoblooma', 'serenity', 'taroflower', 'zenrocks', 'hinomai', 'mapleapple', 'softsunshine', 'zenflare', 'spikedmango' ],
   "Popular Plants": ['candyblossom', 'boneblossom', 'moonblossom', 'honeysuckle', 'horneddinoshroom']
 };
 
@@ -458,7 +459,8 @@ const maxMutationModifiers = [
   'rainbow', 'shocked', 'frozen', 'moonlit', 'bloodlit', 'choc', 'celestial', 'disco', 'zomb', 'plasma',
   'voidtouched', 'pollinated', 'honeyglazed', 'heavenly', 'cooked', 'molten', 'meteoric', 'windstruck',
   'alienlike', 'paradisal', 'twisted', 'galactic', 'aurora', 'cloudtouched', 'fried', 'ancientamber',
-  'sandy', 'ceramic', 'friendbound', 'tempestuous', 'infected', "dawnbound"
+  'sandy', 'ceramic', 'friendbound', 'tempestuous', 'infected', "dawnbound", 'tranquil',
+  'chakra', 'toxic', 'radioactive'
 ];
 
 const maxMutationBtn = document.getElementById('maxMutationBtn');

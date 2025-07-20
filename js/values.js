@@ -21,7 +21,8 @@ function calculateValue() {
   sugarapple = false, burningbud = false, wildcarrot = false, cantaloupe = false, parasolflower = false, rosydelight = false,
   elephantears = false, stonebite = false, paradisepetal = false, horneddinoshroom = false, boneboo = false,
   fireflyfern = false, fossilight = false, boneblossom = false, horsetail = false, amberspine = false,
-  grandvolcania = false, lingonberry = false;
+  grandvolcania = false, lingonberry = false, monoblooma = false, serenity = false, taroflower = false,
+  zenrocks = false, hinomai = false, mapleapple = false, softsunshine = false, zenflare = false, spikedmango = false;
 
   if (activePlant) {
     eval(`${activePlant} = true`);
@@ -68,6 +69,10 @@ function calculateValue() {
   modifierMultiplier += isModifierActive('friendbound') ? 69 : 0;
   modifierMultiplier += isModifierActive('tempestuous') ? 11 : 0;
   modifierMultiplier += isModifierActive('infected') ? 74 : 0;
+  modifierMultiplier += isModifierActive('tranquil') ? 19 : 0;
+  modifierMultiplier += isModifierActive('chakra') ? 7 : 0;
+  modifierMultiplier += isModifierActive('toxic') ? 11 : 0;
+  modifierMultiplier += isModifierActive('radioactive') ? 79 : 0;
 
   let baseValue = 0;
   if (easteregg) {
@@ -349,6 +354,33 @@ function calculateValue() {
   else if (lingonberry) {
     baseValue = (weight < plantMinWeights['lingonberry']) ? null : 134264.95 * weight * weight;
   }
+  else if (monoblooma) {
+    baseValue = (weight < plantMinWeights['monoblooma']) ? null : 87410.65 * weight * weight;
+  }
+  else if (serenity) {
+    baseValue = (weight < plantMinWeights['serenity']) ? null : 548033.33 * weight * weight;
+  }
+  else if (taroflower) {
+    baseValue = (weight < plantMinWeights['taroflower']) ? null : 2457.47 * weight * weight;
+  }
+  else if (zenrocks) {
+    baseValue = (weight < plantMinWeights['zenrocks']) ? null : 463.67 * weight * weight;
+  }
+  else if (hinomai) {
+    baseValue = (weight < plantMinWeights['hinomai']) ? null : 800 * weight * weight;
+  }
+  else if (mapleapple) {
+    baseValue = (weight < plantMinWeights['mapleapple']) ? null : 6239.87 * weight * weight;
+  }
+  else if (softsunshine) {
+    baseValue = (weight < plantMinWeights['softsunshine']) ? null : 11239.17 * weight * weight;
+  }
+  else if (zenflare) {
+    baseValue = (weight < plantMinWeights['zenflare']) ? null : 12538.83 * weight * weight;
+  }
+  else if (spikedmango) {
+    baseValue = (weight < plantMinWeights['spikedmango']) ? null : 300.43 * weight * weight;
+  }
   else {
     baseValue = weight * weight;
   }
@@ -371,7 +403,8 @@ function calculateValue() {
     ['alienlike',99],['sundried',84],['galactic',119],['windstruck',1],['paradisal',99],['twisted',4],['verdant',3],
     ['aurora',89],['drenched',4],
     ['cloudtouched',4],['fried',7],['sandy',2],['amber',9],['oldamber',19],['ancientamber',49],['clay',2],
-    ['ceramic',29],['friendbound', 69], ['tempestuous', 11], ['infected', 74]
+    ['ceramic',29],['friendbound', 69], ['tempestuous', 11], ['infected', 74],
+    ['tranquil', 19], ['chakra', 7], ['toxic', 11], ['radioactive', 79]
   ].forEach(([id, mult]) => {
     if (isModifierActive(id)) activeMods.push(`+${mult} (${modifierLabels[id]})`);
   });
@@ -480,6 +513,15 @@ function getBaseValueConstant(plantId) {
     case 'amberspine': return 1525.53;
     case 'grandvolcania': return 1439.18;
     case 'lingonberry': return 134264.95;
+    case 'monoblooma': return 87410.65;
+    case 'serenity': return 548033.33;
+    case 'taroflower': return 2457.47;
+    case 'zenrocks': return 463.67;
+    case 'hinomai': return 800;
+    case 'mapleapple': return 6239.87;
+    case 'softsunshine': return 11239.17;
+    case 'zenflare': return 12538.83;
+    case 'spikedmango': return 300.43;
     default: return null;
   }
 }
@@ -586,6 +628,15 @@ function getBasePricePerKg(plantId, weight) {
       case 'amberspine': base = 1525.53 * w; break;
       case 'grandvolcania': base = 1439.18 * w; break;
       case 'lingonberry': base = 134264.95 * w; break;
+      case 'monoblooma': base = 87410.65 * w; break;
+      case 'serenity': base = 548033.33 * w; break;
+      case 'taroflower': base = 2457.47 * w; break;
+      case 'zenrocks': base = 463.67 * w; break;
+      case 'hinomai': base = 800 * w; break;
+      case 'mapleapple': base = 6239.87 * w; break;
+      case 'softsunshine': base = 11239.17 * w; break;
+      case 'zenflare': base = 12538.83 * w; break;
+      case 'spikedmango': base = 300.43 * w; break;
       default: base = null; break;
     }
   }
@@ -688,6 +739,15 @@ function getBaseValueCalculated(plantId, weight) {
     case 'amberspine': return (w < plantMinWeights['amberspine']) ? null : 1525.53 * w * w;
     case 'grandvolcania': return (w < plantMinWeights['grandvolcania']) ? null : 1439.18 * w * w;
     case 'lingonberry': return (w < plantMinWeights['lingonberry']) ? null : 134264.95 * w * w;
+    case 'monoblooma': return (w < plantMinWeights['monoblooma']) ? null : 87410.65 * w * w;
+    case 'serenity': return (w < plantMinWeights['serenity']) ? null : 548033.33 * w * w;
+    case 'taroflower': return (w < plantMinWeights['taroflower']) ? null : 2457.47 * w * w;
+    case 'zenrocks': return (w < plantMinWeights['zenrocks']) ? null : 463.67 * w * w;
+    case 'hinomai': return (w < plantMinWeights['hinomai']) ? null : 800 * w * w;
+    case 'mapleapple': return (w < plantMinWeights['mapleapple']) ? null : 6239.87 * w * w;
+    case 'softsunshine': return (w < plantMinWeights['softsunshine']) ? null : 11239.17 * w * w;
+    case 'zenflare': return (w < plantMinWeights['zenflare']) ? null : 12538.83 * w * w;
+    case 'spikedmango': return (w < plantMinWeights['spikedmango']) ? null : 300.43 * w * w;
     default: return w * w;
   }
 }

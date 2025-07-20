@@ -796,7 +796,6 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   border-color: #3b82f6;
   box-shadow: 0 2px 12px #6ee7b755;
 }
-
 .mod-btn.active#modbtn-tempestuous,
 .mod-btn:hover#modbtn-tempestuous {
   background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
@@ -811,7 +810,33 @@ button:hover, .mod-btn:hover, .fruit-btn:hover {
   border-color: #f87171;
   box-shadow: 0 2px 12px #f8717155;
 }
+.mod-btn.active#modbtn-tranquil,
+.mod-btn:hover#modbtn-tranquil {
+  background: linear-gradient(90deg, #6ee7b7 0%, #38b2ac 100%);
+  color: #232634;
+  border-color: #38b2ac;
+}
 
+.mod-btn.active#modbtn-chakra,
+.mod-btn:hover#modbtn-chakra {
+  background: linear-gradient(90deg, #fbbf24 0%, #f472b6 100%);
+  color: #fff;
+  border-color: #fbbf24;
+}
+
+.mod-btn.active#modbtn-toxic,
+.mod-btn:hover#modbtn-toxic {
+  background: linear-gradient(90deg, #a3e635 0%, #65a30d 100%);
+  color: #232634;
+  border-color: #a3e635;
+}
+
+.mod-btn.active#modbtn-radioactive,
+.mod-btn:hover#modbtn-radioactive {
+  background: linear-gradient(90deg, #facc15 0%, #fde047 100%);
+  color: #232634;
+  border-color: #facc15;
+}
 
 .fruit-btn.active#fruitbtn-rainbow,
 .fruit-btn:hover#fruitbtn-rainbow {
